@@ -641,6 +641,7 @@ Turag, Dhaka-1230.</p>
         }
 
         function renderAllSections() {
+            if (!mainContent) return;
             mainContent.innerHTML = '';
             for (const category in categoriesData) {
                 if (Object.prototype.hasOwnProperty.call(categoriesData, category)) {
@@ -648,16 +649,25 @@ Turag, Dhaka-1230.</p>
                 }
             }
             // lucide icons re-scan
-            lucide.createIcons();
+            if (window.lucide && typeof lucide.createIcons === 'function') { lucide.createIcons(); }
         }
 
         async function initPage() {
+            try {
             await bootstrapCategories(); // may replace categoriesData
             categoriesData = normalizeCategoriesObject(categoriesData);
             clearCategoryDropdown();
             fillCategoryDropdown();
             renderAllSections();
             applyFilters();
+            } catch (err) {
+                console.error('Init error:', err);
+                const box = document.createElement('div');
+                box.className = 'mx-auto max-w-6xl mt-6 px-4';
+                box.innerHTML = `<div class=\"rounded-xl border border-red-500/30 bg-red-500/10 text-red-100 px-4 py-3 text-sm\">❌ Failed to load content. Open DevTools Console to see error. Make sure <b>categories.json</b> is valid and accessible.</div>`;
+                const main = document.querySelector('main') || document.body;
+                main.prepend(box);
+            }
         }
 
         window.addEventListener('load', () => {
