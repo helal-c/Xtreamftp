@@ -9,7 +9,59 @@
     <meta name="description" content="Xtream Communication - High speed internet service provider with Live TV and FTP servers.">
     <link rel="icon" href="js/logo.png">
     <title>Xtream Communication - Best Internet Service Provider in Dhaka</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com">
+        // ---- Mobile drawer: move controls (Search/Category/View) into drawer ----
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+        const mobileDrawerContent = document.getElementById('mobileDrawerContent');
+        const controlsPlaceholder = document.getElementById('controlsPlaceholder');
+        let controlsNode = document.querySelector('.control-card');
+
+        function openDrawer(){
+            if (!mobileDrawer) return;
+            mobileDrawer.classList.add('show');
+            mobileDrawer.setAttribute('aria-hidden','false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDrawer(){
+            if (!mobileDrawer) return;
+            mobileDrawer.classList.remove('show');
+            mobileDrawer.setAttribute('aria-hidden','true');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn?.addEventListener('click', openDrawer);
+        mobileDrawerClose?.addEventListener('click', closeDrawer);
+        mobileDrawer?.addEventListener('click', (e)=>{ if(e.target === mobileDrawer) closeDrawer(); });
+
+        function syncControlsLocation(){
+            controlsNode = controlsNode || document.querySelector('.control-card');
+            if (!controlsNode || !controlsPlaceholder || !mobileDrawerContent) return;
+
+            const isMobile = window.matchMedia('(max-width: 640px)').matches;
+            if (isMobile){
+                // move into drawer content (keep same DOM so listeners still work)
+                if (controlsNode.parentElement !== mobileDrawerContent){
+                    mobileDrawerContent.appendChild(controlsNode);
+                }
+                // show it inside drawer
+                controlsNode.style.display = '';
+            } else {
+                // move back to original place
+                if (controlsNode.parentElement !== controlsPlaceholder.parentElement){
+                    // insert after placeholder
+                    controlsPlaceholder.insertAdjacentElement('afterend', controlsNode);
+                }
+                controlsNode.style.display = '';
+                closeDrawer();
+            }
+        }
+
+        window.addEventListener('resize', syncControlsLocation);
+        window.addEventListener('load', syncControlsLocation);
+
+</script> -->
     <script src="js/cdn.tailwindcss.com_3.4.16.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -216,6 +268,88 @@
             .hero-banner{ font-size: .95rem !important; padding: 12px 14px !important; }
             .control-card{ top: calc(var(--safe-top) + 0.5rem); }
             .footer-wrap{ padding-bottom: calc(var(--safe-bottom) + 24px) !important; }
+        }
+
+    
+        /* ---------------- Mobile menu drawer ---------------- */
+        .mobile-fab{
+            position: fixed;
+            right: 16px;
+            bottom: calc(var(--safe-bottom) + 16px);
+            z-index: 60;
+            width: 54px;
+            height: 54px;
+            border-radius: 999px;
+            border: 1px solid rgba(55,65,81,.75);
+            background: rgba(17,24,39,.92);
+            color: #e5e7eb;
+            box-shadow: 0 16px 32px rgba(0,0,0,.35);
+            font-size: 22px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-drawer-overlay{
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            z-index: 70;
+            display: none;
+            padding: 0;
+        }
+        .mobile-drawer-panel{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17,24,39,.98);
+            border-top: 1px solid rgba(55,65,81,.85);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            max-height: min(82vh, 720px);
+            overflow: hidden;
+            transform: translateY(110%);
+            transition: transform .18s ease;
+            box-shadow: 0 -18px 40px rgba(0,0,0,.45);
+        }
+        .mobile-drawer-overlay.show{ display: block; }
+        .mobile-drawer-overlay.show .mobile-drawer-panel{ transform: translateY(0); }
+
+        .mobile-drawer-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(55,65,81,.65);
+        }
+        .mobile-drawer-title{
+            font-weight: 800;
+            letter-spacing: .2px;
+            color: #e5e7eb;
+            font-size: 1.05rem;
+        }
+        .mobile-drawer-close{
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(55,65,81,.75);
+            background: rgba(17,24,39,.6);
+            color: #e5e7eb;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size: 18px;
+        }
+        .mobile-drawer-content{
+            padding: 14px 16px calc(var(--safe-bottom) + 18px);
+            overflow: auto;
+            max-height: min(72vh, 640px);
+        }
+
+        @media (max-width: 640px){
+            .mobile-fab{ display:flex; }
+            /* hide inline controls card on mobile (we will move it into drawer) */
+            .control-card{ display:none; }
         }
 
     </style>
@@ -809,6 +943,22 @@ categoryFilter?.addEventListener('change', applyFilters);
             }
         });
     </script>
+
+    <!-- Mobile Controls Drawer -->
+    <button id="mobileMenuBtn" class="mobile-fab" aria-label="Open menu" title="Menu">
+        ☰
+    </button>
+
+    <div id="mobileDrawer" class="mobile-drawer-overlay" aria-hidden="true">
+        <div class="mobile-drawer-panel" role="dialog" aria-modal="true" aria-label="Controls">
+            <div class="mobile-drawer-header">
+                <div class="mobile-drawer-title">Menu</div>
+                <button id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close">✕</button>
+            </div>
+            <div id="mobileDrawerContent" class="mobile-drawer-content"></div>
+        </div>
+    </div>
+
 </body>
 
 
