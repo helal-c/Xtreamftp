@@ -224,10 +224,6 @@
                 <div class="mt-4 flex flex-wrap gap-2 items-center">
                     <span id="resultCount" class="text-sm text-gray-300"></span>
                     <span class="text-sm text-gray-500">• Tips: Click “Copy” to copy any link.</span>
-
-                    <span class="text-sm text-gray-500">• Status: <span class="inline-flex items-center gap-1"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-gray-500"></span><span>unknown</span></span> <span class="inline-flex items-center gap-1 ml-2"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-green-500"></span><span>online</span></span> <span class="inline-flex items-center gap-1 ml-2"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-red-500"></span><span>offline</span></span></span>
-                    <button id="refreshStatus" class="ml-auto bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Refresh Status</button>
-
                 </div>
             </div>
         </section>
@@ -248,13 +244,6 @@ Turag, Dhaka-1230.</p>
                     <i data-lucide="phone" class="w-5 h-5 mr-2 icon-hover-animation"></i>01864228999, 01534333278, 01932093506
                 </p>
             </div>
-            
-            <div class="mt-4">
-                <button id="openAdmin" class="bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">
-                    Admin
-                </button>
-            </div>
-
             <p class="text-gray-500 mt-8">&copy; <script>document.write(new Date().getFullYear())</script> Xtream Communication - All Rights Reserved.</p>
         </footer>
 
@@ -304,7 +293,7 @@ Turag, Dhaka-1230.</p>
     <script src="js/unpkg.com_lucide%40latest.js"></script>
     <script>
         // Website data organized by category
-        const categories = {
+        const EMBEDDED_CATEGORIES = {
 			"Live TV": [
 				{ name: '11Plus.Live', url: 'http://ott.11plus.live/', icon: 'tv' },
 				{ name: '11Plus.Live', url: 'http://flix.11plus.live/live-tv.html', icon: 'tv' },
@@ -378,6 +367,57 @@ Turag, Dhaka-1230.</p>
 			]
         };
 
+        // ---- Data loader (categories.json with fallback) ----
+        const CATEGORIES_JSON_URL = 'categories.json';
+
+        function normalizeCategoriesObject(obj) {
+            const out = {};
+            if (!obj || typeof obj !== 'object') return out;
+            Object.keys(obj).forEach((k) => {
+                const nk = (k || '').toString().trim();
+                const val = obj[k];
+                if (!nk) return;
+                out[nk] = Array.isArray(val) ? val : [];
+            });
+            return out;
+        }
+
+        let categoriesData = normalizeCategoriesObject(EMBEDDED_CATEGORIES);
+
+        async function loadServerCategories() {
+            try {
+                const res = await fetch(CATEGORIES_JSON_URL, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const data = await res.json();
+                return normalizeCategoriesObject(data);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function showLoadHintIfNeeded() {
+            const isFile = location.protocol === 'file:';
+            if (!isFile) return;
+            const hint = document.createElement('div');
+            hint.className = 'mx-auto max-w-6xl mt-4 px-4';
+            hint.innerHTML = `
+                <div class="rounded-xl border border-yellow-500/30 bg-yellow-500/10 text-yellow-100 px-4 py-3 text-sm">
+                    ⚠️ You are opening this page from <b>file://</b>. Some browsers block loading <b>categories.json</b> here.
+                    For best results, run a local server (e.g., <code>python -m http.server 8080</code>) or deploy to Vercel/GitHub Pages.
+                </div>`;
+            const main = document.querySelector('main');
+            if (main) main.prepend(hint); else document.body.prepend(hint);
+        }
+
+        async function bootstrapCategories() {
+            showLoadHintIfNeeded();
+            const serverData = await loadServerCategories();
+            if (serverData && Object.keys(serverData).length) {
+                categoriesData = serverData;
+            }
+        }
+
+
         const mainContent = document.getElementById('main-content');
 
         // Function to create a card for each site
@@ -398,10 +438,9 @@ Turag, Dhaka-1230.</p>
 
                     <div class="px-4 pb-4">
                         <div class="flex gap-2 justify-center">
-                            <button class="copy-btn w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition flex items-center justify-center gap-2"
+                            <button class="copy-btn w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition"
                                 data-url="${site.url}" data-name="${site.name}">
-                                <span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-gray-500" data-status-url="${site.url}" title="Checking..."></span>
-                                <span>Copy</span>
+                                Copy
                             </button>
                         </div>
                     </div>
@@ -429,12 +468,6 @@ Turag, Dhaka-1230.</p>
                 </section>
             `;
         }
-
-        // Populate the main content area with categorized sections
-        for (const category in categories) {
-            if (categories.hasOwnProperty(category)) {
-                mainContent.innerHTML += createCategorySection(category, categories[category]);
-            }
         }
 
         // Welcome Modal JavaScript
@@ -549,18 +582,6 @@ Turag, Dhaka-1230.</p>
         const expandAll = document.getElementById('expandAll');
         const collapseAll = document.getElementById('collapseAll');
         const resultCount = document.getElementById('resultCount');
-
-        // Populate category dropdown
-        (function fillCategoryDropdown() {
-            const cats = Object.keys(categories);
-            cats.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                categoryFilter.appendChild(opt);
-            });
-        })();
-
         function normalize(s) { return (s || '').toLowerCase().trim(); }
 
         function applyFilters() {
@@ -599,7 +620,50 @@ Turag, Dhaka-1230.</p>
         }
 
         siteSearch?.addEventListener('input', applyFilters);
-        categoryFilter?.addEventListener('change', applyFilters);
+        
+
+        // ---- Init (load categories.json if available, then render) ----
+        function clearCategoryDropdown() {
+            // keep the first option (All Categories)
+            const keep = categoryFilter.querySelector('option[value="__all__"]');
+            categoryFilter.innerHTML = '';
+            if (keep) categoryFilter.appendChild(keep);
+        }
+
+        function fillCategoryDropdown() {
+            const cats = Object.keys(categoriesData);
+            cats.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                categoryFilter.appendChild(opt);
+            });
+        }
+
+        function renderAllSections() {
+            mainContent.innerHTML = '';
+            for (const category in categoriesData) {
+                if (Object.prototype.hasOwnProperty.call(categoriesData, category)) {
+                    mainContent.innerHTML += createCategorySection(category, categoriesData[category]);
+                }
+            }
+            // lucide icons re-scan
+            lucide.createIcons();
+        }
+
+        async function initPage() {
+            await bootstrapCategories(); // may replace categoriesData
+            categoriesData = normalizeCategoriesObject(categoriesData);
+            clearCategoryDropdown();
+            fillCategoryDropdown();
+            renderAllSections();
+            applyFilters();
+        }
+
+        window.addEventListener('load', () => {
+            initPage();
+        });
+categoryFilter?.addEventListener('change', applyFilters);
         clearSearch?.addEventListener('click', () => { siteSearch.value = ''; applyFilters(); siteSearch.focus(); });
 
         // Collapse / Expand categories
@@ -651,603 +715,7 @@ Turag, Dhaka-1230.</p>
                 });
             }
         });
-
-        // Apply filters after first render
-        window.addEventListener('load', () => {
-            applyFilters();
-        });
-
-
-        // ---- Auto Online/Offline Checker ----
-        const refreshStatusBtn = document.getElementById('refreshStatus');
-
-        function statusCanCheck(url) {
-            // Relative URLs are same-origin -> checkable
-            if (!url.includes('://') && !url.startsWith('//')) return true;
-
-            try {
-                const u = new URL(url, window.location.href);
-                // Mixed content: HTTPS page trying to fetch HTTP is blocked by browsers
-                if (window.location.protocol === 'https:' && u.protocol === 'http:') return false;
-                return (u.protocol === 'https:' || u.protocol === 'http:');
-            } catch {
-                return false;
-            }
-        }
-
-        async function checkUrlOnce(url, timeoutMs = 4500) {
-            // Returns: 'online' | 'offline' | 'unknown'
-            if (!statusCanCheck(url)) return 'unknown';
-
-            // For same-origin relative links: do normal fetch
-            const isRelative = (!url.includes('://') && !url.startsWith('//'));
-
-            const controller = new AbortController();
-            const t = setTimeout(() => controller.abort(), timeoutMs);
-
-            try {
-                if (isRelative) {
-                    const res = await fetch(url, { method: 'GET', cache: 'no-store', signal: controller.signal });
-                    clearTimeout(t);
-                    return res && (res.ok || (res.status >= 200 && res.status < 500)) ? 'online' : 'offline';
-                } else {
-                    // Cross-origin: use no-cors so it doesn't fail due to CORS.
-                    // If the request succeeds, browser returns an opaque response -> treat as online.
-                    await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal });
-                    clearTimeout(t);
-                    return 'online';
-                }
-            } catch (e) {
-                clearTimeout(t);
-                return 'offline';
-            }
-        }
-
-        function setDot(dotEl, state) {
-            dotEl.classList.remove('bg-gray-500', 'bg-green-500', 'bg-red-500');
-            if (state === 'online') {
-                dotEl.classList.add('bg-green-500');
-                dotEl.title = 'Online';
-            } else if (state === 'offline') {
-                dotEl.classList.add('bg-red-500');
-                dotEl.title = 'Offline / Timeout';
-            } else {
-                dotEl.classList.add('bg-gray-500');
-                dotEl.title = 'Unknown (cannot check from this page)';
-            }
-        }
-
-        async function refreshAllStatuses() {
-            const dots = Array.from(document.querySelectorAll('.status-dot[data-status-url]'));
-
-            // Mark as checking (gray) first
-            dots.forEach(d => setDot(d, 'unknown'));
-
-            // Concurrency limit to avoid hammering
-            const limit = 8;
-            let i = 0;
-
-            async function worker() {
-                while (i < dots.length) {
-                    const idx = i++;
-                    const dot = dots[idx];
-                    const url = dot.getAttribute('data-status-url') || '';
-                    const state = await checkUrlOnce(url);
-                    setDot(dot, state);
-                }
-            }
-
-            const workers = Array.from({ length: Math.min(limit, dots.length) }, () => worker());
-            await Promise.all(workers);
-        }
-
-        refreshStatusBtn?.addEventListener('click', refreshAllStatuses);
-
-        // Auto refresh on load (after first render)
-        window.addEventListener('load', () => {
-            setTimeout(() => refreshAllStatuses(), 900);
-        });
-
-        // Optional: periodic refresh every 5 minutes
-        setInterval(() => {
-            refreshAllStatuses();
-        }, 5 * 60 * 1000);
-
-
-
-
-        // ---- Admin Panel (localStorage + import/export) ----
-        const STORAGE_KEY = 'xtream_categories_v1';
-        const CATEGORIES_JSON_URL = 'categories.json';
-        let serverBaseCategories = null;
-
-        // Load categories from localStorage if available
-        function loadCategories() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return categories;
-                const parsed = JSON.parse(raw);
-                // Basic validation: object with arrays
-                if (parsed && typeof parsed === 'object') return parsed;
-            } catch (e) {}
-            return categories;
-        }
-
-        // Save categories to localStorage
-        function saveCategories(obj) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(obj, null, 2));
-        }
-
-        // Replace in-memory categories with stored version
-        let categoriesData = loadCategories();
-
-        // Re-render site content from categoriesData
-        function renderAll() {
-            // Reset main content
-            mainContent.innerHTML = '';
-            // Render
-            for (const category in categoriesData) {
-                if (Object.prototype.hasOwnProperty.call(categoriesData, category)) {
-                    mainContent.innerHTML += createCategorySection(category, categoriesData[category]);
-                }
-            }
-            // Refresh lucide
-            try { lucide.createIcons(); } catch (e) {}
-            // Re-fill dropdown (keep selection)
-            const prev = categoryFilter.value;
-            categoryFilter.innerHTML = '<option value="__all__">All Categories</option>';
-            Object.keys(categoriesData).forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                categoryFilter.appendChild(opt);
-            });
-            if ([...categoryFilter.options].some(o => o.value === prev)) categoryFilter.value = prev;
-            applyFilters();
-        }
-
-
-        async function fetchServerCategories() {
-            try {
-                const res = await fetch(CATEGORIES_JSON_URL, { cache: 'no-store' });
-                if (!res.ok) return null;
-                const data = await res.json();
-                if (data && typeof data === 'object') return data;
-            } catch (e) {}
-            return null;
-        }
-
-        async function bootstrapCategories() {
-            // 1) Load base from server (categories.json). If missing, fall back to embedded constant "categories".
-            serverBaseCategories = await fetchServerCategories();
-            const base = serverBaseCategories || categories;
-
-            // 2) Then apply localStorage override if present (user edits)
-            let merged = base;
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    if (parsed && typeof parsed === 'object') merged = parsed;
-                }
-            } catch (e) {}
-
-            categoriesData = merged;
-            renderAll();
-        }
-        // Initial render with stored data
-        bootstrapCategories();
-        // Modal controls
-        const adminModal = document.getElementById('adminModal');
-        const openAdmin = document.getElementById('openAdmin');
-        const closeAdmin = document.getElementById('closeAdmin');
-        const adminMsg = document.getElementById('adminMsg');
-
-        const adminCategoryList = document.getElementById('adminCategoryList');
-        const adminSiteList = document.getElementById('adminSiteList');
-
-        const editCategory = document.getElementById('editCategory');
-        const editName = document.getElementById('editName');
-        const editIcon = document.getElementById('editIcon');
-        const editUrl = document.getElementById('editUrl');
-
-        const addCategoryBtn = document.getElementById('addCategory');
-        const addSiteBtn = document.getElementById('addSite');
-        const saveItemBtn = document.getElementById('saveItem');
-        const deleteItemBtn = document.getElementById('deleteItem');
-        const moveUpBtn = document.getElementById('moveUp');
-        const moveDownBtn = document.getElementById('moveDown');
-
-        const exportBtn = document.getElementById('exportJson');
-        const importFile = document.getElementById('importJsonFile');
-        const resetBtn = document.getElementById('resetData');
-
-        let selectedCategory = null;
-        let selectedIndex = null; // index in category array
-        let selectedMode = null;  // 'category' or 'site'
-
-        function msg(text, ok=true) {
-            adminMsg.textContent = text || '';
-            adminMsg.className = ok ? 'text-sm text-gray-300' : 'text-sm text-red-300';
-        }
-
-        function showAdmin() {
-            adminModal.style.display = 'flex';
-            adminModal.classList.add('show');
-            const content = adminModal.querySelector('.modal-content');
-            content.classList.add('show');
-            refreshAdminLists();
-            msg('Select a category or a link to edit.');
-        }
-        function hideAdmin() {
-            adminModal.classList.remove('show');
-            const content = adminModal.querySelector('.modal-content');
-            content.classList.remove('show');
-            setTimeout(() => { adminModal.style.display = 'none'; }, 200);
-        }
-
-        openAdmin?.addEventListener('click', () => { requireAdminAuth(); });
-        closeAdmin?.addEventListener('click', hideAdmin);
-        adminModal?.addEventListener('click', (e) => { if (e.target === adminModal) hideAdmin(); });
-
-        function refreshAdminLists() {
-            // Categories list
-            adminCategoryList.innerHTML = '';
-            Object.keys(categoriesData).forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'w-full text-left bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 hover:border-red-500/60 transition';
-                btn.textContent = cat;
-                btn.addEventListener('click', () => {
-                    selectedMode = 'category';
-                    selectedCategory = cat;
-                    selectedIndex = null;
-                    // Load category into editor
-                    editCategory.value = cat;
-                    editName.value = '';
-                    editIcon.value = '';
-                    editUrl.value = '';
-                    refreshSitesForCategory(cat);
-                    msg(`Editing category: ${cat}`);
-                });
-                adminCategoryList.appendChild(btn);
-            });
-
-            // If current selection missing, clear
-            if (selectedCategory && !Object.prototype.hasOwnProperty.call(categoriesData, selectedCategory)) {
-                selectedCategory = null;
-                selectedIndex = null;
-                selectedMode = null;
-            }
-            if (selectedCategory) refreshSitesForCategory(selectedCategory);
-            else adminSiteList.innerHTML = '<div class="text-sm text-gray-500">Select a category first.</div>';
-        }
-
-        function refreshSitesForCategory(cat) {
-            adminSiteList.innerHTML = '';
-            const sites = categoriesData[cat] || [];
-            sites.forEach((s, i) => {
-                const row = document.createElement('button');
-                row.className = 'w-full text-left bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 hover:border-red-500/60 transition';
-                row.innerHTML = `<div class="flex items-center justify-between gap-2">
-                                    <div class="min-w-0">
-                                        <div class="text-sm font-semibold text-gray-100 truncate">${s.name || '(no name)'}</div>
-                                        <div class="text-xs text-gray-400 truncate">${s.url || ''}</div>
-                                    </div>
-                                    <div class="text-xs text-gray-500">${s.icon || ''}</div>
-                                 </div>`;
-                row.addEventListener('click', () => {
-                    selectedMode = 'site';
-                    selectedCategory = cat;
-                    selectedIndex = i;
-                    editCategory.value = cat;
-                    editName.value = s.name || '';
-                    editIcon.value = s.icon || '';
-                    editUrl.value = s.url || '';
-                    msg(`Editing link #${i+1} in ${cat}`);
-                });
-                adminSiteList.appendChild(row);
-            });
-
-            if (sites.length === 0) {
-                adminSiteList.innerHTML = '<div class="text-sm text-gray-500">No links yet. Click “+ Add”.</div>';
-            }
-        }
-
-        function validateUrl(u) {
-            if (!u) return false;
-            // allow relative
-            if (!u.includes('://') && !u.startsWith('//')) return true;
-            try { new URL(u); return true; } catch { return false; }
-        }
-
-        addCategoryBtn?.addEventListener('click', () => {
-            const name = prompt('New category name?');
-            if (!name) return;
-            if (Object.prototype.hasOwnProperty.call(categoriesData, name)) return msg('Category already exists.', false);
-            categoriesData[name] = [];
-            saveCategories(categoriesData);
-            refreshAdminLists();
-            renderAll();
-            msg('Category added.');
-        });
-
-        addSiteBtn?.addEventListener('click', () => {
-            if (!selectedCategory) return msg('Select a category first.', false);
-            selectedMode = 'site';
-            selectedIndex = (categoriesData[selectedCategory] || []).length;
-            editCategory.value = selectedCategory;
-            editName.value = '';
-            editIcon.value = 'globe';
-            editUrl.value = '';
-            msg('Fill the form and click Save to add.');
-        });
-
-        saveItemBtn?.addEventListener('click', () => {
-            const cat = (editCategory.value || '').trim();
-            const name = (editName.value || '').trim();
-            const icon = (editIcon.value || '').trim() || 'globe';
-            const url = (editUrl.value || '').trim();
-
-            if (!cat) return msg('Category is required.', false);
-
-            // Category rename
-            if (selectedMode === 'category') {
-                if (!selectedCategory) return msg('No category selected.', false);
-                if (cat !== selectedCategory) {
-                    if (Object.prototype.hasOwnProperty.call(categoriesData, cat)) return msg('Target category already exists.', false);
-                    categoriesData[cat] = categoriesData[selectedCategory];
-                    delete categoriesData[selectedCategory];
-                    selectedCategory = cat;
-                }
-                saveCategories(categoriesData);
-                refreshAdminLists();
-                renderAll();
-                return msg('Category saved.');
-            }
-
-            // Site save (add or edit)
-            if (!selectedCategory) selectedCategory = cat;
-            if (!Object.prototype.hasOwnProperty.call(categoriesData, cat)) categoriesData[cat] = [];
-
-            if (!name) return msg('Name is required.', false);
-            if (!validateUrl(url)) return msg('URL looks invalid. Use full URL (https://...) or relative path.', false);
-
-            const item = { name, url, icon };
-            const arr = categoriesData[cat];
-
-            if (selectedIndex === null || selectedIndex === undefined) {
-                arr.push(item);
-                selectedIndex = arr.length - 1;
-            } else {
-                // If category changed, move item
-                if (cat !== selectedCategory && selectedCategory && categoriesData[selectedCategory]) {
-                    const oldArr = categoriesData[selectedCategory];
-                    if (oldArr[selectedIndex]) oldArr.splice(selectedIndex, 1);
-                    arr.push(item);
-                    selectedCategory = cat;
-                    selectedIndex = arr.length - 1;
-                } else {
-                    arr[selectedIndex] = item;
-                }
-            }
-
-            saveCategories(categoriesData);
-            refreshAdminLists();
-            renderAll();
-            msg('Link saved.');
-        });
-
-        deleteItemBtn?.addEventListener('click', () => {
-            if (selectedMode === 'category') {
-                if (!selectedCategory) return msg('No category selected.', false);
-                if (!confirm(`Delete category "${selectedCategory}"?`)) return;
-                delete categoriesData[selectedCategory];
-                selectedCategory = null;
-                selectedIndex = null;
-                selectedMode = null;
-                editCategory.value = '';
-                editName.value = '';
-                editIcon.value = '';
-                editUrl.value = '';
-                saveCategories(categoriesData);
-                refreshAdminLists();
-                renderAll();
-                return msg('Category deleted.');
-            }
-
-            if (selectedMode === 'site') {
-                if (!selectedCategory || selectedIndex === null) return msg('No link selected.', false);
-                if (!confirm('Delete this link?')) return;
-                const arr = categoriesData[selectedCategory] || [];
-                arr.splice(selectedIndex, 1);
-                selectedIndex = null;
-                editName.value = '';
-                editIcon.value = '';
-                editUrl.value = '';
-                saveCategories(categoriesData);
-                refreshAdminLists();
-                renderAll();
-                return msg('Link deleted.');
-            }
-
-            msg('Select a category or link first.', false);
-        });
-
-        function move(delta) {
-            if (selectedMode !== 'site' || !selectedCategory || selectedIndex === null) return msg('Select a link first.', false);
-            const arr = categoriesData[selectedCategory] || [];
-            const ni = selectedIndex + delta;
-            if (ni < 0 || ni >= arr.length) return;
-            const tmp = arr[selectedIndex];
-            arr[selectedIndex] = arr[ni];
-            arr[ni] = tmp;
-            selectedIndex = ni;
-            saveCategories(categoriesData);
-            refreshAdminLists();
-            renderAll();
-            msg('Moved.');
-        }
-        moveUpBtn?.addEventListener('click', () => move(-1));
-        moveDownBtn?.addEventListener('click', () => move(1));
-
-        exportBtn?.addEventListener('click', () => {
-            const blob = new Blob([JSON.stringify(categoriesData, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'categories.json';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            msg('Exported categories.json');
-        });
-
-        importFile?.addEventListener('change', async (e) => {
-            const file = e.target.files?.[0];
-            if (!file) return;
-            try {
-                const text = await file.text();
-                const parsed = JSON.parse(text);
-                if (!parsed || typeof parsed !== 'object') throw new Error('Invalid JSON');
-                categoriesData = parsed;
-                saveCategories(categoriesData);
-                refreshAdminLists();
-                renderAll();
-                msg('Imported JSON successfully.');
-            } catch (err) {
-                msg('Import failed: ' + (err.message || err), false);
-            } finally {
-                importFile.value = '';
-            }
-        });
-
-        resetBtn?.addEventListener('click', () => {
-            if (!confirm('Reset to original built-in data? This will clear saved changes on this browser.')) return;
-            localStorage.removeItem(STORAGE_KEY);
-            categoriesData = serverBaseCategories || categories; // server base or embedded
-            saveCategories(categoriesData);
-            refreshAdminLists();
-            renderAll();
-            msg('Reset done.');
-        });
-
-    
-        // Initialize Lucide icons
-        lucide.createIcons();
     </script>
-
-    <!-- Admin Panel Modal -->
-    <div id="adminModal" class="modal-overlay">
-        <div class="modal-content bg-gray-800" style="max-width: 56rem; text-align:left;">
-            <button id="closeAdmin" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center justify-between gap-3">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-cyan-400">Admin Panel</h2>
-                    <div class="flex gap-2">
-                        <button id="exportJson" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Export JSON</button>
-                        <label class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition cursor-pointer">
-                            Import JSON
-                            <input id="importJsonFile" type="file" accept="application/json" class="hidden">
-                        </label>
-                        <button id="resetData" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Reset</button>
-                    </div>
-                </div>
-
-                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-4">
-                    <p class="text-sm text-gray-300">
-                        🔒 <span class="font-semibold">Note:</span> This admin panel saves changes in your browser (localStorage).
-                        Export JSON to keep a backup. To auto-load on server, upload it as <b>categories.json</b> next to this page.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    <!-- Left: category list -->
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-lg font-bold text-gray-100">Categories</h3>
-                            <button id="addCategory" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm hover:border-red-500/60 transition">+ Add</button>
-                        </div>
-                        <div id="adminCategoryList" class="space-y-2 max-h-[22rem] overflow-auto pr-1"></div>
-                    </div>
-
-                    <!-- Middle: sites list -->
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-lg font-bold text-gray-100">Links</h3>
-                            <button id="addSite" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm hover:border-red-500/60 transition">+ Add</button>
-                        </div>
-                        <div id="adminSiteList" class="space-y-2 max-h-[22rem] overflow-auto pr-1"></div>
-                    </div>
-
-                    <!-- Right: editor -->
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-                        <h3 class="text-lg font-bold text-gray-100 mb-3">Editor</h3>
-
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm text-gray-300 mb-1 font-semibold">Category</label>
-                                <input id="editCategory" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="Category name">
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-sm text-gray-300 mb-1 font-semibold">Name</label>
-                                    <input id="editName" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="Link name">
-                                </div>
-                                <div>
-                                    <label class="block text-sm text-gray-300 mb-1 font-semibold">Icon (lucide)</label>
-                                    <input id="editIcon" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="e.g., tv, film, hard-drive">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm text-gray-300 mb-1 font-semibold">URL</label>
-                                <input id="editUrl" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="https://... or http://... or 10.x.x.x">
-                                <p class="text-xs text-gray-500 mt-1">Tip: Relative path works too (e.g., apks/app.apk)</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <button id="saveItem" class="bg-red-600/90 hover:bg-red-600 text-white rounded-lg px-4 py-2 text-sm font-semibold transition">Save</button>
-                                <button id="deleteItem" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">Delete</button>
-                                <button id="moveUp" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">↑ Up</button>
-                                <button id="moveDown" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">↓ Down</button>
-                            </div>
-
-                            <div id="adminMsg" class="text-sm text-gray-300"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Admin Auth Modal -->
-    <div id="adminAuthModal" class="modal-overlay">
-        <div class="modal-content bg-gray-800" style="max-width: 28rem; text-align:left;">
-            <button id="closeAdminAuth" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl font-extrabold text-cyan-400 mb-2">Admin Login</h2>
-            <p class="text-sm text-gray-300 mb-4">Enter admin password to continue.</p>
-
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">Password</label>
-            <div class="relative">
-                <input id="adminPasswordInput" type="password" placeholder="••••••••"
-                    class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 pr-12 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60">
-                <button id="toggleAdminPass" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white px-2 py-1 rounded-md" title="Show/Hide">👁</button>
-            </div>
-
-            <div class="flex gap-2 mt-4">
-                <button id="adminLoginBtn" class="flex-1 bg-red-600/90 hover:bg-red-600 text-white rounded-lg px-4 py-2 text-sm font-semibold transition">Login</button>
-                <button id="adminCancelBtn" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Cancel</button>
-            </div>
-
-            <div id="adminAuthMsg" class="text-sm text-red-300 mt-3"></div>
-            <p class="text-xs text-gray-500 mt-4">
-                Note: This is a client-side lock (good for casual protection). For strong security, protect the page on the server.
-            </p>
-        </div>
-    </div>
-
 </body>
 
 
