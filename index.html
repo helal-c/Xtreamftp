@@ -9,59 +9,7 @@
     <meta name="description" content="Xtream Communication - High speed internet service provider with Live TV and FTP servers.">
     <link rel="icon" href="js/logo.png">
     <title>Xtream Communication - Best Internet Service Provider in Dhaka</title>
-    <!-- <script src="https://cdn.tailwindcss.com">
-        // ---- Mobile drawer: move controls (Search/Category/View) into drawer ----
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const mobileDrawerClose = document.getElementById('mobileDrawerClose');
-        const mobileDrawerContent = document.getElementById('mobileDrawerContent');
-        const controlsPlaceholder = document.getElementById('controlsPlaceholder');
-        let controlsNode = document.querySelector('.control-card');
-
-        function openDrawer(){
-            if (!mobileDrawer) return;
-            mobileDrawer.classList.add('show');
-            mobileDrawer.setAttribute('aria-hidden','false');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeDrawer(){
-            if (!mobileDrawer) return;
-            mobileDrawer.classList.remove('show');
-            mobileDrawer.setAttribute('aria-hidden','true');
-            document.body.style.overflow = '';
-        }
-
-        mobileMenuBtn?.addEventListener('click', openDrawer);
-        mobileDrawerClose?.addEventListener('click', closeDrawer);
-        mobileDrawer?.addEventListener('click', (e)=>{ if(e.target === mobileDrawer) closeDrawer(); });
-
-        function syncControlsLocation(){
-            controlsNode = controlsNode || document.querySelector('.control-card');
-            if (!controlsNode || !controlsPlaceholder || !mobileDrawerContent) return;
-
-            const isMobile = window.matchMedia('(max-width: 640px)').matches;
-            if (isMobile){
-                // move into drawer content (keep same DOM so listeners still work)
-                if (controlsNode.parentElement !== mobileDrawerContent){
-                    mobileDrawerContent.appendChild(controlsNode);
-                }
-                // show it inside drawer
-                controlsNode.style.display = '';
-            } else {
-                // move back to original place
-                if (controlsNode.parentElement !== controlsPlaceholder.parentElement){
-                    // insert after placeholder
-                    controlsPlaceholder.insertAdjacentElement('afterend', controlsNode);
-                }
-                controlsNode.style.display = '';
-                closeDrawer();
-            }
-        }
-
-        window.addEventListener('resize', syncControlsLocation);
-        window.addEventListener('load', syncControlsLocation);
-
-</script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="js/cdn.tailwindcss.com_3.4.16.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -186,172 +134,6 @@
             transform: scale(1.1);
             transition: transform 0.2s ease-in-out;
         }
-    
-        /* ---------------- Mobile-first upgrades ---------------- */
-        :root{
-            --safe-top: env(safe-area-inset-top);
-            --safe-bottom: env(safe-area-inset-bottom);
-        }
-
-        /* Make header/actions usable on small screens */
-        .top-actions{
-            display:flex;
-            align-items:center;
-            gap:.75rem;
-            justify-content:flex-end;
-            flex-wrap:wrap;
-        }
-
-        /* Sticky control panel on mobile */
-        .control-card{
-            position: sticky;
-            top: calc(var(--safe-top) + 0.75rem);
-            z-index: 40;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Better touch targets */
-        button, .btn, a.open-btn{
-            min-height: 44px;
-        }
-
-        /* Card grid: 1 col on mobile, 2 on mid, 3+ on desktop */
-        .sites-grid{
-            display:grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
-        }
-        @media (min-width: 560px){
-            .sites-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
-        @media (min-width: 980px){
-            .sites-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        }
-        @media (min-width: 1280px){
-            .sites-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        }
-
-        /* Cards */
-        .site-card{
-            border-radius: 18px;
-            background: rgba(17,24,39,.55);
-            border:1px solid rgba(55,65,81,.75);
-            box-shadow: 0 10px 28px rgba(0,0,0,.25);
-        }
-
-        .site-card .title{
-            font-size: 1.02rem;
-            line-height: 1.25rem;
-        }
-
-        /* Buttons row */
-        .card-actions{
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        /* Section spacing */
-        .category-section{
-            scroll-margin-top: 110px; /* for sticky panel */
-        }
-
-        /* Bottom safe padding */
-        body{
-            padding-bottom: calc(var(--safe-bottom) + 20px);
-        }
-
-        /* Mobile: reduce large hero spacing */
-        @media (max-width: 640px){
-            .hero-wrap{ padding-top: 16px !important; padding-bottom: 10px !important; }
-            .hero-banner{ font-size: .95rem !important; padding: 12px 14px !important; }
-            .control-card{ top: calc(var(--safe-top) + 0.5rem); }
-            .footer-wrap{ padding-bottom: calc(var(--safe-bottom) + 24px) !important; }
-        }
-
-    
-        /* ---------------- Mobile menu drawer ---------------- */
-        .mobile-fab{
-            position: fixed;
-            right: 16px;
-            bottom: calc(var(--safe-bottom) + 16px);
-            z-index: 60;
-            width: 54px;
-            height: 54px;
-            border-radius: 999px;
-            border: 1px solid rgba(55,65,81,.75);
-            background: rgba(17,24,39,.92);
-            color: #e5e7eb;
-            box-shadow: 0 16px 32px rgba(0,0,0,.35);
-            font-size: 22px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        .mobile-drawer-overlay{
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.55);
-            z-index: 70;
-            display: none;
-            padding: 0;
-        }
-        .mobile-drawer-panel{
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(17,24,39,.98);
-            border-top: 1px solid rgba(55,65,81,.85);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            max-height: min(82vh, 720px);
-            overflow: hidden;
-            transform: translateY(110%);
-            transition: transform .18s ease;
-            box-shadow: 0 -18px 40px rgba(0,0,0,.45);
-        }
-        .mobile-drawer-overlay.show{ display: block; }
-        .mobile-drawer-overlay.show .mobile-drawer-panel{ transform: translateY(0); }
-
-        .mobile-drawer-header{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(55,65,81,.65);
-        }
-        .mobile-drawer-title{
-            font-weight: 800;
-            letter-spacing: .2px;
-            color: #e5e7eb;
-            font-size: 1.05rem;
-        }
-        .mobile-drawer-close{
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            border: 1px solid rgba(55,65,81,.75);
-            background: rgba(17,24,39,.6);
-            color: #e5e7eb;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size: 18px;
-        }
-        .mobile-drawer-content{
-            padding: 14px 16px calc(var(--safe-bottom) + 18px);
-            overflow: auto;
-            max-height: min(72vh, 640px);
-        }
-
-        @media (max-width: 640px){
-            .mobile-fab{ display:flex; }
-            /* hide inline controls card on mobile (we will move it into drawer) */
-            .control-card{ display:none; }
-        }
-
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -369,7 +151,7 @@
             </div>
         <!--            
             <h1 class="text-4xl sm:text-5xl font-bold text-cyan-400">KSB NET</h1>
-            <p class="title text-lg text-gray-400 mt-2">We Believe In Quality</p>
+            <p class="text-lg text-gray-400 mt-2">We Believe In Quality</p>
         -->
             <!-- Social Media Links (Desktop) and Mobile Toggle -->
             <div class="absolute top-5 right-0 p-2">
@@ -442,6 +224,10 @@
                 <div class="mt-4 flex flex-wrap gap-2 items-center">
                     <span id="resultCount" class="text-sm text-gray-300"></span>
                     <span class="text-sm text-gray-500">• Tips: Click “Copy” to copy any link.</span>
+
+                    <span class="text-sm text-gray-500">• Status: <span class="inline-flex items-center gap-1"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-gray-500"></span><span>unknown</span></span> <span class="inline-flex items-center gap-1 ml-2"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-green-500"></span><span>online</span></span> <span class="inline-flex items-center gap-1 ml-2"><span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-red-500"></span><span>offline</span></span></span>
+                    <button id="refreshStatus" class="ml-auto bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Refresh Status</button>
+
                 </div>
             </div>
         </section>
@@ -462,6 +248,13 @@ Turag, Dhaka-1230.</p>
                     <i data-lucide="phone" class="w-5 h-5 mr-2 icon-hover-animation"></i>01864228999, 01534333278, 01932093506
                 </p>
             </div>
+            
+            <div class="mt-4">
+                <button id="openAdmin" class="bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">
+                    Admin
+                </button>
+            </div>
+
             <p class="text-gray-500 mt-8">&copy; <script>document.write(new Date().getFullYear())</script> Xtream Communication - All Rights Reserved.</p>
         </footer>
 
@@ -482,36 +275,16 @@ Turag, Dhaka-1230.</p>
         </div>
     </div>
 
-    <!-- Welcome Message Modal -->
-    <div id="welcomeModal" class="modal-overlay">
-        <div class="modal-content bg-gray-800">
-            <button id="closeWelcomeModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mb-4 font-bengali">প্রিয় গ্যাহক, Xtream Communication-এ আপনাকে স্বাগতম!</h2>
-            <div class="font-bengali text-gray-300 text-lg leading-relaxed">
-                <p>
-                আমাদের সংযোগ পেতে কল করুন <strong>01864228999, 01534333278, 01932093506  </strong>  নম্বরে।
-            </div>
-        </div>
     </div>
 
     <!-- Disclaimer Info Modal -->
-    <div id="disclaimerModal" class="modal-overlay">
-        <div class="modal-content bg-gray-800">
-            <button id="closeDisclaimerModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-2xl sm:text-3xl font-bold text-amber-300 mb-4 font-bengali">প্রিয় গ্যাহক, Xtream Communication-এ আপনাকে স্বাগতম!গুরুত্বপূর্ণ বিজ্ঞপ্তি!</h2>
-            <div class="font-bengali text-gray-300 text-lg leading-relaxed">
-                <p>
-                    <strong> </strong> দয়া করে প্রতি মাসের ১০ তারিখের মধ্যে আপনার মাসিক বিল পরিশোধ করুন, অন্যথায় আপনার সংযোগটি স্বয়ংক্রিয় ভাবে বিচ্ছিন্ন হয়ে যাবে।
-                </p>
-            </div>
-        </div>
     </div>
 
     <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
     <script src="js/unpkg.com_lucide%40latest.js"></script>
     <script>
         // Website data organized by category
-        const EMBEDDED_CATEGORIES = {
+        const categories = {
 			"Live TV": [
 				{ name: '11Plus.Live', url: 'http://ott.11plus.live/', icon: 'tv' },
 				{ name: '11Plus.Live', url: 'http://flix.11plus.live/live-tv.html', icon: 'tv' },
@@ -585,58 +358,44 @@ Turag, Dhaka-1230.</p>
 			]
         };
 
-        // ---- Data loader (categories.json with fallback) ----
-        const CATEGORIES_JSON_URL = 'categories.json';
-
-        function normalizeCategoriesObject(obj) {
-            const out = {};
-            if (!obj || typeof obj !== 'object') return out;
-            Object.keys(obj).forEach((k) => {
-                const nk = (k || '').toString().trim();
-                const val = obj[k];
-                if (!nk) return;
-                out[nk] = Array.isArray(val) ? val : [];
-            });
-            return out;
-        }
-
-        let categoriesData = normalizeCategoriesObject(EMBEDDED_CATEGORIES);
-
-        async function loadServerCategories() {
-            try {
-                const res = await fetch(CATEGORIES_JSON_URL, { cache: 'no-store' });
-                if (!res.ok) return null;
-                const data = await res.json();
-                return normalizeCategoriesObject(data);
-            } catch (e) {
-                return null;
-            }
-        }
-
-        function showLoadHintIfNeeded() {
-            const isFile = location.protocol === 'file:';
-            if (!isFile) return;
-            const hint = document.createElement('div');
-            hint.className = 'mx-auto max-w-6xl mt-4 px-4';
-            hint.innerHTML = `
-                <div class="rounded-xl border border-yellow-500/30 bg-yellow-500/10 text-yellow-100 px-4 py-3 text-sm">
-                    ⚠️ You are opening this page from <b>file://</b>. Some browsers block loading <b>categories.json</b> here.
-                    For best results, run a local server (e.g., <code>python -m http.server 8080</code>) or deploy to Vercel/GitHub Pages.
-                </div>`;
-            const main = document.querySelector('main');
-            if (main) main.prepend(hint); else document.body.prepend(hint);
-        }
-
-        async function bootstrapCategories() {
-            showLoadHintIfNeeded();
-            const serverData = await loadServerCategories();
-            if (serverData && Object.keys(serverData).length) {
-                categoriesData = serverData;
-            }
-        }
-
-
         const mainContent = document.getElementById('main-content');
+
+        // Detect local/private/internal URLs (for badge + optional handling)
+        function isPrivateUrl(rawUrl) {
+            try {
+                if (!rawUrl) return false;
+
+                // Relative paths (e.g., apks/app.apk) are local resources
+                if (!/^https?:\/\//i.test(rawUrl)) return true;
+
+                const u = new URL(rawUrl, window.location.href);
+                const host = (u.hostname || '').toLowerCase();
+
+                if (host === 'localhost' || host.endsWith('.local')) return true;
+
+                // Private IPv4 ranges
+                const m = host.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+                if (m) {
+                    const a = parseInt(m[1], 10);
+                    const b = parseInt(m[2], 10);
+                    // 10.0.0.0/8
+                    if (a === 10) return true;
+                    // 172.16.0.0/12
+                    if (a === 172 && b >= 16 && b <= 31) return true;
+                    // 192.168.0.0/16
+                    if (a === 192 && b === 168) return true;
+                    // 127.0.0.0/8
+                    if (a === 127) return true;
+                }
+
+                return false;
+            } catch (e) {
+                // If parsing fails, treat as local/relative
+                return true;
+            }
+        }
+
+
 
         // Function to create a card for each site
         function createSiteCard(site) {
@@ -644,7 +403,7 @@ Turag, Dhaka-1230.</p>
             const badge = isLocal ? `<span class="ml-2 inline-flex items-center rounded-full bg-gray-900/70 border border-gray-700 px-2 py-0.5 text-xs text-gray-300">Local</span>` : ``;
 
             return `
-                <div class="group site-card block bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/50 transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-red-500/30">
+                <div class="group block bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/50 transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-red-500/30">
                     <a href="${site.url}" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="p-4 flex flex-col items-center justify-center h-full text-center">
                             <i data-lucide="${site.icon}" class="w-12 h-12 text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
@@ -656,9 +415,10 @@ Turag, Dhaka-1230.</p>
 
                     <div class="px-4 pb-4">
                         <div class="flex gap-2 justify-center">
-                            <button class="copy-btn w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition"
+                            <button class="copy-btn w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition flex items-center justify-center gap-2"
                                 data-url="${site.url}" data-name="${site.name}">
-                                Copy
+                                <span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-gray-500" data-status-url="${site.url}" title="Checking..."></span>
+                                <span>Copy</span>
                             </button>
                         </div>
                     </div>
@@ -687,275 +447,603 @@ Turag, Dhaka-1230.</p>
             `;
         }
 
-        // Welcome Modal JavaScript
-        const welcomeModal = document.getElementById('welcomeModal');
-        const closeWelcomeModalButton = document.getElementById('closeWelcomeModal');
-        const welcomeModalContent = welcomeModal.querySelector('.modal-content');
-
-        // Disclaimer Modal JavaScript
-        const disclaimerModal = document.getElementById('disclaimerModal');
-        const closeDisclaimerModalButton = document.getElementById('closeDisclaimerModal');
-        const disclaimerModalContent = disclaimerModal.querySelector('.modal-content');
-
-        // Function to show a modal
-        function showModal(modal, content) {
-            modal.style.display = 'flex'; // Ensure it's visible before animation
-            modal.classList.add('show');
-            content.classList.add('show');
-        }
-
-        // Function to hide a modal
-        function hideModal(modal, content) {
-            modal.classList.remove('show');
-            content.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 500); // Match animation duration
-        }
-
-        // Show welcome modal after a short delay
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showModal(welcomeModal, welcomeModalContent);
-            }, 1000); // 1-second delay for the welcome modal
-        });
-
-        // Hide welcome modal when close button is clicked or outside
-        closeWelcomeModalButton.addEventListener('click', () => {
-            hideModal(welcomeModal, welcomeModalContent);
-            // Show disclaimer modal after welcome modal closes
-            setTimeout(() => {
-                showModal(disclaimerModal, disclaimerModalContent);
-            }, 500); // Show disclaimer after welcome modal animation finishes
-        });
-
-        welcomeModal.addEventListener('click', (event) => {
-            if (event.target === welcomeModal) {
-                hideModal(welcomeModal, welcomeModalContent);
-                // Show disclaimer modal after welcome modal closes
-                setTimeout(() => {
-                    showModal(disclaimerModal, disclaimerModalContent);
-                }, 500);
-            }
-        });
-
-        // Hide disclaimer modal when close button is clicked or outside
-        closeDisclaimerModalButton.addEventListener('click', () => {
-            hideModal(disclaimerModal, disclaimerModalContent);
-        });
-
-        disclaimerModal.addEventListener('click', (event) => {
-            if (event.target === disclaimerModal) {
-                hideModal(disclaimerModal, disclaimerModalContent);
-            }
-        });
-
-        // Mobile Navigation Toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileNavMenu = document.getElementById('mobileNavMenu');
-        const closeMobileNav = document.getElementById('closeMobileNav');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileNavMenu.classList.add('active');
-        });
-
-        closeMobileNav.addEventListener('click', () => {
-            mobileNavMenu.classList.remove('active');
-        });
-
-        // Close mobile nav if clicked outside (optional, but good for UX)
-        mobileNavMenu.addEventListener('click', (event) => {
-            if (event.target === mobileNavMenu) {
-                mobileNavMenu.classList.remove('active');
-            }
-        });
-
-
-        // ---- Helpers ----
-        function isPrivateUrl(url) {
-            try {
-                const u = new URL(url, window.location.href);
-                const host = u.hostname;
-                // Basic private ranges detection
-                if (host.startsWith("10.")) return true;
-                if (host.startsWith("192.168.")) return true;
-                // 172.16.0.0 – 172.31.255.255
-                const m = host.match(/^172\.(\d+)\./);
-                if (m) {
-                    const second = parseInt(m[1], 10);
-                    if (second >= 16 && second <= 31) return true;
-                }
-                return false;
-            } catch (e) {
-                // Relative URLs (like apks/...) treat as local
-                return true;
+        // Populate the main content area with categorized sections
+        for (const category in categories) {
+            if (categories.hasOwnProperty(category)) {
+                mainContent.innerHTML += createCategorySection(category, categories[category]);
             }
         }
 
-        // ---- Controls / Filtering ----
-        const siteSearch = document.getElementById('siteSearch');
-        const clearSearch = document.getElementById('clearSearch');
-        const categoryFilter = document.getElementById('categoryFilter');
-        const expandAll = document.getElementById('expandAll');
-        const collapseAll = document.getElementById('collapseAll');
-        const resultCount = document.getElementById('resultCount');
-        function normalize(s) { return (s || '').toLowerCase().trim(); }
-
-        function applyFilters() {
-            const q = normalize(siteSearch.value);
-            const cat = categoryFilter.value;
-
-            let visibleCards = 0;
-            let visibleCats = 0;
-
-            document.querySelectorAll('.category-section').forEach(sec => {
-                const secCat = sec.getAttribute('data-category');
-                const matchCat = (cat === '__all__' || secCat === cat);
-
-                let anyInSection = false;
-
-                sec.querySelectorAll('.copy-btn').forEach(btn => {
-                    const name = normalize(btn.getAttribute('data-name'));
-                    const url = normalize(btn.getAttribute('data-url'));
-                    const matchQ = (!q || name.includes(q) || url.includes(q));
-
-                    const card = btn.closest('.group');
-                    const show = matchCat && matchQ;
-                    card.style.display = show ? '' : 'none';
-
-                    if (show) {
-                        anyInSection = true;
-                        visibleCards += 1;
-                    }
-                });
-
-                sec.style.display = anyInSection ? '' : 'none';
-                if (anyInSection) visibleCats += 1;
-            });
-
-            resultCount.textContent = `${visibleCards} links found in ${visibleCats} categories`;
-        }
-
-        siteSearch?.addEventListener('input', applyFilters);
         
 
-        // ---- Init (load categories.json if available, then render) ----
-        function clearCategoryDropdown() {
-            // keep the first option (All Categories)
-            const keep = categoryFilter.querySelector('option[value="__all__"]');
-            categoryFilter.innerHTML = '';
-            if (keep) categoryFilter.appendChild(keep);
+
+        // ---- Auto Online/Offline Checker ----
+        const refreshStatusBtn = document.getElementById('refreshStatus');
+
+        function statusCanCheck(url) {
+            // Relative URLs are same-origin -> checkable
+            if (!url.includes('://') && !url.startsWith('//')) return true;
+
+            try {
+                const u = new URL(url, window.location.href);
+                // Mixed content: HTTPS page trying to fetch HTTP is blocked by browsers
+                if (window.location.protocol === 'https:' && u.protocol === 'http:') return false;
+                return (u.protocol === 'https:' || u.protocol === 'http:');
+            } catch {
+                return false;
+            }
         }
 
-        function fillCategoryDropdown() {
-            const cats = Object.keys(categoriesData);
-            cats.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                categoryFilter.appendChild(opt);
-            });
+        async function checkUrlOnce(url, timeoutMs = 4500) {
+            // Returns: 'online' | 'offline' | 'unknown'
+            if (!statusCanCheck(url)) return 'unknown';
+
+            // For same-origin relative links: do normal fetch
+            const isRelative = (!url.includes('://') && !url.startsWith('//'));
+
+            const controller = new AbortController();
+            const t = setTimeout(() => controller.abort(), timeoutMs);
+
+            try {
+                if (isRelative) {
+                    const res = await fetch(url, { method: 'GET', cache: 'no-store', signal: controller.signal });
+                    clearTimeout(t);
+                    return res && (res.ok || (res.status >= 200 && res.status < 500)) ? 'online' : 'offline';
+                } else {
+                    // Cross-origin: use no-cors so it doesn't fail due to CORS.
+                    // If the request succeeds, browser returns an opaque response -> treat as online.
+                    await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal });
+                    clearTimeout(t);
+                    return 'online';
+                }
+            } catch (e) {
+                clearTimeout(t);
+                return 'offline';
+            }
         }
 
-        function renderAllSections() {
-            if (!mainContent) return;
+        function setDot(dotEl, state) {
+            dotEl.classList.remove('bg-gray-500', 'bg-green-500', 'bg-red-500');
+            if (state === 'online') {
+                dotEl.classList.add('bg-green-500');
+                dotEl.title = 'Online';
+            } else if (state === 'offline') {
+                dotEl.classList.add('bg-red-500');
+                dotEl.title = 'Offline / Timeout';
+            } else {
+                dotEl.classList.add('bg-gray-500');
+                dotEl.title = 'Unknown (cannot check from this page)';
+            }
+        }
+
+        async function refreshAllStatuses() {
+            const dots = Array.from(document.querySelectorAll('.status-dot[data-status-url]'));
+
+            // Mark as checking (gray) first
+            dots.forEach(d => setDot(d, 'unknown'));
+
+            // Concurrency limit to avoid hammering
+            const limit = 8;
+            let i = 0;
+
+            async function worker() {
+                while (i < dots.length) {
+                    const idx = i++;
+                    const dot = dots[idx];
+                    const url = dot.getAttribute('data-status-url') || '';
+                    const state = await checkUrlOnce(url);
+                    setDot(dot, state);
+                }
+            }
+
+            const workers = Array.from({ length: Math.min(limit, dots.length) }, () => worker());
+            await Promise.all(workers);
+        }
+
+        refreshStatusBtn?.addEventListener('click', refreshAllStatuses);
+
+        // Auto refresh on load (after first render)
+        window.addEventListener('load', () => {
+            setTimeout(() => refreshAllStatuses(), 900);
+        });
+
+        // Optional: periodic refresh every 5 minutes
+        setInterval(() => {
+            refreshAllStatuses();
+        }, 5 * 60 * 1000);
+
+
+
+
+        // ---- Admin Panel (localStorage + import/export) ----
+        const STORAGE_KEY = 'xtream_categories_v1';
+        const CATEGORIES_JSON_URL = 'categories.json';
+        let serverBaseCategories = null;
+
+        // Load categories from localStorage if available
+        function loadCategories() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return categories;
+                const parsed = JSON.parse(raw);
+                // Basic validation: object with arrays
+                if (parsed && typeof parsed === 'object') return parsed;
+            } catch (e) {}
+            return categories;
+        }
+
+        // Save categories to localStorage
+        function saveCategories(obj) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(obj, null, 2));
+        }
+
+        // Replace in-memory categories with stored version
+        let categoriesData = loadCategories();
+
+        // Re-render site content from categoriesData
+        function renderAll() {
+            // Reset main content
             mainContent.innerHTML = '';
+            // Render
             for (const category in categoriesData) {
                 if (Object.prototype.hasOwnProperty.call(categoriesData, category)) {
                     mainContent.innerHTML += createCategorySection(category, categoriesData[category]);
                 }
             }
-            // lucide icons re-scan
-            if (window.lucide && typeof lucide.createIcons === 'function') { lucide.createIcons(); }
-        }
-
-        async function initPage() {
-            try {
-            await bootstrapCategories(); // may replace categoriesData
-            categoriesData = normalizeCategoriesObject(categoriesData);
-            clearCategoryDropdown();
-            fillCategoryDropdown();
-            renderAllSections();
-            applyFilters();
-            } catch (err) {
-                console.error('Init error:', err);
-                const box = document.createElement('div');
-                box.className = 'mx-auto max-w-6xl mt-6 px-4';
-                box.innerHTML = `<div class=\"rounded-xl border border-red-500/30 bg-red-500/10 text-red-100 px-4 py-3 text-sm\">❌ Failed to load content. Open DevTools Console to see error. Make sure <b>categories.json</b> is valid and accessible.</div>`;
-                const main = document.querySelector('main') || document.body;
-                main.prepend(box);
-            }
-        }
-
-        window.addEventListener('load', () => {
-            initPage();
-        });
-categoryFilter?.addEventListener('change', applyFilters);
-        clearSearch?.addEventListener('click', () => { siteSearch.value = ''; applyFilters(); siteSearch.focus(); });
-
-        // Collapse / Expand categories
-        function setAllCollapsed(collapsed) {
-            document.querySelectorAll('.cat-toggle').forEach(btn => {
-                const gridId = btn.getAttribute('data-target');
-                const grid = document.getElementById(gridId);
-                if (!grid) return;
-                grid.style.display = collapsed ? 'none' : '';
-                btn.textContent = collapsed ? 'Expand' : 'Collapse';
+            // Refresh lucide
+            try { lucide.createIcons(); } catch (e) {}
+            // Re-fill dropdown (keep selection)
+            const prev = categoryFilter.value;
+            categoryFilter.innerHTML = '<option value="__all__">All Categories</option>';
+            Object.keys(categoriesData).forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                categoryFilter.appendChild(opt);
             });
+            if ([...categoryFilter.options].some(o => o.value === prev)) categoryFilter.value = prev;
+            applyFilters();
         }
 
-        expandAll?.addEventListener('click', () => setAllCollapsed(false));
-        collapseAll?.addEventListener('click', () => setAllCollapsed(true));
 
-        document.addEventListener('click', (e) => {
-            const t = e.target;
+        async function fetchServerCategories() {
+            try {
+                const res = await fetch(CATEGORIES_JSON_URL, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const data = await res.json();
+                if (data && typeof data === 'object') return data;
+            } catch (e) {}
+            return null;
+        }
 
-            // Category toggle
-            if (t && t.classList && t.classList.contains('cat-toggle')) {
-                const gridId = t.getAttribute('data-target');
-                const grid = document.getElementById(gridId);
-                if (!grid) return;
+        async function bootstrapCategories() {
+            // 1) Load base from server (categories.json). If missing, fall back to embedded constant "categories".
+            serverBaseCategories = await fetchServerCategories();
+            const base = serverBaseCategories || categories;
 
-                const collapsed = (grid.style.display === 'none');
-                grid.style.display = collapsed ? '' : 'none';
-                t.textContent = collapsed ? 'Collapse' : 'Expand';
+            // 2) Then apply localStorage override if present (user edits)
+            let merged = base;
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && typeof parsed === 'object') merged = parsed;
+                }
+            } catch (e) {}
+
+            categoriesData = merged;
+            renderAll();
+        }
+        // Initial render with stored data
+        bootstrapCategories();
+        // Modal controls
+        const adminModal = document.getElementById('adminModal');
+        const openAdmin = document.getElementById('openAdmin');
+        const closeAdmin = document.getElementById('closeAdmin');
+        const adminMsg = document.getElementById('adminMsg');
+
+        const adminCategoryList = document.getElementById('adminCategoryList');
+        const adminSiteList = document.getElementById('adminSiteList');
+
+        const editCategory = document.getElementById('editCategory');
+        const editName = document.getElementById('editName');
+        const editIcon = document.getElementById('editIcon');
+        const editUrl = document.getElementById('editUrl');
+
+        const addCategoryBtn = document.getElementById('addCategory');
+        const addSiteBtn = document.getElementById('addSite');
+        const saveItemBtn = document.getElementById('saveItem');
+        const deleteItemBtn = document.getElementById('deleteItem');
+        const moveUpBtn = document.getElementById('moveUp');
+        const moveDownBtn = document.getElementById('moveDown');
+
+        const exportBtn = document.getElementById('exportJson');
+        const importFile = document.getElementById('importJsonFile');
+        const resetBtn = document.getElementById('resetData');
+
+        let selectedCategory = null;
+        let selectedIndex = null; // index in category array
+        let selectedMode = null;  // 'category' or 'site'
+
+        function msg(text, ok=true) {
+            adminMsg.textContent = text || '';
+            adminMsg.className = ok ? 'text-sm text-gray-300' : 'text-sm text-red-300';
+        }
+
+        function showAdmin() {
+            adminModal.style.display = 'flex';
+            adminModal.classList.add('show');
+            const content = adminModal.querySelector('.modal-content');
+            content.classList.add('show');
+            refreshAdminLists();
+            msg('Select a category or a link to edit.');
+        }
+        function hideAdmin() {
+            adminModal.classList.remove('show');
+            const content = adminModal.querySelector('.modal-content');
+            content.classList.remove('show');
+            setTimeout(() => { adminModal.style.display = 'none'; }, 200);
+        }
+
+        openAdmin?.addEventListener('click', () => { requireAdminAuth(); });
+        closeAdmin?.addEventListener('click', hideAdmin);
+        adminModal?.addEventListener('click', (e) => { if (e.target === adminModal) hideAdmin(); });
+
+        function refreshAdminLists() {
+            // Categories list
+            adminCategoryList.innerHTML = '';
+            Object.keys(categoriesData).forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 hover:border-red-500/60 transition';
+                btn.textContent = cat;
+                btn.addEventListener('click', () => {
+                    selectedMode = 'category';
+                    selectedCategory = cat;
+                    selectedIndex = null;
+                    // Load category into editor
+                    editCategory.value = cat;
+                    editName.value = '';
+                    editIcon.value = '';
+                    editUrl.value = '';
+                    refreshSitesForCategory(cat);
+                    msg(`Editing category: ${cat}`);
+                });
+                adminCategoryList.appendChild(btn);
+            });
+
+            // If current selection missing, clear
+            if (selectedCategory && !Object.prototype.hasOwnProperty.call(categoriesData, selectedCategory)) {
+                selectedCategory = null;
+                selectedIndex = null;
+                selectedMode = null;
+            }
+            if (selectedCategory) refreshSitesForCategory(selectedCategory);
+            else adminSiteList.innerHTML = '<div class="text-sm text-gray-500">Select a category first.</div>';
+        }
+
+        function refreshSitesForCategory(cat) {
+            adminSiteList.innerHTML = '';
+            const sites = categoriesData[cat] || [];
+            sites.forEach((s, i) => {
+                const row = document.createElement('button');
+                row.className = 'w-full text-left bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 hover:border-red-500/60 transition';
+                row.innerHTML = `<div class="flex items-center justify-between gap-2">
+                                    <div class="min-w-0">
+                                        <div class="text-sm font-semibold text-gray-100 truncate">${s.name || '(no name)'}</div>
+                                        <div class="text-xs text-gray-400 truncate">${s.url || ''}</div>
+                                    </div>
+                                    <div class="text-xs text-gray-500">${s.icon || ''}</div>
+                                 </div>`;
+                row.addEventListener('click', () => {
+                    selectedMode = 'site';
+                    selectedCategory = cat;
+                    selectedIndex = i;
+                    editCategory.value = cat;
+                    editName.value = s.name || '';
+                    editIcon.value = s.icon || '';
+                    editUrl.value = s.url || '';
+                    msg(`Editing link #${i+1} in ${cat}`);
+                });
+                adminSiteList.appendChild(row);
+            });
+
+            if (sites.length === 0) {
+                adminSiteList.innerHTML = '<div class="text-sm text-gray-500">No links yet. Click “+ Add”.</div>';
+            }
+        }
+
+        function validateUrl(u) {
+            if (!u) return false;
+            // allow relative
+            if (!u.includes('://') && !u.startsWith('//')) return true;
+            try { new URL(u); return true; } catch { return false; }
+        }
+
+        addCategoryBtn?.addEventListener('click', () => {
+            const name = prompt('New category name?');
+            if (!name) return;
+            if (Object.prototype.hasOwnProperty.call(categoriesData, name)) return msg('Category already exists.', false);
+            categoriesData[name] = [];
+            saveCategories(categoriesData);
+            refreshAdminLists();
+            renderAll();
+            msg('Category added.');
+        });
+
+        addSiteBtn?.addEventListener('click', () => {
+            if (!selectedCategory) return msg('Select a category first.', false);
+            selectedMode = 'site';
+            selectedIndex = (categoriesData[selectedCategory] || []).length;
+            editCategory.value = selectedCategory;
+            editName.value = '';
+            editIcon.value = 'globe';
+            editUrl.value = '';
+            msg('Fill the form and click Save to add.');
+        });
+
+        saveItemBtn?.addEventListener('click', () => {
+            const cat = (editCategory.value || '').trim();
+            const name = (editName.value || '').trim();
+            const icon = (editIcon.value || '').trim() || 'globe';
+            const url = (editUrl.value || '').trim();
+
+            if (!cat) return msg('Category is required.', false);
+
+            // Category rename
+            if (selectedMode === 'category') {
+                if (!selectedCategory) return msg('No category selected.', false);
+                if (cat !== selectedCategory) {
+                    if (Object.prototype.hasOwnProperty.call(categoriesData, cat)) return msg('Target category already exists.', false);
+                    categoriesData[cat] = categoriesData[selectedCategory];
+                    delete categoriesData[selectedCategory];
+                    selectedCategory = cat;
+                }
+                saveCategories(categoriesData);
+                refreshAdminLists();
+                renderAll();
+                return msg('Category saved.');
             }
 
-            // Copy button
-            if (t && t.classList && t.classList.contains('copy-btn')) {
-                const url = t.getAttribute('data-url') || '';
-                navigator.clipboard?.writeText(url).then(() => {
-                    const old = t.textContent;
-                    t.textContent = 'Copied ✓';
-                    setTimeout(() => t.textContent = old, 900);
-                }).catch(() => {
-                    // Fallback
-                    const ta = document.createElement('textarea');
-                    ta.value = url;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    try { document.execCommand('copy'); } catch {}
-                    document.body.removeChild(ta);
-                    const old = t.textContent;
-                    t.textContent = 'Copied ✓';
-                    setTimeout(() => t.textContent = old, 900);
-                });
+            // Site save (add or edit)
+            if (!selectedCategory) selectedCategory = cat;
+            if (!Object.prototype.hasOwnProperty.call(categoriesData, cat)) categoriesData[cat] = [];
+
+            if (!name) return msg('Name is required.', false);
+            if (!validateUrl(url)) return msg('URL looks invalid. Use full URL (https://...) or relative path.', false);
+
+            const item = { name, url, icon };
+            const arr = categoriesData[cat];
+
+            if (selectedIndex === null || selectedIndex === undefined) {
+                arr.push(item);
+                selectedIndex = arr.length - 1;
+            } else {
+                // If category changed, move item
+                if (cat !== selectedCategory && selectedCategory && categoriesData[selectedCategory]) {
+                    const oldArr = categoriesData[selectedCategory];
+                    if (oldArr[selectedIndex]) oldArr.splice(selectedIndex, 1);
+                    arr.push(item);
+                    selectedCategory = cat;
+                    selectedIndex = arr.length - 1;
+                } else {
+                    arr[selectedIndex] = item;
+                }
+            }
+
+            saveCategories(categoriesData);
+            refreshAdminLists();
+            renderAll();
+            msg('Link saved.');
+        });
+
+        deleteItemBtn?.addEventListener('click', () => {
+            if (selectedMode === 'category') {
+                if (!selectedCategory) return msg('No category selected.', false);
+                if (!confirm(`Delete category "${selectedCategory}"?`)) return;
+                delete categoriesData[selectedCategory];
+                selectedCategory = null;
+                selectedIndex = null;
+                selectedMode = null;
+                editCategory.value = '';
+                editName.value = '';
+                editIcon.value = '';
+                editUrl.value = '';
+                saveCategories(categoriesData);
+                refreshAdminLists();
+                renderAll();
+                return msg('Category deleted.');
+            }
+
+            if (selectedMode === 'site') {
+                if (!selectedCategory || selectedIndex === null) return msg('No link selected.', false);
+                if (!confirm('Delete this link?')) return;
+                const arr = categoriesData[selectedCategory] || [];
+                arr.splice(selectedIndex, 1);
+                selectedIndex = null;
+                editName.value = '';
+                editIcon.value = '';
+                editUrl.value = '';
+                saveCategories(categoriesData);
+                refreshAdminLists();
+                renderAll();
+                return msg('Link deleted.');
+            }
+
+            msg('Select a category or link first.', false);
+        });
+
+        function move(delta) {
+            if (selectedMode !== 'site' || !selectedCategory || selectedIndex === null) return msg('Select a link first.', false);
+            const arr = categoriesData[selectedCategory] || [];
+            const ni = selectedIndex + delta;
+            if (ni < 0 || ni >= arr.length) return;
+            const tmp = arr[selectedIndex];
+            arr[selectedIndex] = arr[ni];
+            arr[ni] = tmp;
+            selectedIndex = ni;
+            saveCategories(categoriesData);
+            refreshAdminLists();
+            renderAll();
+            msg('Moved.');
+        }
+        moveUpBtn?.addEventListener('click', () => move(-1));
+        moveDownBtn?.addEventListener('click', () => move(1));
+
+        exportBtn?.addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(categoriesData, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'categories.json';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            msg('Exported categories.json');
+        });
+
+        importFile?.addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            try {
+                const text = await file.text();
+                const parsed = JSON.parse(text);
+                if (!parsed || typeof parsed !== 'object') throw new Error('Invalid JSON');
+                categoriesData = parsed;
+                saveCategories(categoriesData);
+                refreshAdminLists();
+                renderAll();
+                msg('Imported JSON successfully.');
+            } catch (err) {
+                msg('Import failed: ' + (err.message || err), false);
+            } finally {
+                importFile.value = '';
             }
         });
+
+        resetBtn?.addEventListener('click', () => {
+            if (!confirm('Reset to original built-in data? This will clear saved changes on this browser.')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            categoriesData = serverBaseCategories || categories; // server base or embedded
+            saveCategories(categoriesData);
+            refreshAdminLists();
+            renderAll();
+            msg('Reset done.');
+        });
+
+    
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 
-    <!-- Mobile Controls Drawer -->
-    <button id="mobileMenuBtn" class="mobile-fab" aria-label="Open menu" title="Menu">
-        ☰
-    </button>
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="modal-overlay">
+        <div class="modal-content bg-gray-800" style="max-width: 56rem; text-align:left;">
+            <button id="closeAdmin" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
 
-    <div id="mobileDrawer" class="mobile-drawer-overlay" aria-hidden="true">
-        <div class="mobile-drawer-panel" role="dialog" aria-modal="true" aria-label="Controls">
-            <div class="mobile-drawer-header">
-                <div class="mobile-drawer-title">Menu</div>
-                <button id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close">✕</button>
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between gap-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-cyan-400">Admin Panel</h2>
+                    <div class="flex gap-2">
+                        <button id="exportJson" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Export JSON</button>
+                        <label class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition cursor-pointer">
+                            Import JSON
+                            <input id="importJsonFile" type="file" accept="application/json" class="hidden">
+                        </label>
+                        <button id="resetData" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Reset</button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-4">
+                    <p class="text-sm text-gray-300">
+                        🔒 <span class="font-semibold">Note:</span> This admin panel saves changes in your browser (localStorage).
+                        Export JSON to keep a backup. To auto-load on server, upload it as <b>categories.json</b> next to this page.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <!-- Left: category list -->
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-lg font-bold text-gray-100">Categories</h3>
+                            <button id="addCategory" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm hover:border-red-500/60 transition">+ Add</button>
+                        </div>
+                        <div id="adminCategoryList" class="space-y-2 max-h-[22rem] overflow-auto pr-1"></div>
+                    </div>
+
+                    <!-- Middle: sites list -->
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-lg font-bold text-gray-100">Links</h3>
+                            <button id="addSite" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm hover:border-red-500/60 transition">+ Add</button>
+                        </div>
+                        <div id="adminSiteList" class="space-y-2 max-h-[22rem] overflow-auto pr-1"></div>
+                    </div>
+
+                    <!-- Right: editor -->
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
+                        <h3 class="text-lg font-bold text-gray-100 mb-3">Editor</h3>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm text-gray-300 mb-1 font-semibold">Category</label>
+                                <input id="editCategory" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="Category name">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-1 font-semibold">Name</label>
+                                    <input id="editName" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="Link name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-1 font-semibold">Icon (lucide)</label>
+                                    <input id="editIcon" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="e.g., tv, film, hard-drive">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm text-gray-300 mb-1 font-semibold">URL</label>
+                                <input id="editUrl" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" placeholder="https://... or http://... or 10.x.x.x">
+                                <p class="text-xs text-gray-500 mt-1">Tip: Relative path works too (e.g., apks/app.apk)</p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <button id="saveItem" class="bg-red-600/90 hover:bg-red-600 text-white rounded-lg px-4 py-2 text-sm font-semibold transition">Save</button>
+                                <button id="deleteItem" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">Delete</button>
+                                <button id="moveUp" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">↑ Up</button>
+                                <button id="moveDown" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm hover:border-red-500/60 transition">↓ Down</button>
+                            </div>
+
+                            <div id="adminMsg" class="text-sm text-gray-300"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="mobileDrawerContent" class="mobile-drawer-content"></div>
+        </div>
+    </div>
+
+
+    <!-- Admin Auth Modal -->
+    <div id="adminAuthModal" class="modal-overlay">
+        <div class="modal-content bg-gray-800" style="max-width: 28rem; text-align:left;">
+            <button id="closeAdminAuth" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+            <h2 class="text-2xl font-extrabold text-cyan-400 mb-2">Admin Login</h2>
+            <p class="text-sm text-gray-300 mb-4">Enter admin password to continue.</p>
+
+            <label class="block text-sm text-gray-300 mb-1 font-semibold">Password</label>
+            <div class="relative">
+                <input id="adminPasswordInput" type="password" placeholder="••••••••"
+                    class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 pr-12 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60">
+                <button id="toggleAdminPass" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white px-2 py-1 rounded-md" title="Show/Hide">👁</button>
+            </div>
+
+            <div class="flex gap-2 mt-4">
+                <button id="adminLoginBtn" class="flex-1 bg-red-600/90 hover:bg-red-600 text-white rounded-lg px-4 py-2 text-sm font-semibold transition">Login</button>
+                <button id="adminCancelBtn" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition">Cancel</button>
+            </div>
+
+            <div id="adminAuthMsg" class="text-sm text-red-300 mt-3"></div>
+            <p class="text-xs text-gray-500 mt-4">
+                Note: This is a client-side lock (good for casual protection). For strong security, protect the page on the server.
+            </p>
         </div>
     </div>
 
@@ -963,6 +1051,7 @@ categoryFilter?.addEventListener('change', applyFilters);
 
 
 </html>
+
 
 
 
