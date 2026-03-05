@@ -1,5 +1,52 @@
 {
-  "Live TV": [],
-  "Movie & FTP Servers": [],
-  " APP": []
+  "Live TV": [
+    { "name": "11Plus.Live", "url": "http://ott.11plus.live/", "icon": "tv" },
+    { "name": "11Plus Live TV", "url": "http://flix.11plus.live/live-tv.html", "icon": "tv" },
+    { "name": "Deltainfo IPTV", "url": "http://iptv.deltainfonet.com/", "icon": "tv" },
+    { "name": "KSB NET TV", "url": "http://tv.ksbnet.net/", "icon": "monitor-play" },
+    { "name": "BAS NET TV", "url": "http://tv.bdflix.net/", "icon": "monitor-play" },
+    { "name": "TSports Live", "url": "http://172.16.29.28/", "icon": "tv" },
+    { "name": "Local TV", "url": "http://172.16.1.6/", "icon": "tv" },
+    { "name": "Cloud TV", "url": "http://172.19.178.180/index.php", "icon": "tv" },
+    { "name": "Smart Box", "url": "http://smartbox.digital/jwtv1/index.php", "icon": "tv" },
+    { "name": "Redforce", "url": "http://redforce.live/", "icon": "tv" },
+    { "name": "RoarZone TV", "url": "http://tv.roarzone.info/", "icon": "tv" },
+    { "name": "Ideal TV", "url": "http://172.16.60.2/", "icon": "tv" },
+    { "name": "DugDugi Live", "url": "http://dugdugilive.com/", "icon": "tv" },
+    { "name": "Plusbox TV", "url": "https://plusbox.tv/", "icon": "tv" }
+  ],
+
+  "Movie & FTP Servers": [
+    { "name": "11Plus FTP", "url": "https://11plus.live/", "icon": "hard-drive" },
+    { "name": "ICC FTP", "url": "http://10.16.100.244/", "icon": "monitor-play" },
+    { "name": "Sam FTP", "url": "http://172.16.50.4/", "icon": "cloud-lightning" },
+    { "name": "Discovery FTP", "url": "https://discoveryftp.net/", "icon": "globe" },
+    { "name": "Discovery Movies", "url": "https://movies.discoveryftp.net/", "icon": "film" },
+    { "name": "Circle FTP", "url": "http://main.circleftp.net/", "icon": "circle" },
+    { "name": "Circle FTP New", "url": "http://new.circleftp.net/", "icon": "circle-dot" },
+    { "name": "IHub", "url": "http://ihub.live/", "icon": "monitor-play" },
+    { "name": "CineplexBD", "url": "http://cineplexbd.net/", "icon": "film" },
+    { "name": "Movies World", "url": "http://10.10.10.3/movies", "icon": "monitor-play" },
+    { "name": "WOW FTP", "url": "http://172.27.27.84/", "icon": "gamepad" },
+    { "name": "FTP Media", "url": "http://10.1.1.1/", "icon": "hard-drive" },
+    { "name": "Moviehaat", "url": "https://moviehaat.net/", "icon": "film" },
+    { "name": "DhakaMovie", "url": "http://dhakamovie.com/", "icon": "video" },
+    { "name": "TimePass", "url": "http://timepassbd.live/", "icon": "film" },
+    { "name": "FTPBD", "url": "https://ftpbd.net/", "icon": "video" },
+    { "name": "Flixhub", "url": "https://flixhub.net/", "icon": "monitor-play" },
+    { "name": "dflix", "url": "http://dflix.live/", "icon": "film" },
+    { "name": "RoarZone Play", "url": "https://play.roarzone.info/", "icon": "video" },
+    { "name": "ShowTimeBD", "url": "http://showtimebd.com/", "icon": "monitor-play" },
+    { "name": "MoviePoka", "url": "http://103.214.200.94/", "icon": "video" },
+    { "name": "NaturalBD", "url": "http://naturalbd.com/", "icon": "video" },
+    { "name": "NowHD Time", "url": "https://nowhdtime.com.bd/", "icon": "film" }
+  ],
+
+  "APP": [
+    { "name": "APOLO APP", "url": "apks/APOLO.apk", "icon": "package" },
+    { "name": "MEGA FTP APP", "url": "apks/MEGA.apk", "icon": "package" },
+    { "name": "RoarZone TV APP", "url": "apks/roarzone-tv-1.0.1.apk", "icon": "package" },
+    { "name": "QuickTV", "url": "https://moviehaat.net/assets/QuickPlayer-1104.apk", "icon": "package" },
+    { "name": "Live TV APP", "url": "apks/live tv.apk", "icon": "package" }
+  ]
 }
