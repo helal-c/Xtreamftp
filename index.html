@@ -134,6 +134,90 @@
             transform: scale(1.1);
             transition: transform 0.2s ease-in-out;
         }
+    
+        /* ---------------- Mobile-first upgrades ---------------- */
+        :root{
+            --safe-top: env(safe-area-inset-top);
+            --safe-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Make header/actions usable on small screens */
+        .top-actions{
+            display:flex;
+            align-items:center;
+            gap:.75rem;
+            justify-content:flex-end;
+            flex-wrap:wrap;
+        }
+
+        /* Sticky control panel on mobile */
+        .control-card{
+            position: sticky;
+            top: calc(var(--safe-top) + 0.75rem);
+            z-index: 40;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Better touch targets */
+        button, .btn, a.open-btn{
+            min-height: 44px;
+        }
+
+        /* Card grid: 1 col on mobile, 2 on mid, 3+ on desktop */
+        .sites-grid{
+            display:grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        @media (min-width: 560px){
+            .sites-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 980px){
+            .sites-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1280px){
+            .sites-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        /* Cards */
+        .site-card{
+            border-radius: 18px;
+            background: rgba(17,24,39,.55);
+            border:1px solid rgba(55,65,81,.75);
+            box-shadow: 0 10px 28px rgba(0,0,0,.25);
+        }
+
+        .site-card .title{
+            font-size: 1.02rem;
+            line-height: 1.25rem;
+        }
+
+        /* Buttons row */
+        .card-actions{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        /* Section spacing */
+        .category-section{
+            scroll-margin-top: 110px; /* for sticky panel */
+        }
+
+        /* Bottom safe padding */
+        body{
+            padding-bottom: calc(var(--safe-bottom) + 20px);
+        }
+
+        /* Mobile: reduce large hero spacing */
+        @media (max-width: 640px){
+            .hero-wrap{ padding-top: 16px !important; padding-bottom: 10px !important; }
+            .hero-banner{ font-size: .95rem !important; padding: 12px 14px !important; }
+            .control-card{ top: calc(var(--safe-top) + 0.5rem); }
+            .footer-wrap{ padding-bottom: calc(var(--safe-bottom) + 24px) !important; }
+        }
+
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -151,7 +235,7 @@
             </div>
         <!--            
             <h1 class="text-4xl sm:text-5xl font-bold text-cyan-400">KSB NET</h1>
-            <p class="text-lg text-gray-400 mt-2">We Believe In Quality</p>
+            <p class="title text-lg text-gray-400 mt-2">We Believe In Quality</p>
         -->
             <!-- Social Media Links (Desktop) and Mobile Toggle -->
             <div class="absolute top-5 right-0 p-2">
@@ -426,7 +510,7 @@ Turag, Dhaka-1230.</p>
             const badge = isLocal ? `<span class="ml-2 inline-flex items-center rounded-full bg-gray-900/70 border border-gray-700 px-2 py-0.5 text-xs text-gray-300">Local</span>` : ``;
 
             return `
-                <div class="group block bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/50 transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-red-500/30">
+                <div class="group site-card block bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/50 transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-red-500/30">
                     <a href="${site.url}" target="_blank" rel="noopener noreferrer" class="block">
                         <div class="p-4 flex flex-col items-center justify-center h-full text-center">
                             <i data-lucide="${site.icon}" class="w-12 h-12 text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
