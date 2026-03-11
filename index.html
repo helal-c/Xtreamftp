@@ -554,7 +554,7 @@
         "iptv",
         "CITYPLEX TV"
       ]
-	     },
+    },
     {
       "name": "RoarZone TV",
       "url": "http://tv.roarzone.info/",
@@ -1134,7 +1134,7 @@
         "apps",
         "Relax Time"
       ]
-	  },
+    },
     {
       "name": "CITYPLEX ",
       "url": "https://cityplex.live/",
@@ -1198,7 +1198,6 @@
       ]
     }
   ],
- 
   "Apps": [
     {
       "name": "APOLO",
@@ -1215,7 +1214,7 @@
       ]
     },
     {
-      "name": "XtreamFTP APK",
+      "name": "XtreamFtp Apk",
       "url": "apks/XtreamFtp.apk",
       "icon": "package",
       "type": "app",
@@ -1225,10 +1224,10 @@
         "android",
         "software",
         "player",
-        "MEGA FTP"
+        "XtreamFTP"
       ]
     },
-	  {
+    {
       "name": "SmartTube",
       "url": "https://github.com/yuliskov/SmartTube/releases/download/latest/smarttube_stable.apk",
       "icon": "package",
@@ -1239,10 +1238,10 @@
         "android",
         "software",
         "player",
-        "QuickTV"
+        "SmartTube"
       ]
     },
-	{
+    {
       "name": "SmartTube 2",
       "url": "https://github.com/yuliskov/SmartTube/releases/download/latest/smarttube_beta.apk",
       "icon": "package",
@@ -1253,12 +1252,12 @@
         "android",
         "software",
         "player",
-        "QuickTV"
+        "SmartTube 2"
       ]
     },
     {
       "name": "RoarZone tv",
-      "url": "https://tv.roarzone.info/download.php?type=tv",
+      "url": "https://tv.roarzone.info/download.php?type=mobile",
       "icon": "package",
       "type": "app",
       "keywords": [
@@ -1286,7 +1285,7 @@
     },
     {
       "name": "LIVE TV APP",
-      "url": "http://172.16.200.200/uploads/1757909371911_ah7tfrchmoe.apk",
+      "url": "apks/live tv.apk",
       "icon": "package",
       "type": "app",
       "keywords": [
@@ -1323,9 +1322,9 @@
       }
     };
 
-    const STORAGE_KEY = 'xtream-portal-v2-merged-data';
-    const TODAY_KEY = 'xtream-portal-v2-merged-today';
-    const ACTIVE_TABS_KEY = 'xtream-portal-v2-merged-tabs';
+    const STORAGE_KEY = 'xtream-portal-v3-fixed-data';
+    const TODAY_KEY = 'xtream-portal-v3-fixed-today';
+    const ACTIVE_TABS_KEY = 'xtream-portal-v3-fixed-tabs';
     const statusMap = new Map();
     const tabId = Math.random().toString(36).slice(2);
 
@@ -1395,6 +1394,58 @@
       } catch {
         return true;
       }
+    }
+
+    function safeBind(id, eventName, handler) {
+      const node = el(id);
+      if (node) node.addEventListener(eventName, handler);
+    }
+
+    function resolveLinkUrl(url = '') {
+      try {
+        return new URL(url, window.location.href).href;
+      } catch {
+        return String(url || '');
+      }
+    }
+
+    async function copyText(text) {
+      const value = String(text || '');
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(value);
+          return true;
+        }
+      } catch {}
+
+      const ta = document.createElement('textarea');
+      ta.value = value;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      ta.style.pointerEvents = 'none';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    function triggerDownload(url, name) {
+      const finalUrl = resolveLinkUrl(url);
+      const a = document.createElement('a');
+      a.href = finalUrl;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      const isSameOrigin = finalUrl.startsWith(window.location.origin);
+      if (isSameOrigin) a.setAttribute('download', name || 'download');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
 
     function normalizeItem(item) {
@@ -1933,17 +1984,17 @@
     }
 
     function bindEvents() {
-      el('yearNow').textContent = new Date().getFullYear();
+      if (el('yearNow')) el('yearNow').textContent = new Date().getFullYear();
 
-      el('mobileMenuToggle').addEventListener('click', () => el('mobileNavMenu').classList.add('active'));
-      el('closeMobileNav').addEventListener('click', () => el('mobileNavMenu').classList.remove('active'));
-      el('mobileNavMenu').addEventListener('click', (e) => {
-        if (e.target === el('mobileNavMenu')) el('mobileNavMenu').classList.remove('active');
+      safeBind('mobileMenuToggle', 'click', () => el('mobileNavMenu')?.classList.add('active'));
+      safeBind('closeMobileNav', 'click', () => el('mobileNavMenu')?.classList.remove('active'));
+      safeBind('mobileNavMenu', 'click', (e) => {
+        if (e.target === el('mobileNavMenu')) el('mobileNavMenu')?.classList.remove('active');
       });
 
-      el('siteSearch').addEventListener('input', () => {
+      safeBind('siteSearch', 'input', () => {
         const mobileSearch = el('siteSearchMobile');
-        if (mobileSearch) mobileSearch.value = el('siteSearch').value;
+        if (mobileSearch && el('siteSearch')) mobileSearch.value = el('siteSearch').value;
         applyFilters();
       });
       const mobileSearch = el('siteSearchMobile');
@@ -1953,9 +2004,9 @@
           applyFilters();
         });
       }
-      el('categoryFilter').addEventListener('change', () => {
+      safeBind('categoryFilter', 'change', () => {
         const mobileCategory = el('categoryFilterMobile');
-        if (mobileCategory) mobileCategory.value = el('categoryFilter').value;
+        if (mobileCategory && el('categoryFilter')) mobileCategory.value = el('categoryFilter').value;
         applyFilters();
       });
       const mobileCategory = el('categoryFilterMobile');
@@ -1965,48 +2016,47 @@
           applyFilters();
         });
       }
-      el('clearSearch').addEventListener('click', () => {
-        el('siteSearch').value = '';
-        applyFilters();
-        el('siteSearch').focus();
+      safeBind('clearSearch', 'click', () => {
+        if (el('siteSearch')) {
+          el('siteSearch').value = '';
+          applyFilters();
+          el('siteSearch').focus();
+        }
       });
 
-      el('expandAll').addEventListener('click', () => setAllCollapsed(false));
-      el('collapseAll').addEventListener('click', () => setAllCollapsed(true));
-      const refreshBtn = el('refreshStatusBtn');
-      if (refreshBtn) refreshBtn.addEventListener('click', refreshAllStatuses);
+      safeBind('expandAll', 'click', () => setAllCollapsed(false));
+      safeBind('collapseAll', 'click', () => setAllCollapsed(true));
+      safeBind('refreshStatusBtn', 'click', refreshAllStatuses);
 
-      document.addEventListener('click', (e) => {
-        const t = e.target;
-        if (t.classList.contains('download-btn')) {
-          const url = t.getAttribute('data-url') || '';
-          const name = t.getAttribute('data-name') || 'this app';
-          if (confirm(`Download ${name}?`)) {
-            window.open(url, '_blank', 'noopener,noreferrer');
-          }
+      document.addEventListener('click', async (e) => {
+        const downloadBtn = e.target.closest('.download-btn');
+        const copyBtn = e.target.closest('.copy-btn');
+        const catToggleBtn = e.target.closest('.cat-toggle');
+        const adminCatBtn = e.target.closest('.admin-cat-btn');
+        const deleteCatBtn = e.target.closest('.delete-cat-btn');
+        const saveLinkBtn = e.target.closest('.save-link-btn');
+        const deleteLinkBtn = e.target.closest('.delete-link-btn');
+
+        if (downloadBtn) {
+          const url = downloadBtn.getAttribute('data-url') || '';
+          const name = downloadBtn.getAttribute('data-name') || 'this app';
+          triggerDownload(url, name);
+          const old = downloadBtn.textContent;
+          downloadBtn.textContent = 'Opening...';
+          setTimeout(() => { downloadBtn.textContent = old; }, 1000);
           return;
         }
 
-        if (t.classList.contains('copy-btn')) {
-          const url = t.getAttribute('data-url') || '';
-          navigator.clipboard?.writeText(url).then(() => {
-            const old = t.textContent;
-            t.textContent = 'Copied ✓';
-            setTimeout(() => t.textContent = old, 900);
-          }).catch(() => {
-            const ta = document.createElement('textarea');
-            ta.value = url;
-            document.body.appendChild(ta);
-            ta.select();
-            try { document.execCommand('copy'); } catch {}
-            document.body.removeChild(ta);
-            const old = t.textContent;
-            t.textContent = 'Copied ✓';
-            setTimeout(() => t.textContent = old, 900);
-          });
+        if (copyBtn) {
+          const url = copyBtn.getAttribute('data-url') || '';
+          const copied = await copyText(resolveLinkUrl(url));
+          const old = copyBtn.textContent;
+          copyBtn.textContent = copied ? 'Copied ✓' : 'Copy failed';
+          setTimeout(() => { copyBtn.textContent = old; }, 1000);
+          return;
         }
 
-        if (t.classList.contains('cat-toggle')) {
+        if (catToggleBtn) {
           const gridId = t.getAttribute('data-target');
           const grid = document.getElementById(gridId);
           if (!grid) return;
@@ -2018,40 +2068,40 @@
           if (category) collapsedState[category] = !collapsed;
         }
 
-        if (t.classList.contains('admin-cat-btn')) {
-          currentAdminCategory = t.getAttribute('data-category') || '';
+        if (adminCatBtn) {
+          currentAdminCategory = adminCatBtn.getAttribute('data-category') || '';
           populateAdmin();
         }
-        if (t.classList.contains('delete-cat-btn')) {
-          deleteCategory(t.getAttribute('data-category') || '');
+        if (deleteCatBtn) {
+          deleteCategory(deleteCatBtn.getAttribute('data-category') || '');
         }
-        if (t.classList.contains('save-link-btn')) {
-          saveLink(Number(t.getAttribute('data-index')));
+        if (saveLinkBtn) {
+          saveLink(Number(saveLinkBtn.getAttribute('data-index')));
         }
-        if (t.classList.contains('delete-link-btn')) {
-          deleteLink(Number(t.getAttribute('data-index')));
+        if (deleteLinkBtn) {
+          deleteLink(Number(deleteLinkBtn.getAttribute('data-index')));
         }
       });
 
-      el('openAdminDesktop').addEventListener('click', openAdminPanel);
-      el('openAdminMobile').addEventListener('click', () => {
-        el('mobileNavMenu').classList.remove('active');
+      safeBind('openAdminDesktop', 'click', openAdminPanel);
+      safeBind('openAdminMobile', 'click', () => {
+        el('mobileNavMenu')?.classList.remove('active');
         openAdminPanel();
       });
-      el('closeAdminModal').addEventListener('click', () => closeModal(el('adminModal')));
-      el('adminModal').addEventListener('click', (e) => {
+      safeBind('closeAdminModal', 'click', () => closeModal(el('adminModal')));
+      safeBind('adminModal', 'click', (e) => {
         if (e.target === el('adminModal')) closeModal(el('adminModal'));
       });
-      el('adminLoginBtn').addEventListener('click', unlockAdmin);
-      el('adminPasswordCheck').addEventListener('keydown', (e) => {
+      safeBind('adminLoginBtn', 'click', unlockAdmin);
+      safeBind('adminPasswordCheck', 'keydown', (e) => {
         if (e.key === 'Enter') unlockAdmin();
       });
-      el('saveSettingsBtn').addEventListener('click', saveSettingsFromAdmin);
-      el('resetLocalBtn').addEventListener('click', resetLocalData);
-      el('addCategoryBtn').addEventListener('click', addCategory);
-      el('addLinkBtn').addEventListener('click', addLink);
-      el('exportBtn').addEventListener('click', exportJson);
-      el('importInput').addEventListener('change', function (e) {
+      safeBind('saveSettingsBtn', 'click', saveSettingsFromAdmin);
+      safeBind('resetLocalBtn', 'click', resetLocalData);
+      safeBind('addCategoryBtn', 'click', addCategory);
+      safeBind('addLinkBtn', 'click', addLink);
+      safeBind('exportBtn', 'click', exportJson);
+      safeBind('importInput', 'change', function (e) {
         const files = e && e.target ? e.target.files : null;
         importJson(files && files[0] ? files[0] : null);
       });
