@@ -1,0 +1,875 @@
+{
+  "Live TV": [
+    {
+      "name": "11Plus.Live",
+      "url": "http://ott.11plus.live/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "11Plus.Live"
+      ]
+    },
+    {
+      "name": "11Plus.Live",
+      "url": "http://flix.11plus.live/live-tv.html",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "11Plus.Live"
+      ]
+    },
+    {
+      "name": "Deltainfo",
+      "url": "http://iptv.deltainfonet.com/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Deltainfo"
+      ]
+    },
+    {
+      "name": "KSB NET TV 1",
+      "url": "http://tv.ksbnet.net/",
+      "icon": "monitor-play",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "KSB NET TV 1"
+      ]
+    },
+    {
+      "name": "BAS NET TV 2",
+      "url": "http://tv.bdflix.net/",
+      "icon": "monitor-play",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "BAS NET TV 2"
+      ]
+    },
+    {
+      "name": "TSports (Live)",
+      "url": "http://172.16.29.28/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "TSports (Live)"
+      ]
+    },
+    {
+      "name": "Local TV",
+      "url": "http://172.16.1.6/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Local TV"
+      ]
+    },
+    {
+      "name": "Cloud Tv",
+      "url": "http://172.19.178.180/index.php",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Cloud Tv"
+      ]
+    },
+    {
+      "name": "Smart Box",
+      "url": "http://smartbox.digital/jwtv1/index.php",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Smart Box"
+      ]
+    },
+    {
+      "name": "(New)",
+      "url": "http://10.10.10.2/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "(New)"
+      ]
+    },
+    {
+      "name": "Redforce",
+      "url": "http://redforce.live/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Redforce"
+      ]
+    },
+    {
+      "name": "CITYPLEX TV",
+      "url": "http://live.cityplex.live/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "CITYPLEX TV"
+      ]
+	     },
+    {
+      "name": "RoarZone TV",
+      "url": "http://tv.roarzone.info/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "RoarZone TV"
+      ]
+    },
+    {
+      "name": "Ideal TV",
+      "url": "http://172.16.60.2/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Ideal TV"
+      ]
+    },
+    {
+      "name": "DugDugi-LiveTV",
+      "url": "http://dugdugilive.com/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "DugDugi-LiveTV"
+      ]
+    },
+    {
+      "name": "NEW TV",
+      "url": "http://103.144.89.251/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "NEW TV"
+      ]
+    },
+    {
+      "name": "Plusbox TV",
+      "url": "https://plusbox.tv/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "Plusbox TV"
+      ]
+    },
+    {
+      "name": "APOLO TV",
+      "url": "http://10.30.30.30/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "APOLO TV"
+      ]
+    },
+    {
+      "name": "ANTBD",
+      "url": "http://172.17.50.112/",
+      "icon": "tv",
+      "type": "tv",
+      "keywords": [
+        "tv",
+        "live tv",
+        "channel",
+        "iptv",
+        "ANTBD"
+      ]
+    }
+  ],
+  "Movie & FTP Servers": [
+    {
+      "name": "11 plus",
+      "url": "https://11plus.live/",
+      "icon": "hard-drive",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "11 plus"
+      ]
+    },
+    {
+      "name": "ICC FTP",
+      "url": "http://10.16.100.244/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "ICC FTP",
+        "icc",
+        "tools"
+      ]
+    },
+    {
+      "name": "Sam FTP",
+      "url": "http://172.16.50.4/",
+      "icon": "cloud-lightning",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Sam FTP",
+        "sam",
+        "tv",
+        "anime",
+        "bangla",
+        "hindi",
+        "english"
+      ]
+    },
+    {
+      "name": "Discovery CDN",
+      "url": "https://discoveryftp.net/",
+      "icon": "globe",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Discovery CDN",
+        "discovery",
+        "discoveryftp",
+        "cdn",
+        "hollywood",
+        "bollywood",
+        "anime"
+      ]
+    },
+    {
+      "name": "Discovery Movies",
+      "url": "https://movies.discoveryftp.net/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Discovery Movies",
+        "discovery",
+        "hollywood",
+        "bollywood",
+        "anime"
+      ]
+    },
+    {
+      "name": "Circle (Old)",
+      "url": "http://main.circleftp.net/",
+      "icon": "circle",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Circle (Old)",
+        "circle",
+        "circle ftp",
+        "main circleftp",
+        "anime"
+      ]
+    },
+    {
+      "name": "Circle (New)",
+      "url": "http://new.circleftp.net/",
+      "icon": "circle-dot",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Circle (New)",
+        "circle",
+        "circle ftp",
+        "new circleftp",
+        "anime"
+      ]
+    },
+    {
+      "name": "Ihub",
+      "url": "http://ihub.live/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Ihub"
+      ]
+    },
+    {
+      "name": "Cineplexbd",
+      "url": "http://cineplexbd.net/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Cineplexbd"
+      ]
+    },
+    {
+      "name": "Movies World",
+      "url": "http://10.10.10.3/movies",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Movies World"
+      ]
+    },
+    {
+      "name": "WOW FTP",
+      "url": "http://172.27.27.84/",
+      "icon": "gamepad",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "WOW FTP"
+      ]
+    },
+    {
+      "name": "FTP Media",
+      "url": "http://10.1.1.1/",
+      "icon": "hard-drive",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "FTP Media"
+      ]
+    },
+    {
+      "name": "BAS PLAY",
+      "url": "http://103.87.212.46/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "BAS PLAY"
+      ]
+    },
+    {
+      "name": "Moviehaat",
+      "url": "https://moviehaat.net/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Moviehaat"
+      ]
+    },
+    {
+      "name": "DhakaMovie",
+      "url": "http://dhakamovie.com/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "DhakaMovie",
+        "dhaka movie",
+        "bangla movie",
+        "hindi movie",
+        "hollywood"
+      ]
+    },
+    {
+      "name": "TimePass",
+      "url": "http://timepassbd.live/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "TimePass"
+      ]
+    },
+    {
+      "name": "FTP-BD",
+      "url": "https://ftpbd.net/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "FTP-BD"
+      ]
+    },
+    {
+      "name": "bokasoka",
+      "url": "http://bokasoka.net/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "bokasoka"
+      ]
+    },
+    {
+      "name": "Movie Mazic",
+      "url": "http://moviemazic.xyz/movies.html",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Movie Mazic"
+      ]
+    },
+    {
+      "name": "Flixhub.Live",
+      "url": "https://flixhub.net/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Flixhub.Live"
+      ]
+    },
+    {
+      "name": "dflix.Live",
+      "url": "http://dflix.live/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "dflix.Live",
+        "dflix",
+        "dflix live",
+        "hollywood",
+        "bollywood",
+        "bangla"
+      ]
+    },
+    {
+      "name": "FmFtp",
+      "url": "https://fmftp.net/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "FmFtp"
+      ]
+    },
+    {
+      "name": "ctgmovies",
+      "url": "http://ctgmovies.com/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "ctgmovies"
+      ]
+    },
+    {
+      "name": "Roarzone",
+      "url": "https://play.roarzone.info/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Roarzone"
+      ]
+    },
+    {
+      "name": "Cloud FTP",
+      "url": "http://172.19.178.179/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Cloud FTP"
+      ]
+    },
+    {
+      "name": "Show Timebd",
+      "url": "http://showtimebd.com/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Show Timebd"
+      ]
+    },
+    {
+      "name": "MOVIEPOKA",
+      "url": "http://103.214.200.94/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "MOVIEPOKA"
+      ]
+    },
+    {
+      "name": "FTP ZONE",
+      "url": "http://103.225.94.27/mediaserver/",
+      "icon": "monitor-play",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "FTP ZONE"
+      ]
+    },
+    {
+      "name": "Murgi live",
+      "url": "http://murgi.live",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Murgi live"
+      ]
+    },
+    {
+      "name": "NaturalBD",
+      "url": "http://naturalbd.com/",
+      "icon": "video",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "NaturalBD",
+        "natural bd",
+        "bangla",
+        "hollywood",
+        "bollywood"
+      ]
+    },
+    {
+      "name": "NowHD TIME",
+      "url": "https://nowhdtime.com.bd/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "NowHD TIME"
+      ]
+    },
+    {
+      "name": "Relax Time",
+      "url": "http://10.100.100.10/",
+      "icon": "server",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Relax Time"
+      ]
+	  },
+    {
+      "name": "CITYPLEX ",
+      "url": "https://cityplex.live/",
+      "icon": "server",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "CITYPLEX"
+      ]
+    },
+    {
+      "name": "Ebox Live",
+      "url": "http://fileserver.ebox.live/",
+      "icon": "film",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Ebox Live"
+      ]
+    },
+    {
+      "name": "FUN TIME",
+      "url": "http://172.20.21.22/",
+      "icon": "hard-drive",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "FUN TIME"
+      ]
+    },
+    {
+      "name": "Fs Ebox (Tools&Apps)",
+      "url": "http://fs.ebox.live/",
+      "icon": "package",
+      "type": "ftp",
+      "keywords": [
+        "ftp",
+        "movies",
+        "series",
+        "software",
+        "apps",
+        "Fs Ebox (Tools&Apps)",
+        "ebox",
+        "fs ebox",
+        "tools",
+        "utilities",
+        "android",
+        "pc"
+      ]
+    }
+  ],
+ 
+  "Apps": [
+    {
+      "name": "APOLO",
+      "url": "apks/APOLO.apk",
+      "icon": "package",
+      "type": "app",
+      "keywords": [
+        "app",
+        "apk",
+        "android",
+        "software",
+        "player",
+        "APOLO"
+      ]
+    },
+    {
+      "name": "MEGA FTP",
+      "url": "apks/MEGA.apk",
+      "icon": "package",
+      "type": "app",
+      "keywords": [
+        "app",
+        "apk",
+        "android",
+        "software",
+        "player",
+        "MEGA FTP"
+      ]
+    },
+    {
+      "name": "RoarZone tv",
+      "url": "apks/roarzone-tv-1.0.1.apk",
+      "icon": "package",
+      "type": "app",
+      "keywords": [
+        "app",
+        "apk",
+        "android",
+        "software",
+        "player",
+        "RoarZone tv"
+      ]
+    },
+    {
+      "name": "QuickTV",
+      "url": "https://moviehaat.net/assets/QuickPlayer-1104.apk",
+      "icon": "package",
+      "type": "app",
+      "keywords": [
+        "app",
+        "apk",
+        "android",
+        "software",
+        "player",
+        "QuickTV"
+      ]
+    },
+    {
+      "name": "LIVE TV APP",
+      "url": "apks/live tv.apk",
+      "icon": "package",
+      "type": "app",
+      "keywords": [
+        "app",
+        "apk",
+        "android",
+        "software",
+        "player",
+        "LIVE TV APP"
+      ]
+    }
+  ]
+}
