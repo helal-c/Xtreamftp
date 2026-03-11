@@ -61,24 +61,33 @@
     }
     .modal-content.show { animation: modalSlideUp 0.35s ease-out forwards; }
 
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      background-color: #1f2937;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.12), 0 4px 6px -2px rgba(0,0,0,0.05);
-    }
-    .marquee-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 60s linear infinite;
-      font-weight: 900;
-    }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+  .marquee-container{
+  overflow:hidden;
+  white-space:nowrap;
+  background:#1f2937;
+  padding:0.55rem 0.8rem;
+  border-radius:0.7rem;
+  position:relative;
+}
 
-    .jjani { margin: 6rem 0 1rem 0; margin-bottom: 1.5rem !important; }
+.marquee-content{
+  display:inline-block;
+  white-space:nowrap;
+  min-width:max-content;
+  padding-left:100%;
+  font-weight:900;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+  animation:noticeMove 60s linear infinite;
+}
+
+@keyframes noticeMove{
+  from{ transform:translate3d(0,0,0); }
+  to{ transform:translate3d(-100%,0,0); }
+}
+
+    
+    .jjani{margin:0.4rem 0 0.6rem 0 !important;}
 
     .mobile-nav-menu {
       position: fixed;
@@ -181,30 +190,48 @@
 </head>
 <body class="bg-gray-900 text-white">
   <div class="container mx-auto px-2 sm:px-4 lg:px-6 py-6">
-    <header class="text-center mb-8 relative min-h-[5px] md:min-h-[5px]">
-      <div class="absolute top-1 left-0 p-2 flex items-center min-h-[42px]">
-        <a id="logoLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img id="siteLogo" src="js/logo.png" alt="Xtream Communication" class="h-16 md:h-20 w-auto max-w-[170px] object-contain rounded-md" />
-        </a>
-      </div>
+    <header class="mb-2 relative">
+      <div class="bg-gray-800/95 border border-gray-700 rounded-2xl px-3 sm:px-4 py-2.5 shadow-lg">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center shrink-0">
+            <a id="logoLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <img id="siteLogo" src="js/logo.png" alt="Xtream Communication" class="h-14 md:h-16 w-auto max-w-[160px] object-contain rounded-md" />
+            </a>
+          </div>
 
-      <div class="absolute top-5 right-0 p-2">
-        <div class="hidden md:flex justify-center items-center space-x-2 sm:space-x-4 text-base sm:text-lg">
-          <a id="desktopWhatsappLink" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="message-circle" class="w-5 h-5 mr-1 icon-hover-animation"></i>whatsapp
-          </a>
-          <a id="desktopWebsiteLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="globe" class="w-5 h-5 mr-1 icon-hover-animation"></i>Website
-          </a>
-          <button id="openAdminDesktop" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="shield" class="w-5 h-5 mr-1 icon-hover-animation"></i>Admin
+          <div class="hidden md:flex items-center gap-2 lg:gap-3 flex-1 justify-end text-sm lg:text-base">
+             <div class="w-44 lg:w-48">
+              <input id="siteSearch" type="text" placeholder="Type to search… (e.g., Circle, TV, FTP)" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 pr-9 text-xs sm:text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" />
+              <button id="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white px-2 py-0 rounded-md" title="Clear">✕</button>
+            </div>
+          </div>
+            <div class="w-44 lg:w-48">
+               <select id="categoryFilter" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 text-xs sm:text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60">
+              <option value="__all__">All Categories</option>
+            </select>
+          
+            </div>
+
+            <a id="desktopLiveTvLink" href="http://ott.11plus.live/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center whitespace-nowrap">
+              <i data-lucide="tv" class="w-5 h-5 mr-1 icon-hover-animation"></i>Live TV
+            </a>
+            <a id="desktopWhatsappLink" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center whitespace-nowrap">
+              <i data-lucide="message-circle" class="w-5 h-5 mr-1 icon-hover-animation"></i>whatsapp
+            </a>
+            <a id="desktopWebsiteLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center whitespace-nowrap">
+              <i data-lucide="globe" class="w-5 h-5 mr-1 icon-hover-animation"></i>Website
+            </a>
+            <button id="openAdminDesktop" class="hover:text-cyan-400 transition-colors flex items-center whitespace-nowrap">
+              <i data-lucide="shield" class="w-5 h-5 mr-1 icon-hover-animation"></i>Admin
+            </button>
+          </div>
+
+          <button id="mobileMenuToggle" class="md:hidden p-2 text-white focus:outline-none shrink-0" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
           </button>
         </div>
-        <button id="mobileMenuToggle" class="md:hidden p-2 text-white focus:outline-none" aria-label="Open menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
       </div>
     </header>
 
@@ -226,34 +253,17 @@
       <div class="bg-gray-800 border border-gray-700 rounded-lg p-1 sm:p-1.5 shadow">
         <div class="flex flex-col md:flex-row gap-1.5 md:gap-2 items-stretch md:items-center">
           <div class="flex-1">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">Search</label>
-            <div class="relative">
-              <input id="siteSearch" type="text" placeholder="Type to search… (e.g., Circle, TV, FTP)" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 pr-9 text-xs sm:text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" />
-              <button id="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white px-2 py-1 rounded-md" title="Clear">✕</button>
-            </div>
-          </div>
+         
 
-          <div class="w-full md:w-64">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">Category</label>
-            <select id="categoryFilter" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 text-xs sm:text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60">
-              <option value="__all__">All Categories</option>
-            </select>
-          </div>
+        
 
-          <div class="w-full md:w-72">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">View</label>
-            <div class="flex gap-2">
-              <button id="expandAll" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 text-xs sm:text-sm hover:border-red-500/60 hover:bg-gray-900/70 transition">Expand</button>
-              <button id="collapseAll" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 text-xs sm:text-sm hover:border-red-500/60 hover:bg-gray-900/70 transition">Collapse</button>
-             
-            </div>
-          </div>
-        </div>
+          
+      
 
-        <div class="mt-2 flex flex-wrap gap-1.5 items-center">
-          <span id="resultCount" class="text-xs sm:text-sm text-gray-300"></span>
-          <span class="text-[11px] sm:text-sm text-gray-500">• Tips: Click “Copy” to copy any link.</span>
-        </div>
+    <div class="mt-2 flex flex-col items-center justify-center text-center gap-0">
+  <span id="resultCount" class="text-xs sm:text-sm text-gray-300"></span>
+ 
+</div>
       </div>
     </section>
 
@@ -302,6 +312,10 @@
   <div id="mobileNavMenu" class="mobile-nav-menu">
     <button id="closeMobileNav" class="absolute top-4 right-4 p-2 text-white text-3xl focus:outline-none">&times;</button>
     <div class="flex flex-col space-y-6 text-xl">
+      <a id="mobileLiveTvLink" href="http://ott.11plus.live/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
+        <i data-lucide="tv" class="w-5 h-5 mr-1 icon-hover-animation"></i>Live TV
+      </a>
+      <span>&bull;</span>
       <a id="mobileWhatsappLink" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
         <i data-lucide="message-circle" class="w-5 h-5 mr-1 icon-hover-animation"></i>whatsapp
       </a>
@@ -1267,6 +1281,7 @@
       websiteUrl: 'https://xtreamcommunication.vercel.app/',
       whatsappUrl: 'https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES',
       logoUrl: 'js/logo.png',
+      liveTvUrl: 'http://ott.11plus.live/',
       adminPassword: '1234',
       noticeText: '<strong>প্রিয় গ্রাহক, Xtream Communication-এ আপনাকে স্বাগতম।</strong> আমাদের সংযোগ পেতে কল করুন <strong>01864228999, 01534333278, 01932093506</strong> নাম্বারে। • <strong>বিঃ দ্রঃ -</strong> দয়া করে প্রতি মাসের ১০ তারিখের মধ্যে আপনার মাসিক বিল পরিশোধ করুন, অন্যথায় আপনার সংযোগটি স্বয়ংক্রিয় ভাবে বিচ্ছিন্ন হয়ে যাবে। •'
     };
@@ -1471,11 +1486,13 @@
 
     function syncHeaderLinks() {
 
-      const { websiteUrl, whatsappUrl, logoUrl } = portalData.settings;
+      const { websiteUrl, whatsappUrl, logoUrl, liveTvUrl } = portalData.settings;
       el('desktopWhatsappLink').href = whatsappUrl || '#';
       el('mobileWhatsappLink').href = whatsappUrl || '#';
       el('desktopWebsiteLink').href = websiteUrl || '#';
       el('mobileWebsiteLink').href = websiteUrl || '#';
+      el('desktopLiveTvLink').href = liveTvUrl || 'http://ott.11plus.live/';
+      el('mobileLiveTvLink').href = liveTvUrl || 'http://ott.11plus.live/';
       el('logoLink').href = websiteUrl || '#';
       el('siteLogo').src = logoUrl || 'js/logo.png';
       el('siteLogo').alt = portalData.settings.portalName || 'Portal logo';
@@ -1515,11 +1532,15 @@
       const filter = el('categoryFilter');
       const current = filter.value || '__all__';
       filter.innerHTML = '<option value="__all__">All Categories</option>';
+      const mobileFilter = el('categoryFilterMobile');
+      if (mobileFilter) mobileFilter.innerHTML = '<option value="__all__">All Categories</option>';
       getAllCategories().forEach(cat => {
         const opt = document.createElement('option');
         opt.value = cat;
         opt.textContent = cat;
         filter.appendChild(opt);
+        const mobileFilter = el('categoryFilterMobile');
+        if (mobileFilter) mobileFilter.appendChild(opt.cloneNode(true));
       });
       if ([...filter.options].some(opt => opt.value === current)) {
         filter.value = current;
@@ -1892,8 +1913,30 @@
         if (e.target === el('mobileNavMenu')) el('mobileNavMenu').classList.remove('active');
       });
 
-      el('siteSearch').addEventListener('input', applyFilters);
-      el('categoryFilter').addEventListener('change', applyFilters);
+      el('siteSearch').addEventListener('input', () => {
+        const mobileSearch = el('siteSearchMobile');
+        if (mobileSearch) mobileSearch.value = el('siteSearch').value;
+        applyFilters();
+      });
+      const mobileSearch = el('siteSearchMobile');
+      if (mobileSearch) {
+        mobileSearch.addEventListener('input', () => {
+          el('siteSearch').value = mobileSearch.value;
+          applyFilters();
+        });
+      }
+      el('categoryFilter').addEventListener('change', () => {
+        const mobileCategory = el('categoryFilterMobile');
+        if (mobileCategory) mobileCategory.value = el('categoryFilter').value;
+        applyFilters();
+      });
+      const mobileCategory = el('categoryFilterMobile');
+      if (mobileCategory) {
+        mobileCategory.addEventListener('change', () => {
+          el('categoryFilter').value = mobileCategory.value;
+          applyFilters();
+        });
+      }
       el('clearSearch').addEventListener('click', () => {
         el('siteSearch').value = '';
         applyFilters();
