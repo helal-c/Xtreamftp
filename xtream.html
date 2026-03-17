@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xtream Communication Portal</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0e1b2e;
+      --panel-2: #12233d;
+      --text: #ecf4ff;
+      --muted: #9bb4d2;
+      --line: rgba(255,255,255,0.08);
+      --accent: #57b8ff;
+      --accent-2: #7cffc5;
+      --danger: #ff6b6b;
+      --warning: #ffd166;
+      --shadow: 0 14px 36px rgba(0,0,0,.28);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: linear-gradient(180deg, #07111f 0%, #0a1423 100%); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
+    body { min-height: 100vh; }
+
+    .wrap { width: min(98%, 1650px); margin: 0 auto; padding: 18px 18px 24px; }
+
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .header-top {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr 1.5fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logo-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 30%, #1cd6ff, #1d7fff 60%, #0b2140);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 10px 28px rgba(0,0,0,.35);
+      flex: 0 0 auto;
+    }
+
+    .logo-box span { font-size: 28px; font-weight: 800; }
+    .brand-text { min-width: 0; }
+    .brand-text h1 { margin: 0; font-size: clamp(22px, 2vw, 32px); line-height: 1.05; }
+    .brand-text p { margin: 5px 0 0; color: var(--muted); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) 170px 58px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .input, .select, .btn {
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      padding: 0 14px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .input::placeholder { color: #9bb4d2; }
+    .btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      transition: transform .15s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, #2495ff, #1fd1ff); color: #04111d; border: 0; }
+    .btn-soft { background: rgba(255,255,255,0.07); }
+    .btn-danger { background: rgba(255,107,107,0.14); color: #ffdada; }
+
+    .top-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .notice {
+      margin-top: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(87,184,255,0.13), rgba(124,255,197,0.08));
+      overflow: hidden;
+      position: relative;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .notice-track {
+      white-space: nowrap;
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 24s linear infinite;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .warn {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,209,102,0.12);
+      border: 1px solid rgba(255,209,102,0.2);
+      color: #ffe8a7;
+      display: none;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact { display: grid; gap: 6px; }
+    .contact-title { color: var(--muted); font-size: 15px; }
+    .contact strong { font-size: 34px; line-height: 1.1; }
+    .contact .meta { color: #d9e7fb; font-size: 24px; }
+    .contact .phones { color: #9ed0ff; font-size: 26px; word-break: break-word; }
+
+    .stats {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: linear-gradient(180deg, rgba(87,184,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 132px;
+      display: grid;
+      align-content: start;
+      box-shadow: var(--shadow);
+    }
+    .stat .label { color: var(--muted); font-weight: 700; font-size: 17px; }
+    .stat .value { font-size: clamp(34px, 3.5vw, 54px); font-weight: 800; margin-top: 8px; }
+    .stat .sub { color: var(--muted); font-size: 16px; margin-top: 6px; }
+    .online { color: var(--accent-2); }
+    .offline { color: var(--danger); }
+
+    .links-wrap {
+      margin-top: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .links-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .links-head h2 { margin: 0; font-size: 24px; }
+    .links-head .small { color: var(--muted); font-size: 15px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      min-height: 126px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .badge {
+      padding: 5px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      background: rgba(87,184,255,0.14);
+      color: #bfe6ff;
+      flex: 0 0 auto;
+    }
+
+    .url {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+      word-break: break-all;
+      min-height: 30px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .empty {
+      padding: 26px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: #dfeeff;
+      font-size: 18px;
+      font-weight: 700;
+      opacity: .95;
+    }
+
+    .admin-panel {
+      margin-top: 16px;
+      display: none;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .admin-panel h3 { margin: 0; font-size: 22px; }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .9fr 1.8fr auto auto;
+      gap: 10px;
+    }
+
+    .helper { color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 1280px) {
+      .header-top { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr 160px 58px; }
+      .top-links { justify-content: flex-start; }
+      .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .admin-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: 100%; padding: 10px; }
+      .toolbar { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats { grid-template-columns: 1fr; }
+      .contact strong { font-size: 22px; }
+      .contact .meta, .contact .phones { font-size: 16px; }
+      .notice-track { font-size: 15px; }
+      .admin-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="logo-box"><span>X</span></div>
+          <div class="brand-text">
+            <h1>Xtream Communication</h1>
+            <p>Smart TV / Android TV optimized portal</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input id="searchInput" class="input" type="text" placeholder="Type to search... (e.g. Circle, TV, FTP)" />
+          <select id="categoryFilter" class="select"></select>
+          <button id="clearBtn" class="btn btn-soft" title="Clear">✕</button>
+        </div>
+
+        <div class="top-links">
+          <a class="chip" href="https://example.com/live-tv" target="_blank" rel="noopener">Live TV</a>
+          <a class="chip" href="https://wa.me/8801864228999" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="chip" href="https://example.com" target="_blank" rel="noopener">Website</a>
+          <button id="adminBtn" class="chip" style="cursor:pointer;">Admin</button>
+        </div>
+      </div>
+
+      <div class="notice">
+        <div id="noticeTrack" class="notice-track">স্বাগতম, Xtream Communication-এ। দ্রুত সার্চ করুন, কপি করুন, অথবা নতুন ট্যাবে লিংক ওপেন করুন।</div>
+      </div>
+      <div id="modeWarning" class="warn">Local file mode detected. This version will still work offline using built-in data and local storage.</div>
+    </div>
+
+    <div class="section">
+      <div class="contact">
+        <div class="contact-title">যোগাযোগের ঠিকানা:</div>
+        <strong>Xtream Communication</strong>
+        <div class="meta">House:50, Chandanipug, Uttara, Turag, Dhaka-1230.</div>
+        <div class="phones">01864228999, 01534333278, 01932093506</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Portal users</div>
+          <div id="portalUsers" class="value">1</div>
+          <div class="sub">Same-device active tabs</div>
+        </div>
+        <div class="stat">
+          <div class="label">Today visitors</div>
+          <div id="todayVisitors" class="value">1</div>
+          <div class="sub">This device counter</div>
+        </div>
+        <div class="stat">
+          <div class="label">Total Links</div>
+          <div id="totalLinks" class="value">0</div>
+          <div id="totalCats" class="sub">0 categories</div>
+        </div>
+        <div class="stat">
+          <div class="label">Monitor</div>
+          <div id="monitorText" class="value online">Ready</div>
+          <div class="sub">Built-in local monitor</div>
+        </div>
+      </div>
+
+      <div id="adminPanel" class="admin-panel">
+        <h3>Admin Panel</h3>
+        <div class="helper">New link add করলে সেটা localStorage-এ save হবে, তাই file mode-এও কাজ করবে।</div>
+        <div class="admin-grid">
+          <input id="adminTitle" class="input" type="text" placeholder="Link title" />
+          <input id="adminCategory" class="input" type="text" placeholder="Category" />
+          <input id="adminUrl" class="input" type="url" placeholder="https://example.com" />
+          <button id="addBtn" class="btn btn-primary">Add Link</button>
+          <button id="exportBtn" class="btn btn-soft">Export JSON</button>
+        </div>
+      </div>
+
+      <div class="links-wrap">
+        <div class="links-head">
+          <div>
+            <h2>Available Links</h2>
+            <div id="resultInfo" class="small">Showing all links</div>
+          </div>
+          <button id="refreshBtn" class="btn btn-soft">Refresh Status</button>
+        </div>
+        <div id="grid" class="grid"></div>
+      </div>
+
+      <div class="footer">© Xtream Communication - All Rights Reserved.</div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'xtream_portal_links_v8';
+    const VISITOR_KEY = 'xtream_today_visitor';
+    const VISITOR_DATE_KEY = 'xtream_today_visitor_date';
+    const ADMIN_PASSWORD = '1234';
+
+    const defaultLinks = [
+      { title: 'Circle FTP', category: 'FTP', url: 'https://example.com/circle-ftp', status: 'online' },
+      { title: 'Discovery FTP', category: 'FTP', url: 'https://example.com/discovery', status: 'online' },
+      { title: 'Dhaka Movie', category: 'Movies', url: 'https://example.com/dhakamovie', status: 'online' },
+      { title: 'Natural BD', category: 'TV', url: 'https://example.com/naturalbd', status: 'online' },
+      { title: 'TV Apps', category: 'Apps', url: 'https://example.com/tv-apps', status: 'online' },
+      { title: 'Software Hub', category: 'Software', url: 'https://example.com/software', status: 'online' },
+      { title: 'Live Sports', category: 'Live TV', url: 'https://example.com/live-sports', status: 'online' },
+      { title: 'Bangla Live TV', category: 'Live TV', url: 'https://example.com/bangla-tv', status: 'online' },
+      { title: 'Kids Zone', category: 'TV', url: 'https://example.com/kids', status: 'online' },
+      { title: 'Android Tools', category: 'Apps', url: 'https://example.com/android-tools', status: 'online' },
+      { title: 'Movie Box', category: 'Movies', url: 'https://example.com/movie-box', status: 'online' },
+      { title: 'Utilities', category: 'Software', url: 'https://example.com/utilities', status: 'online' }
+    ];
+
+    const els = {
+      searchInput: document.getElementById('searchInput'),
+      categoryFilter: document.getElementById('categoryFilter'),
+      clearBtn: document.getElementById('clearBtn'),
+      grid: document.getElementById('grid'),
+      totalLinks: document.getElementById('totalLinks'),
+      totalCats: document.getElementById('totalCats'),
+      resultInfo: document.getElementById('resultInfo'),
+      modeWarning: document.getElementById('modeWarning'),
+      portalUsers: document.getElementById('portalUsers'),
+      todayVisitors: document.getElementById('todayVisitors'),
+      monitorText: document.getElementById('monitorText'),
+      adminBtn: document.getElementById('adminBtn'),
+      adminPanel: document.getElementById('adminPanel'),
+      addBtn: document.getElementById('addBtn'),
+      exportBtn: document.getElementById('exportBtn'),
+      refreshBtn: document.getElementById('refreshBtn'),
+      adminTitle: document.getElementById('adminTitle'),
+      adminCategory: document.getElementById('adminCategory'),
+      adminUrl: document.getElementById('adminUrl')
+    };
+
+    let links = loadLinks();
+    let adminOpen = false;
+
+    function loadLinks() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return [...defaultLinks];
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) && parsed.length ? parsed : [...defaultLinks];
+      } catch {
+        return [...defaultLinks];
+      }
+    }
+
+    function saveLinks() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+    }
+
+    function getCategories() {
+      return ['All Categories', ...new Set(links.map(x => x.category).filter(Boolean).sort())];
+    }
+
+    function renderCategories() {
+      const current = els.categoryFilter.value || 'All Categories';
+      els.categoryFilter.innerHTML = getCategories().map(cat => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`).join('');
+      els.categoryFilter.value = getCategories().includes(current) ? current : 'All Categories';
+    }
+
+    function renderLinks() {
+      const q = els.searchInput.value.trim().toLowerCase();
+      const cat = els.categoryFilter.value;
+      const filtered = links.filter(item => {
+        const matchQ = !q || item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q) || item.url.toLowerCase().includes(q);
+        const matchC = cat === 'All Categories' || item.category === cat;
+        return matchQ && matchC;
+      });
+
+      els.totalLinks.textContent = String(links.length);
+      els.totalCats.textContent = `${Math.max(getCategories().length - 1, 0)} categories`;
+      els.resultInfo.textContent = `Showing ${filtered.length} of ${links.length} links`;
+
+      if (!filtered.length) {
+        els.grid.innerHTML = `<div class="empty" style="grid-column: 1/-1;">No links found. Search change করুন বা Admin থেকে নতুন link add করুন।</div>`;
+        return;
+      }
+
+      els.grid.innerHTML = filtered.map(item => `
+        <div class="card">
+          <div>
+            <div class="card-top">
+              <div class="card-title">${escapeHtml(item.title)}</div>
+              <div class="badge">${escapeHtml(item.category)}</div>
+            </div>
+            <div class="url">${escapeHtml(item.url)}</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openLink('${encodeURIComponent(item.url)}')">Open</button>
+            <button class="btn btn-soft" onclick="copyLink('${encodeURIComponent(item.url)}')">Copy</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>\"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
+    }
+
+    window.openLink = function(encodedUrl) {
+      const url = decodeURIComponent(encodedUrl);
+      window.open(url, '_blank', 'noopener');
+    }
+
+    window.copyLink = async function(encodedUrl) {
+      const url = decodeURIComponent(encodedUrl);
+      try {
+        await navigator.clipboard.writeText(url);
+        setMonitor('Copied', true);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        setMonitor('Copied', true);
+      }
+    }
+
+    function setMonitor(text, ok = true) {
+      els.monitorText.textContent = text;
+      els.monitorText.className = `value ${ok ? 'online' : 'offline'}`;
+    }
+
+    function updateVisitors() {
+      const today = new Date().toISOString().slice(0, 10);
+      const lastDate = localStorage.getItem(VISITOR_DATE_KEY);
+      let count = Number(localStorage.getItem(VISITOR_KEY) || '0');
+      if (lastDate !== today) {
+        count = 1;
+        localStorage.setItem(VISITOR_DATE_KEY, today);
+        localStorage.setItem(VISITOR_KEY, String(count));
+      } else if (!count) {
+        count = 1;
+        localStorage.setItem(VISITOR_KEY, '1');
+      }
+      els.todayVisitors.textContent = String(count);
+      els.portalUsers.textContent = '1';
+    }
+
+    function toggleAdmin() {
+      if (!adminOpen) {
+        const pass = prompt('Enter admin password');
+        if (pass !== ADMIN_PASSWORD) {
+          setMonitor('Access denied', false);
+          return;
+        }
+      }
+      adminOpen = !adminOpen;
+      els.adminPanel.style.display = adminOpen ? 'grid' : 'none';
+      setMonitor(adminOpen ? 'Admin Open' : 'Ready', true);
+    }
+
+    function addLink() {
+      const title = els.adminTitle.value.trim();
+      const category = els.adminCategory.value.trim();
+      const url = els.adminUrl.value.trim();
+      if (!title || !category || !url) {
+        setMonitor('Fill all fields', false);
+        return;
+      }
+      links.unshift({ title, category, url, status: 'online' });
+      saveLinks();
+      renderCategories();
+      renderLinks();
+      els.adminTitle.value = '';
+      els.adminCategory.value = '';
+      els.adminUrl.value = '';
+      setMonitor('Saved', true);
+    }
+
+    function exportJson() {
+      const blob = new Blob([JSON.stringify(links, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'categories.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      setMonitor('Exported', true);
+    }
+
+    function refreshStatus() {
+      setMonitor('Ready', true);
+      renderLinks();
+    }
+
+    function initModeWarning() {
+      if (location.protocol === 'file:') {
+        els.modeWarning.style.display = 'block';
+      }
+    }
+
+    els.searchInput.addEventListener('input', renderLinks);
+    els.categoryFilter.addEventListener('change', renderLinks);
+    els.clearBtn.addEventListener('click', () => {
+      els.searchInput.value = '';
+      els.categoryFilter.value = 'All Categories';
+      renderLinks();
+    });
+    els.adminBtn.addEventListener('click', toggleAdmin);
+    els.addBtn.addEventListener('click', addLink);
+    els.exportBtn.addEventListener('click', exportJson);
+    els.refreshBtn.addEventListener('click', refreshStatus);
+
+    updateVisitors();
+    initModeWarning();
+    renderCategories();
+    renderLinks();
+  </script>
+</body>
+</html>
