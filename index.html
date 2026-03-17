@@ -3,1055 +3,745 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Xtream Communication - High speed internet service provider with Live TV and FTP servers." />
-  <link rel="icon" href="js/logo.png" />
-  <title>Xtream Communication - Best Internet Service Provider in Dhaka</title>
-  <script src="js/cdn.tailwindcss.com_3.4.16.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com/" />
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <title>Xtream Communication - Best Internet Service Provider In Cbook</title>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #111827;
-      color: #f9fafb;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .font-bengali { font-family: 'Noto Sans Bengali', sans-serif; }
-    .bg-gray-800 { background-color: #1f2937; }
-    .text-cyan-400 { color: #FF0000; }
-    .brand-red { color: #FF0000; }
-    .text-gray-400 { color: #9ca3af; }
-    .text-gray-300 { color: #d1d5db; }
-    .text-gray-200 { color: #e5e7eb; }
-    .text-amber-300 { color: #fcd34d; }
-    .border-gray-700 { border-color: #374151; }
-    .border-gray-800 { border-color: #1f2937; }
-    .group-hover\:text-cyan-400:hover { color: #FF0000; }
-
-    @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes modalSlideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.72);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 1rem;
-    }
-    .modal-overlay.show {
-      display: flex;
-      animation: modalFadeIn 0.3s ease-out forwards;
-    }
-    .modal-content {
-      background-color: #1f2937;
-      padding: 1.5rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-      max-width: 42rem;
-      width: 100%;
-      position: relative;
-      opacity: 0;
-      transform: translateY(50px);
-      max-height: calc(100vh - 2rem);
-      overflow: auto;
-    }
-    .modal-content.show { animation: modalSlideUp 0.35s ease-out forwards; }
-
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      background-color: #1f2937;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.12), 0 4px 6px -2px rgba(0,0,0,0.05);
-    }
-    .marquee-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 60s linear infinite;
-      font-weight: 900;
-    }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-    .jjani { margin: 6rem 0 1rem 0; margin-bottom: 1.5rem !important; }
-
-    .mobile-nav-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #111827;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-    }
-    .mobile-nav-menu.active { transform: translateX(0); }
-    .icon-hover-animation:hover {
-      transform: scale(1.1);
-      transition: transform 0.2s ease-in-out;
+    :root{
+      --bg:#07111f;
+      --panel:#0f1b2f;
+      --line:rgba(255,255,255,.08);
+      --text:#ecf4ff;
+      --muted:#9bb4d2;
+      --accent:#2cb6ff;
+      --accent2:#7cffc5;
+      --danger:#ff6b6b;
+      --shadow:0 10px 30px rgba(0,0,0,.28);
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      line-height: 1rem;
-      border: 1px solid #374151;
-      background: rgba(17, 24, 39, 0.85);
-      color: #d1d5db;
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:linear-gradient(180deg,#07111f 0%,#0a1423 100%);
+      color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
     }
-    .status-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 9999px;
-      display: inline-block;
-    }
-    .status-unknown { background: #6b7280; }
-    .status-online { background: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,.6); }
-    .status-offline { background: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,.6); }
-    .status-local { background: #f59e0b; box-shadow: 0 0 10px rgba(245,158,11,.55); }
+    body{min-height:100vh}
+    a{text-decoration:none;color:inherit}
+    button,input,select{font-family:inherit}
 
-    .line-clamp-1 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .wrap{width:min(98%,1680px);margin:0 auto;padding:14px}
+
+    .header{
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:16px;
+      box-shadow:var(--shadow);
     }
 
-
-    .footer-stats-wrap {
-      margin-top: 2rem;
-      border-top: 1px solid #1f2937;
-      padding-top: 1.25rem;
-    }
-    .footer-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-    .footer-stat-card {
-      background: rgba(31, 41, 55, 0.88);
-      border: 1px solid #374151;
-      border-radius: 0.9rem;
-      padding: 0.9rem 1rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-    }
-    .footer-stat-label {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      margin-bottom: 0.25rem;
-    }
-    .footer-stat-value {
-      font-size: 1.9rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: #f9fafb;
-    }
-    .footer-stat-note {
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-top: 0.15rem;
+    .header-top{
+      display:grid;
+      grid-template-columns:1.1fr 2fr 1.6fr;
+      gap:12px;
+      align-items:center;
     }
 
-    @media (max-width: 768px) {
-      .footer-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-      .admin-grid { grid-template-columns: 1fr !important; }
-      .jjani { margin-top: 5.2rem; }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    @media (max-width: 520px) {
-      .footer-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.65rem !important; }
-      .stats-grid { grid-template-columns: 1fr !important; }
-      .site-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 1rem !important; }
+    .logo-box{
+      width:62px;
+      height:62px;
+      border-radius:16px;
+      background:radial-gradient(circle at 30% 30%,#1cd6ff,#1d7fff 60%,#0b2140);
+      display:grid;
+      place-items:center;
+      font-size:28px;
+      font-weight:800;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 10px 24px rgba(0,0,0,.32);
+      flex:0 0 auto;
+    }
+
+    .brand-text h1{
+      margin:0;
+      font-size:clamp(22px,2vw,30px);
+      line-height:1.05;
+      color:#ff0000;
+    }
+
+    .brand-text p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:minmax(240px,1fr) 200px 56px;
+      gap:10px;
+      align-items:center;
+    }
+
+    .input,.select,.btn,.chip{
+      height:46px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      padding:0 14px;
+      outline:none;
+      font-size:15px;
+    }
+
+    .input::placeholder{color:#9bb4d2}
+
+    .btn,.chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .btn:hover,.chip:hover,.card:hover{transform:translateY(-1px)}
+
+    .btn-primary{
+      background:linear-gradient(135deg,#2495ff,#1fd1ff);
+      color:#04111d;
+      border:0;
+    }
+
+    .btn-soft{background:rgba(255,255,255,.07)}
+
+    .top-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .chip{
+      min-height:42px;
+      padding:10px 14px;
+      white-space:nowrap;
+    }
+
+    .notice{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:linear-gradient(90deg,rgba(87,184,255,.13),rgba(124,255,197,.08));
+      overflow:hidden;
+      min-height:50px;
+      display:flex;
+      align-items:center;
+    }
+
+    .notice-track{
+      white-space:nowrap;
+      display:inline-block;
+      padding-left:100%;
+      animation:marquee 60s linear infinite;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    @keyframes marquee{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-100%)}
+    }
+
+    .warning{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,209,102,.12);
+      border:1px solid rgba(255,209,102,.2);
+      color:#ffe8a7;
+      display:none;
+      font-weight:700;
+    }
+
+    .section{
+      margin-top:14px;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+
+    .links-wrap{
+      margin-top:6px;
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:14px;
+    }
+
+    .links-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .links-head h2{
+      margin:0;
+      font-size:24px;
+      color:#ff0000;
+    }
+
+    .small{color:var(--muted);font-size:14px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      min-height:128px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+      box-shadow:var(--shadow);
+      outline:none;
+    }
+
+    .card:focus,.btn:focus,.chip:focus,.input:focus,.select:focus{
+      border-color:rgba(124,255,197,.7);
+      box-shadow:0 0 0 3px rgba(124,255,197,.18),var(--shadow);
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:flex-start;
+    }
+
+    .card-title{
+      font-size:15px;
+      font-weight:800;
+      line-height:1.25;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .badge{
+      padding:5px 8px;
+      border-radius:10px;
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      background:rgba(87,184,255,.14);
+      color:#bfe6ff;
+      flex:0 0 auto;
+    }
+
+    .url{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.25;
+      word-break:break-all;
+      min-height:30px;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .card-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .empty{
+      grid-column:1/-1;
+      padding:26px;
+      text-align:center;
+      color:var(--muted);
+      border:1px dashed var(--line);
+      border-radius:16px;
+    }
+
+    .footer-stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .stat{
+      background:linear-gradient(180deg,rgba(87,184,255,.08),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      min-height:110px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat .label{
+      color:var(--muted);
+      font-weight:700;
+      font-size:15px;
+    }
+
+    .stat .value{
+      font-size:clamp(30px,3vw,46px);
+      font-weight:800;
+      margin-top:8px;
+    }
+
+    .stat .sub{
+      color:var(--muted);
+      font-size:14px;
+      margin-top:6px;
+    }
+
+    .online{color:var(--accent2)}
+    .offline{color:var(--danger)}
+
+    .footer{
+      margin-top:14px;
+      line-height:1.65;
+      color:#dfeeff;
+      font-size:17px;
+      font-weight:700;
+      opacity:.96;
+      text-align:center;
+    }
+
+    @media (max-width:1280px){
+      .header-top{grid-template-columns:1fr}
+      .toolbar{grid-template-columns:1fr 180px 56px}
+      .top-links{justify-content:flex-start}
+      .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .footer-stats{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:760px){
+      .wrap{width:100%;padding:10px}
+      .toolbar{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .footer-stats{grid-template-columns:1fr}
+      .notice-track{font-size:15px}
+      .footer{font-size:15px}
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <header class="text-center mb-8 relative">
-      <div class="absolute top-0 left-0 p-2">
-        <a id="logoLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img id="siteLogo" src="js/logo.png" alt="Xtream Communication" class="w-24 h-16 object-cover rounded-md" />
-        </a>
-      </div>
-
-      <div class="absolute top-5 right-0 p-2">
-        <div class="hidden md:flex justify-center items-center space-x-2 sm:space-x-4 text-base sm:text-lg">
-          <a id="desktopWhatsappLink" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="message-circle" class="w-5 h-5 mr-1 icon-hover-animation"></i>whatsapp
-          </a>
-          <a id="desktopWebsiteLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="globe" class="w-5 h-5 mr-1 icon-hover-animation"></i>Website
-          </a>
-          <button id="openAdminDesktop" class="hover:text-cyan-400 transition-colors flex items-center">
-            <i data-lucide="shield" class="w-5 h-5 mr-1 icon-hover-animation"></i>Admin
-          </button>
-        </div>
-        <button id="mobileMenuToggle" class="md:hidden p-2 text-white focus:outline-none" aria-label="Open menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </header>
-
-    <section class="mb-8 jjani">
-      <div class="marquee-container bg-gray-800">
-        <p id="noticeText" class="marquee-content font-bengali text-lg leading-relaxed text-gray-300">
-          <strong>প্রিয় গ্রাহক, Xtream Communication-এ আপনাকে স্বাগতম।</strong> আমাদের সংযোগ পেতে কল করুন <strong>01864228999, 01534333278, 01932093506</strong> নাম্বারে। • <strong>বিঃ দ্রঃ -</strong> দয়া করে প্রতি মাসের ১০ তারিখের মধ্যে আপনার মাসিক বিল পরিশোধ করুন, অন্যথায় আপনার সংযোগটি স্বয়ংক্রিয় ভাবে বিচ্ছিন্ন হয়ে যাবে। •
-        </p>
-      </div>
-    </section>
-
-    <section class="mb-8">
-      <div id="localModeWarning" class="hidden mt-4 bg-amber-500/10 border border-amber-400/30 text-amber-200 rounded-xl px-4 py-3 text-sm">
-        ⚠️ Local file mode detected. Run via <span class="font-mono">http://localhost</span> or deploy to Vercel for best admin/save/status behavior.
-      </div>
-    </section>
-
-    <section class="mb-8">
-      <div class="bg-gray-800 border border-gray-700 rounded-xl p-4 sm:p-5 shadow-lg">
-        <div class="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center">
-          <div class="flex-1">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">Search</label>
-            <div class="relative">
-              <input id="siteSearch" type="text" placeholder="Type to search… (e.g., Circle, TV, FTP)" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 pr-11 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" />
-              <button id="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white px-2 py-1 rounded-md" title="Clear">✕</button>
-            </div>
-          </div>
-
-          <div class="w-full md:w-64">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">Category</label>
-            <select id="categoryFilter" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60">
-              <option value="__all__">All Categories</option>
-            </select>
-          </div>
-
-          <div class="w-full md:w-72">
-            <label class="block text-sm text-gray-300 mb-1 font-semibold">View</label>
-            <div class="flex gap-2">
-              <button id="expandAll" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Expand</button>
-              <button id="collapseAll" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Collapse</button>
-              <button id="refreshStatusBtn" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Refresh</button>
-            </div>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="logo-box">X</div>
+          <div class="brand-text">
+            <h1>Xtream Communication</h1>
+            <p>Best Internet Service Provider In Cbook</p>
           </div>
         </div>
 
-        <div class="mt-4 flex flex-wrap gap-2 items-center">
-          <span id="resultCount" class="text-sm text-gray-300"></span>
-          <span class="text-sm text-gray-500">• Tips: Click “Copy” to copy any link.</span>
+        <div class="toolbar">
+          <input id="searchInput" class="input" data-nav="true" type="text" placeholder="Type to search... (e.g. Circle, TV, FTP, Movie, APK)" />
+          <select id="categoryFilter" class="select" data-nav="true"></select>
+          <button id="clearBtn" class="btn btn-soft" data-nav="true" title="Clear">✕</button>
         </div>
-      </div>
-    </section>
 
-    <main id="main-content"></main>
-
-    <footer class="text-center mt-12 pt-8 border-t border-gray-800">
-      <div class="font-bengali text-gray-400">
-        <p class="font-bold text-lg text-gray-200 flex items-center justify-center">
-          <i data-lucide="map-pin" class="w-5 h-5 mr-2 icon-hover-animation"></i>যোগাযোগের ঠিকানাঃ
-        </p>
-        <p><strong>Xtream Communication</strong><br />House:50, Chandalvoug, Uttara, Turag, Dhaka-1230.</p>
-        <p class="mt-2 flex items-center justify-center">
-          <i data-lucide="phone" class="w-5 h-5 mr-2 icon-hover-animation"></i>01864228999, 01534333278, 01932093506
-        </p>
-      </div>
-
-      <div class="footer-stats-wrap">
-        <div class="footer-stats-grid">
-          <div class="footer-stat-card">
-            <div class="footer-stat-label">Portal users</div>
-            <div id="liveUserCount" class="footer-stat-value">1</div>
-            <div class="footer-stat-note">Same-device active tabs</div>
-          </div>
-          <div class="footer-stat-card">
-            <div class="footer-stat-label">Today visitors</div>
-            <div id="todayVisitorCount" class="footer-stat-value">1</div>
-            <div class="footer-stat-note">This device counter</div>
-          </div>
-          <div class="footer-stat-card">
-            <div class="footer-stat-label">Total links</div>
-            <div id="totalLinksCount" class="footer-stat-value">0</div>
-            <div id="totalCatsText" class="footer-stat-note">0 categories</div>
-          </div>
-          <div class="footer-stat-card">
-            <div class="footer-stat-label">Monitor</div>
-            <div id="monitorText" class="footer-stat-value">Ready</div>
-            <div class="footer-stat-note">Refresh status button</div>
-          </div>
+        <div class="top-links">
+          <a class="chip" data-nav="true" href="http://ott.11plus.live/" target="_blank" rel="noopener">Live TV</a>
+          <a class="chip" data-nav="true" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener">whatsapp</a>
+          <a class="chip" data-nav="true" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener">Website</a>
         </div>
       </div>
 
-      <p class="text-gray-500 mt-8">&copy; <span id="yearNow"></span> Xtream Communication - All Rights Reserved.</p>
-    </footer>
-  </div>
+      <div class="notice">
+        <div class="notice-track">
+          প্রিয় গ্যাহক, Xtream Communication-এ আপনাকে স্বাগতম। আমাদের সংযোগ পেতে কল করুন 01864228999, 01534333278,01932093506 নাম্বারে। • বিঃ দ্রঃ - দয়া করে প্রতি মাসের ১০ তারিখের মধ্যে আপনার মাসিক বিল পরিশোধ করুন, অন্যথায় আপনার সংযোগটি স্বয়ংক্রিয় ভাবে বিচ্ছিন্ন হয়ে যাবে। •
+        </div>
+      </div>
 
-  <div id="mobileNavMenu" class="mobile-nav-menu">
-    <button id="closeMobileNav" class="absolute top-4 right-4 p-2 text-white text-3xl focus:outline-none">&times;</button>
-    <div class="flex flex-col space-y-6 text-xl">
-      <a id="mobileWhatsappLink" href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-        <i data-lucide="message-circle" class="w-5 h-5 mr-1 icon-hover-animation"></i>whatsapp
-      </a>
-      <span>&bull;</span>
-      <a id="mobileWebsiteLink" href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center">
-        <i data-lucide="globe" class="w-5 h-5 mr-1 icon-hover-animation"></i>Website
-      </a>
-      <span>&bull;</span>
-      <button id="openAdminMobile" class="hover:text-cyan-400 transition-colors flex items-center justify-center">
-        <i data-lucide="shield" class="w-5 h-5 mr-1 icon-hover-animation"></i>Admin
-      </button>
+      <div id="modeWarning" class="warning">
+        Local file mode detected. File mode-এও কাজ করবে, তবে localhost বা hosting এ দিলে performance আরও ভালো হবে।
+      </div>
     </div>
-  </div>
 
-  <div id="adminModal" class="modal-overlay">
-    <div class="modal-content bg-gray-800">
-      <button id="closeAdminModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-      <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mb-4">Admin Panel</h2>
-
-      <div id="adminLoginArea" class="space-y-4">
-        <p class="text-gray-300 text-sm">Password diye admin panel open korun.</p>
-        <input id="adminPasswordCheck" type="password" placeholder="Admin password" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500/60" />
-        <button id="adminLoginBtn" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Unlock</button>
+    <div class="section">
+      <div class="links-wrap">
+        <div class="links-head">
+          <div>
+            <h2>Available Links</h2>
+            <div id="resultInfo" class="small">Showing all links</div>
+          </div>
+          <button id="refreshBtn" class="btn btn-soft" data-nav="true" type="button">Refresh Status</button>
+        </div>
+        <div id="grid" class="grid"></div>
       </div>
 
-      <div id="adminPanelArea" class="hidden space-y-6 text-left">
-        <div class="admin-grid grid grid-cols-[280px_1fr] gap-4">
-          <div class="space-y-3">
-            <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-              <h3 class="font-semibold text-gray-200 mb-3">Quick settings</h3>
-              <div class="space-y-3">
-                <input id="portalTitleInput" type="text" placeholder="Portal title" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <input id="websiteUrlInput" type="text" placeholder="Website URL" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <input id="whatsappUrlInput" type="text" placeholder="WhatsApp URL" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <input id="logoUrlInput" type="text" placeholder="Logo URL / path" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <input id="adminPasswordInput" type="text" placeholder="New admin password" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <textarea id="noticeInput" rows="5" placeholder="Notice text" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100"></textarea>
-                <div class="grid grid-cols-2 gap-2">
-                  <button id="saveSettingsBtn" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Save</button>
-                  <button id="resetLocalBtn" class="bg-red-500/10 border border-red-500/30 text-red-200 rounded-lg px-4 py-3 hover:bg-red-500/15 transition">Reset</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-gray-900 border border-gray-700 rounded-xl p-4 space-y-3">
-              <h3 class="font-semibold text-gray-200">Category</h3>
-              <div class="flex gap-2">
-                <input id="newCategoryInput" type="text" placeholder="New category name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100" />
-                <button id="addCategoryBtn" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Add</button>
-              </div>
-              <div id="adminCategoryList" class="space-y-2 max-h-64 overflow-auto"></div>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                <div>
-                  <h3 id="editorTitle" class="text-xl font-bold text-gray-100">Select a category</h3>
-                  <p class="text-sm text-gray-400">Add, edit, delete links and categories</p>
-                </div>
-                <button id="addLinkBtn" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">+ Add Link</button>
-              </div>
-              <div id="adminLinkList" class="space-y-3 max-h-[420px] overflow-auto"></div>
-            </div>
-
-            <div class="bg-gray-900 border border-gray-700 rounded-xl p-4">
-              <h3 class="font-semibold text-gray-200 mb-3">Export / Import</h3>
-              <div class="grid sm:grid-cols-2 gap-3">
-                <button id="exportBtn" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition">Export JSON</button>
-                <label class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 hover:border-red-500/60 hover:bg-gray-900/70 transition text-center cursor-pointer">Import JSON<input id="importInput" type="file" accept="application/json" class="hidden" /></label>
-              </div>
-              <p class="text-sm text-gray-400 mt-3">Server auto-load active: keep <span class="font-mono">categories.json</span> next to this HTML file.</p>
-            </div>
-          </div>
+      <div class="footer-stats">
+        <div class="stat">
+          <div class="label">Portal users</div>
+          <div id="portalUsers" class="value">1</div>
+          <div class="sub">Same-device active tabs</div>
         </div>
+        <div class="stat">
+          <div class="label">Today visitors</div>
+          <div id="todayVisitors" class="value">1</div>
+          <div class="sub">This device counter</div>
+        </div>
+        <div class="stat">
+          <div class="label">Total Links</div>
+          <div id="totalLinks" class="value">0</div>
+          <div id="totalCats" class="sub">0 categories</div>
+        </div>
+        <div class="stat">
+          <div class="label">Monitor</div>
+          <div id="monitorText" class="value online">Ready</div>
+          <div class="sub">Portal status monitor</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div><strong>যোগাযোগের ঠিকানাঃ</strong></div>
+        <div><strong>Xtream Communication</strong><br>House:50, Chandalvoug, Uttara, Turag, Dhaka-1230.</div>
+        <div>01864228999, 01534333278,01932093506</div>
+        <div style="margin-top:6px;opacity:.9;">© Xtream Communication - All Rights Reserved.</div>
       </div>
     </div>
   </div>
 
-  <script src="js/unpkg.com_lucide%40latest.js"></script>
   <script>
-    const DEFAULT_SETTINGS = {
-      portalName: 'Xtream Communication',
-      websiteUrl: 'https://xtreamcommunication.vercel.app/',
-      whatsappUrl: 'https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES',
-      logoUrl: 'js/logo.png',
-      adminPassword: '1234',
-      noticeText: '<strong>প্রিয় গ্রাহক, Xtream Communication-এ আপনাকে স্বাগতম।</strong> আমাদের সংযোগ পেতে কল করুন <strong>01864228999, 01534333278, 01932093506</strong> নাম্বারে। • <strong>বিঃ দ্রঃ -</strong> দয়া করে প্রতি মাসের ১০ তারিখের মধ্যে আপনার মাসিক বিল পরিশোধ করুন, অন্যথায় আপনার সংযোগটি স্বয়ংক্রিয় ভাবে বিচ্ছিন্ন হয়ে যাবে। •'
+    const VISITOR_KEY = 'xtream_today_visitor';
+    const VISITOR_DATE_KEY = 'xtream_today_visitor_date';
+
+    const embeddedData = {
+      "Live TV": [
+        {"name":"11Plus.Live","url":"http://ott.11plus.live/","type":"tv","keywords":["tv","live tv","channel","iptv","11Plus.Live"]},
+        {"name":"11Plus.Live (Live TV Page)","url":"http://flix.11plus.live/live-tv.html","type":"tv","keywords":["tv","live tv","channel","iptv","11Plus.Live"]},
+        {"name":"Deltainfo TV","url":"http://iptv.deltainfonet.com/","type":"tv","keywords":["tv","live tv","channel","iptv","Deltainfo"]},
+        {"name":"KSB NET TV 1","url":"http://tv.ksbnet.net/","type":"tv","keywords":["tv","live tv","channel","iptv","KSB NET TV 1"]},
+        {"name":"BAS NET TV 2","url":"http://10.99.99.99/","type":"tv","keywords":["tv","live tv","channel","iptv","BAS NET TV 2"]},
+        {"name":"TSports (Live)","url":"http://172.16.29.28/","type":"tv","keywords":["tv","live tv","channel","iptv","TSports"]},
+        {"name":"Local TV","url":"http://172.16.1.6/","type":"tv","keywords":["tv","live tv","channel","iptv","Local TV"]},
+        {"name":"Cloud TV","url":"http://172.19.178.180/index.php","type":"tv","keywords":["tv","live tv","channel","iptv","Cloud TV"]},
+        {"name":"Smart Box TV","url":"http://smartbox.digital/jwtv1/index.php","type":"tv","keywords":["tv","live tv","channel","iptv","Smart Box"]},
+        {"name":"New TV","url":"http://10.10.10.2/","type":"tv","keywords":["tv","live tv","channel","iptv","New TV"]},
+        {"name":"Redforce TV","url":"http://redforce.live/","type":"tv","keywords":["tv","live tv","channel","iptv","Redforce"]},
+        {"name":"CITYPLEX TV","url":"http://live.cityplex.live/","type":"tv","keywords":["tv","live tv","channel","iptv","CITYPLEX TV"]},
+        {"name":"RoarZone TV","url":"http://tv.roarzone.info/","type":"tv","keywords":["tv","live tv","channel","iptv","RoarZone TV"]},
+        {"name":"Ideal TV","url":"http://172.16.60.2/","type":"tv","keywords":["tv","live tv","channel","iptv","Ideal TV"]},
+        {"name":"DugDugi Live TV","url":"http://dugdugilive.com/","type":"tv","keywords":["tv","live tv","channel","iptv","DugDugi"]},
+        {"name":"NEW TV","url":"http://103.144.89.251/","type":"tv","keywords":["tv","live tv","channel","iptv","NEW TV"]},
+        {"name":"Plusbox TV","url":"https://plusbox.tv/","type":"tv","keywords":["tv","live tv","channel","iptv","Plusbox TV"]},
+        {"name":"APOLO TV","url":"http://10.30.30.30/","type":"tv","keywords":["tv","live tv","channel","iptv","APOLO TV"]},
+        {"name":"ANTBD TV","url":"http://172.17.50.112/","type":"tv","keywords":["tv","live tv","channel","iptv","ANTBD"]}
+      ],
+
+      "Movie & FTP Servers": [
+        {"name":"11 Plus","url":"https://11plus.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","11 plus"]},
+        {"name":"ICC FTP","url":"http://10.16.100.244/","type":"ftp","keywords":["ftp","movies","series","software","apps","ICC FTP","icc","tools"]},
+        {"name":"Sam FTP","url":"http://172.16.50.4/","type":"ftp","keywords":["ftp","movies","series","software","apps","Sam FTP","sam","tv","anime","bangla","hindi","english"]},
+        {"name":"Discovery CDN","url":"https://discoveryftp.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Discovery CDN","discovery","discoveryftp","cdn","hollywood","bollywood","anime"]},
+        {"name":"Discovery Movies","url":"https://movies.discoveryftp.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Discovery Movies","discovery","hollywood","bollywood","anime"]},
+        {"name":"Circle FTP (Old)","url":"http://main.circleftp.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Circle (Old)","circle","circle ftp","main circleftp","anime"]},
+        {"name":"Circle FTP (New)","url":"http://new.circleftp.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Circle (New)","circle","circle ftp","new circleftp","anime"]},
+        {"name":"iHub","url":"http://ihub.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","Ihub"]},
+        {"name":"CineplexBD","url":"http://cineplexbd.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Cineplexbd"]},
+        {"name":"Movies World","url":"http://10.10.10.3/movies","type":"ftp","keywords":["ftp","movies","series","software","apps","Movies World"]},
+        {"name":"WOW FTP","url":"http://172.27.27.84/","type":"ftp","keywords":["ftp","movies","series","software","apps","WOW FTP"]},
+        {"name":"FTP Media","url":"http://10.1.1.1/","type":"ftp","keywords":["ftp","movies","series","software","apps","FTP Media"]},
+        {"name":"BAS PLAY","url":"http://103.87.212.46/","type":"ftp","keywords":["ftp","movies","series","software","apps","BAS PLAY"]},
+        {"name":"Moviehaat","url":"https://moviehaat.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Moviehaat"]},
+        {"name":"DhakaMovie","url":"http://dhakamovie.com/","type":"ftp","keywords":["ftp","movies","series","software","apps","DhakaMovie","dhaka movie","bangla movie","hindi movie","hollywood"]},
+        {"name":"TimePass","url":"http://timepassbd.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","TimePass"]},
+        {"name":"FTP-BD","url":"https://ftpbd.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","FTP-BD"]},
+        {"name":"Bokasoka","url":"http://bokasoka.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","bokasoka"]},
+        {"name":"Movie Mazic","url":"http://moviemazic.xyz/movies.html","type":"ftp","keywords":["ftp","movies","series","software","apps","Movie Mazic"]},
+        {"name":"Flixhub.Live","url":"https://flixhub.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","Flixhub.Live"]},
+        {"name":"dflix.Live","url":"http://dflix.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","dflix.Live","dflix","dflix live","hollywood","bollywood","bangla"]},
+        {"name":"FmFtp","url":"https://fmftp.net/","type":"ftp","keywords":["ftp","movies","series","software","apps","FmFtp"]},
+        {"name":"CTG Movies","url":"http://ctgmovies.com/","type":"ftp","keywords":["ftp","movies","series","software","apps","ctgmovies"]},
+        {"name":"Roarzone Play","url":"https://play.roarzone.info/","type":"ftp","keywords":["ftp","movies","series","software","apps","Roarzone"]},
+        {"name":"Cloud FTP","url":"http://172.19.178.179/","type":"ftp","keywords":["ftp","movies","series","software","apps","Cloud FTP"]},
+        {"name":"Show TimeBD","url":"http://showtimebd.com/","type":"ftp","keywords":["ftp","movies","series","software","apps","Show Timebd"]},
+        {"name":"MOVIEPOKA","url":"http://103.214.200.94/","type":"ftp","keywords":["ftp","movies","series","software","apps","MOVIEPOKA"]},
+        {"name":"FTP ZONE","url":"http://103.225.94.27/mediaserver/","type":"ftp","keywords":["ftp","movies","series","software","apps","FTP ZONE"]},
+        {"name":"Murgi Live","url":"http://murgi.live","type":"ftp","keywords":["ftp","movies","series","software","apps","Murgi live"]},
+        {"name":"NaturalBD","url":"http://naturalbd.com/","type":"ftp","keywords":["ftp","movies","series","software","apps","NaturalBD","natural bd","bangla","hollywood","bollywood"]},
+        {"name":"NowHD TIME","url":"https://nowhdtime.com.bd/","type":"ftp","keywords":["ftp","movies","series","software","apps","NowHD TIME"]},
+        {"name":"Relax Time","url":"http://10.100.100.10/","type":"ftp","keywords":["ftp","movies","series","software","apps","Relax Time"]},
+        {"name":"CITYPLEX","url":"https://cityplex.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","CITYPLEX"]},
+        {"name":"Ebox Live","url":"http://fileserver.ebox.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","Ebox Live"]},
+        {"name":"FUN TIME","url":"http://172.20.21.22/","type":"ftp","keywords":["ftp","movies","series","software","apps","FUN TIME"]},
+        {"name":"Fs Ebox (Tools & Apps)","url":"http://fs.ebox.live/","type":"ftp","keywords":["ftp","movies","series","software","apps","Fs Ebox (Tools&Apps)","ebox","fs ebox","tools","utilities","android","pc"]}
+      ],
+
+      "Apps": [
+        {"name":"APOLO APK","url":"https://appolotv.net/appolotv/release_apk/AppoloTV_6.0_FINAL_(06-08-2025).apk","type":"app","keywords":["app","apk","android","software","player","APOLO"]},
+        {"name":"XtreamFtp APK","url":"apks/XtreamFtp.apk","type":"app","keywords":["app","apk","android","software","player","XtreamFTP"]},
+        {"name":"SmartTube Stable","url":"https://github.com/yuliskov/SmartTube/releases/download/latest/smarttube_stable.apk","type":"app","keywords":["app","apk","android","software","player","SmartTube"]},
+        {"name":"SmartTube Beta","url":"https://github.com/yuliskov/SmartTube/releases/download/latest/smarttube_beta.apk","type":"app","keywords":["app","apk","android","software","player","SmartTube 2"]},
+        {"name":"RoarZone TV APK","url":"https://tv.roarzone.info/download.php?type=mobile","type":"app","keywords":["app","apk","android","software","player","RoarZone tv"]},
+        {"name":"QuickTV APK","url":"https://moviehaat.net/assets/QuickPlayer-1104.apk","type":"app","keywords":["app","apk","android","software","player","QuickTV"]},
+        {"name":"Live TV App APK","url":"apks/live tv.apk","type":"app","keywords":["app","apk","android","software","player","LIVE TV APP"]}
+      ]
     };
 
-    const DEFAULT_DATA = {
-      settings: { ...DEFAULT_SETTINGS },
-      categories: {
-        'Live TV': [],
-        'Movie & FTP Servers': [],
-        'Apps': []
-      }
+    const els = {
+      searchInput: document.getElementById('searchInput'),
+      categoryFilter: document.getElementById('categoryFilter'),
+      clearBtn: document.getElementById('clearBtn'),
+      grid: document.getElementById('grid'),
+      totalLinks: document.getElementById('totalLinks'),
+      totalCats: document.getElementById('totalCats'),
+      resultInfo: document.getElementById('resultInfo'),
+      modeWarning: document.getElementById('modeWarning'),
+      portalUsers: document.getElementById('portalUsers'),
+      todayVisitors: document.getElementById('todayVisitors'),
+      monitorText: document.getElementById('monitorText'),
+      refreshBtn: document.getElementById('refreshBtn')
     };
 
-    const STORAGE_KEY = 'xtream-portal-v2-merged-data';
-    const TODAY_KEY = 'xtream-portal-v2-merged-today';
-    const ACTIVE_TABS_KEY = 'xtream-portal-v2-merged-tabs';
-    const statusMap = new Map();
-    const tabId = Math.random().toString(36).slice(2);
-
-    let portalData = structuredClone(DEFAULT_DATA);
-    let currentAdminCategory = '';
-    let collapsedState = {};
-
-    const el = (id) => document.getElementById(id);
-
-    function escapeHtml(str = '') {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    function slugify(value = '') {
-      return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    }
-
-    function safeClone(obj) {
-      return JSON.parse(JSON.stringify(obj));
-    }
-
-    function isLocalFileMode() {
-      return location.protocol === 'file:';
-    }
-
-    function isPrivateUrl(url) {
-      try {
-        const u = new URL(url, window.location.href);
-        const host = u.hostname || '';
-        if (!host) return true;
-        if (host === 'localhost' || host === '127.0.0.1') return true;
-        if (host.startsWith('10.')) return true;
-        if (host.startsWith('192.168.')) return true;
-        const m = host.match(/^172\.(\d+)\./);
-        if (m) {
-          const second = parseInt(m[1], 10);
-          if (second >= 16 && second <= 31) return true;
-        }
-        return false;
-      } catch {
-        return true;
-      }
-    }
-
-    function normalizeItem(item) {
-      return {
-        name: item?.name || '',
-        url: item?.url || '',
-        icon: item?.icon || 'globe',
-        type: item?.type || '',
-        keywords: Array.isArray(item?.keywords) ? item.keywords : []
-      };
-    }
-
-    function mergePortalData(raw) {
-      const merged = safeClone(DEFAULT_DATA);
-      if (!raw || typeof raw !== 'object') return merged;
-
-      if (raw.settings || raw.portalName || raw.categories) {
-        merged.settings = {
-          ...merged.settings,
-          ...(raw.settings || {}),
-          ...(raw.portalName ? { portalName: raw.portalName } : {})
-        };
-        merged.categories = {};
-        const sourceCategories = raw.categories && typeof raw.categories === 'object' ? raw.categories : {};
-        for (const [cat, items] of Object.entries(sourceCategories)) {
-          merged.categories[cat] = Array.isArray(items) ? items.map(normalizeItem).filter(i => i.name || i.url) : [];
-        }
-      } else {
-        merged.categories = {};
-        for (const [cat, items] of Object.entries(raw)) {
-          merged.categories[cat] = Array.isArray(items) ? items.map(normalizeItem).filter(i => i.name || i.url) : [];
-        }
-      }
-
-      if (!Object.keys(merged.categories).length) {
-        merged.categories = safeClone(DEFAULT_DATA.categories);
-      }
-      return merged;
-    }
-
-    function getStoredData() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch {
-        return null;
-      }
-    }
-
-    function saveStoredData() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(portalData));
-      } catch (err) {
-        console.warn('Save failed', err);
-      }
-    }
-
-    async function loadPortalData() {
-      const local = getStoredData();
-      if (local) {
-        portalData = mergePortalData(local);
-        return;
-      }
-
-      try {
-        const res = await fetch('./categories.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('categories.json not found');
-        const json = await res.json();
-        portalData = mergePortalData(json);
-        saveStoredData();
-      } catch (err) {
-        console.warn('Using fallback data', err);
-        portalData = mergePortalData(DEFAULT_DATA);
-      }
-    }
-
-    function syncHeaderLinks() {
-      const { websiteUrl, whatsappUrl, logoUrl } = portalData.settings;
-      el('desktopWhatsappLink').href = whatsappUrl || '#';
-      el('mobileWhatsappLink').href = whatsappUrl || '#';
-      el('desktopWebsiteLink').href = websiteUrl || '#';
-      el('mobileWebsiteLink').href = websiteUrl || '#';
-      el('logoLink').href = websiteUrl || '#';
-      el('siteLogo').src = logoUrl || 'js/logo.png';
-      el('siteLogo').alt = portalData.settings.portalName || 'Portal logo';
-      document.title = `${portalData.settings.portalName || 'Xtream Communication'} - Best Internet Service Provider in Dhaka`;
-      el('noticeText').innerHTML = portalData.settings.noticeText || DEFAULT_SETTINGS.noticeText;
-      el('portalTitleInput').value = portalData.settings.portalName || '';
-      el('websiteUrlInput').value = websiteUrl || '';
-      el('whatsappUrlInput').value = whatsappUrl || '';
-      el('logoUrlInput').value = logoUrl || '';
-      el('adminPasswordInput').value = portalData.settings.adminPassword || '';
-      el('noticeInput').value = stripHtml(portalData.settings.noticeText || '');
-    }
-
-    function stripHtml(input = '') {
-      const div = document.createElement('div');
-      div.innerHTML = input;
-      return div.textContent || div.innerText || '';
-    }
-
-    function getAllCategories() {
-      return Object.keys(portalData.categories);
-    }
-
-    function getAllLinksCount() {
-      return Object.values(portalData.categories).reduce((sum, items) => sum + items.length, 0);
-    }
-
-    function updateCounters() {
-      el('totalLinksCount').textContent = getAllLinksCount();
-      el('totalCatsText').textContent = `${getAllCategories().length} categories`;
-      el('liveUserCount').textContent = getApproxActiveTabs();
-      el('todayVisitorCount').textContent = getTodayVisits();
-      el('localModeWarning').classList.toggle('hidden', !isLocalFileMode());
-    }
-
-    function renderCategoryFilter() {
-      const filter = el('categoryFilter');
-      const current = filter.value || '__all__';
-      filter.innerHTML = '<option value="__all__">All Categories</option>';
-      getAllCategories().forEach(cat => {
-        const opt = document.createElement('option');
-        opt.value = cat;
-        opt.textContent = cat;
-        filter.appendChild(opt);
-      });
-      if ([...filter.options].some(opt => opt.value === current)) {
-        filter.value = current;
-      }
-    }
-
-    function buildStatusBadge(item) {
-      const current = statusMap.get(item.url) || (isPrivateUrl(item.url) ? 'local' : 'unknown');
-      const labelMap = { unknown: 'Unknown', online: 'Online', offline: 'Offline', local: 'Local' };
-      const statusClass = current === 'local' ? 'status-local' : current === 'online' ? 'status-online' : current === 'offline' ? 'status-offline' : 'status-unknown';
-      return `<span class="status-badge"><span class="status-dot ${statusClass}"></span>${labelMap[current]}</span>`;
-    }
-
-    function createSiteCard(site) {
-      const keywords = Array.isArray(site.keywords) ? site.keywords.join(', ') : '';
-      return `
-        <div class="group block bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-red-500/30">
-          <a href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer" class="block">
-            <div class="p-4 flex flex-col items-center justify-center h-full text-center min-h-[140px]">
-              <i data-lucide="${escapeHtml(site.icon || 'globe')}" class="w-12 h-12 text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-              <h3 class="text-md font-semibold text-gray-200 line-clamp-1 group-hover:text-cyan-400 w-full" title="${escapeHtml(site.name)}">${escapeHtml(site.name)}</h3>
-              <div class="mt-3">${buildStatusBadge(site)}</div>
-            </div>
-          </a>
-          <div class="px-4 pb-4">
-            <div class="text-[11px] text-gray-500 line-clamp-1 text-center mb-2" title="${escapeHtml(site.url)}">${escapeHtml(site.url)}</div>
-            <div class="flex gap-2 justify-center">
-              <button class="copy-btn w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition" data-url="${escapeHtml(site.url)}" data-name="${escapeHtml(site.name)}" data-keywords="${escapeHtml(keywords)}">Copy</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function createCategorySection(category, sites) {
-      const safeId = slugify(category);
-      const isCollapsed = !!collapsedState[category];
-      const cards = sites.map(createSiteCard).join('');
-      return `
-        <section class="mb-10 category-section" data-category="${escapeHtml(category)}" id="cat-${safeId}">
-          <div class="flex items-center justify-between gap-3 border-b-2 border-gray-700 pb-2 mb-5">
-            <h2 class="text-2xl font-bold text-cyan-400">${escapeHtml(category)}</h2>
-            <button class="cat-toggle bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 hover:border-red-500/60 hover:bg-gray-900/70 transition" data-target="grid-${safeId}">${isCollapsed ? 'Expand' : 'Collapse'}</button>
-          </div>
-          <div class="site-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8" id="grid-${safeId}" style="display:${isCollapsed ? 'none' : ''}">
-            ${cards || '<div class="text-gray-500 col-span-full">No links in this category.</div>'}
-          </div>
-        </section>
-      `;
-    }
-
-    function renderPortal() {
-      renderCategoryFilter();
-      const mainContent = el('main-content');
-      mainContent.innerHTML = '';
-      getAllCategories().forEach(category => {
-        mainContent.insertAdjacentHTML('beforeend', createCategorySection(category, portalData.categories[category] || []));
-      });
-      applyFilters();
-      refreshIcons();
-      updateCounters();
-    }
-
-    function normalize(str) { return String(str || '').toLowerCase().trim(); }
-
-    function applyFilters() {
-      const q = normalize(el('siteSearch').value);
-      const cat = el('categoryFilter').value;
-      let visibleCards = 0;
-      let visibleCats = 0;
-
-      document.querySelectorAll('.category-section').forEach(sec => {
-        const secCat = sec.getAttribute('data-category');
-        const matchCat = (cat === '__all__' || secCat === cat);
-        let anyInSection = false;
-
-        sec.querySelectorAll('.copy-btn').forEach(btn => {
-          const name = normalize(btn.getAttribute('data-name'));
-          const url = normalize(btn.getAttribute('data-url'));
-          const keywords = normalize(btn.getAttribute('data-keywords'));
-          const matchQ = !q || name.includes(q) || url.includes(q) || keywords.includes(q) || normalize(secCat).includes(q);
-          const card = btn.closest('.group');
-          const show = matchCat && matchQ;
-          card.style.display = show ? '' : 'none';
-          if (show) {
-            anyInSection = true;
-            visibleCards += 1;
-          }
-        });
-
-        sec.style.display = anyInSection ? '' : 'none';
-        if (anyInSection) visibleCats += 1;
-      });
-
-      const online = [...statusMap.values()].filter(v => v === 'online').length;
-      const offline = [...statusMap.values()].filter(v => v === 'offline').length;
-      const local = [...statusMap.values()].filter(v => v === 'local').length;
-      el('resultCount').textContent = `${visibleCards} links found in ${visibleCats} categories • Local ${local} • Online ${online} • Offline ${offline}`;
-      el('monitorText').textContent = offline ? `Issues ${offline}` : online ? `Online ${online}` : local ? `Local ${local}` : 'Ready';
-    }
-
-    function setAllCollapsed(collapsed) {
-      document.querySelectorAll('.cat-toggle').forEach(btn => {
-        const gridId = btn.getAttribute('data-target');
-        const grid = document.getElementById(gridId);
-        if (!grid) return;
-        grid.style.display = collapsed ? 'none' : '';
-        btn.textContent = collapsed ? 'Expand' : 'Collapse';
-        const sec = btn.closest('.category-section');
-        const category = sec?.getAttribute('data-category');
-        if (category) collapsedState[category] = collapsed;
-      });
-    }
-
-    function refreshIcons() {
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-    }
-
-    async function checkUrlStatus(url) {
-      if (!url) return 'unknown';
-      if (isPrivateUrl(url)) return 'local';
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 4500);
-      try {
-        await fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store', signal: controller.signal });
-        clearTimeout(timer);
-        return 'online';
-      } catch {
-        clearTimeout(timer);
-        return 'offline';
-      }
-    }
-
-    async function refreshAllStatuses() {
-      el('monitorText').textContent = 'Checking';
-      const allItems = Object.values(portalData.categories).flat();
-      for (const item of allItems) {
-        const status = await checkUrlStatus(item.url);
-        statusMap.set(item.url, status);
-      }
-      renderPortal();
-    }
-
-    function openModal(modal) {
-      modal.style.display = 'flex';
-      modal.classList.add('show');
-      const content = modal.querySelector('.modal-content');
-      content?.classList.add('show');
-    }
-
-    function closeModal(modal) {
-      modal.classList.remove('show');
-      const content = modal.querySelector('.modal-content');
-      content?.classList.remove('show');
-      setTimeout(() => { modal.style.display = 'none'; }, 250);
-    }
-
-    function registerVisit() {
-      const today = new Date().toISOString().slice(0, 10);
-      try {
-        const raw = JSON.parse(localStorage.getItem(TODAY_KEY) || '{}');
-        if (raw.date !== today) {
-          localStorage.setItem(TODAY_KEY, JSON.stringify({ date: today, count: 1 }));
-        } else {
-          raw.count = Number(raw.count || 0) + 1;
-          localStorage.setItem(TODAY_KEY, JSON.stringify(raw));
-        }
-      } catch {
-        localStorage.setItem(TODAY_KEY, JSON.stringify({ date: today, count: 1 }));
-      }
-    }
-
-    function getTodayVisits() {
-      const today = new Date().toISOString().slice(0, 10);
-      try {
-        const raw = JSON.parse(localStorage.getItem(TODAY_KEY) || '{}');
-        return raw.date === today ? Number(raw.count || 0) : 0;
-      } catch {
-        return 0;
-      }
-    }
-
-    function syncActiveTabs(register = true) {
-      const now = Date.now();
-      let tabs = {};
-      try {
-        tabs = JSON.parse(localStorage.getItem(ACTIVE_TABS_KEY) || '{}');
-      } catch {
-        tabs = {};
-      }
-      Object.keys(tabs).forEach(key => {
-        if (now - tabs[key] > 20000) delete tabs[key];
-      });
-      if (register) tabs[tabId] = now;
-      localStorage.setItem(ACTIVE_TABS_KEY, JSON.stringify(tabs));
-      return Object.keys(tabs).length || 1;
-    }
-
-    function getApproxActiveTabs() {
-      return syncActiveTabs(true);
-    }
-
-    function populateAdmin() {
-      syncHeaderLinks();
-      renderAdminCategoryList();
-      renderAdminLinkList();
-    }
-
-    function renderAdminCategoryList() {
-      const wrap = el('adminCategoryList');
-      const categories = getAllCategories();
-      if (!currentAdminCategory && categories.length) currentAdminCategory = categories[0];
-      wrap.innerHTML = categories.map(cat => `
-        <div class="flex items-center gap-2">
-          <button class="admin-cat-btn flex-1 text-left bg-gray-800 border ${cat === currentAdminCategory ? 'border-red-500/60 text-white' : 'border-gray-700 text-gray-300'} rounded-lg px-3 py-2" data-category="${escapeHtml(cat)}">${escapeHtml(cat)}</button>
-          <button class="delete-cat-btn bg-red-500/10 border border-red-500/30 text-red-200 rounded-lg px-3 py-2" data-category="${escapeHtml(cat)}">✕</button>
-        </div>
-      `).join('') || '<div class="text-sm text-gray-500">No categories</div>';
-    }
-
-    function renderAdminLinkList() {
-      el('editorTitle').textContent = currentAdminCategory || 'Select a category';
-      const wrap = el('adminLinkList');
-      const items = portalData.categories[currentAdminCategory] || [];
-      wrap.innerHTML = items.map((item, index) => `
-        <div class="bg-gray-800 border border-gray-700 rounded-xl p-3 space-y-2">
-          <input class="admin-link-name w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-gray-100" data-index="${index}" value="${escapeHtml(item.name)}" placeholder="Name" />
-          <input class="admin-link-url w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-gray-100" data-index="${index}" value="${escapeHtml(item.url)}" placeholder="URL" />
-          <input class="admin-link-icon w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-gray-100" data-index="${index}" value="${escapeHtml(item.icon || 'globe')}" placeholder="Icon" />
-          <div class="flex gap-2">
-            <button class="save-link-btn flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 hover:border-red-500/60 hover:bg-gray-900/70 transition" data-index="${index}">Save</button>
-            <button class="delete-link-btn bg-red-500/10 border border-red-500/30 text-red-200 rounded-lg px-3 py-2" data-index="${index}">Delete</button>
-          </div>
-        </div>
-      `).join('') || '<div class="text-sm text-gray-500">No links in this category.</div>';
-    }
-
-    function openAdminPanel() {
-      populateAdmin();
-      el('adminPasswordCheck').value = '';
-      el('adminPanelArea').classList.add('hidden');
-      el('adminLoginArea').classList.remove('hidden');
-      openModal(el('adminModal'));
-    }
-
-    function unlockAdmin() {
-      const password = el('adminPasswordCheck').value;
-      if (password !== (portalData.settings.adminPassword || DEFAULT_SETTINGS.adminPassword)) {
-        alert('Wrong password');
-        return;
-      }
-      populateAdmin();
-      el('adminLoginArea').classList.add('hidden');
-      el('adminPanelArea').classList.remove('hidden');
-    }
-
-    function saveSettingsFromAdmin() {
-      portalData.settings.portalName = el('portalTitleInput').value.trim() || DEFAULT_SETTINGS.portalName;
-      portalData.settings.websiteUrl = el('websiteUrlInput').value.trim() || DEFAULT_SETTINGS.websiteUrl;
-      portalData.settings.whatsappUrl = el('whatsappUrlInput').value.trim() || DEFAULT_SETTINGS.whatsappUrl;
-      portalData.settings.logoUrl = el('logoUrlInput').value.trim() || DEFAULT_SETTINGS.logoUrl;
-      portalData.settings.adminPassword = el('adminPasswordInput').value.trim() || DEFAULT_SETTINGS.adminPassword;
-      const noticePlain = el('noticeInput').value.trim();
-      portalData.settings.noticeText = noticePlain || DEFAULT_SETTINGS.noticeText;
-      saveStoredData();
-      syncHeaderLinks();
-      renderPortal();
-      alert('Saved successfully');
-    }
-
-    function addCategory() {
-      const name = el('newCategoryInput').value.trim();
-      if (!name) return;
-      if (!portalData.categories[name]) portalData.categories[name] = [];
-      currentAdminCategory = name;
-      el('newCategoryInput').value = '';
-      saveStoredData();
-      renderPortal();
-      populateAdmin();
-    }
-
-    function deleteCategory(name) {
-      if (!name || !portalData.categories[name]) return;
-      if (!confirm(`Delete category: ${name}?`)) return;
-      delete portalData.categories[name];
-      currentAdminCategory = getAllCategories()[0] || '';
-      saveStoredData();
-      renderPortal();
-      populateAdmin();
-    }
-
-    function addLink() {
-      if (!currentAdminCategory) return;
-      portalData.categories[currentAdminCategory].push({ name: 'New Link', url: '', icon: 'globe', type: '', keywords: [] });
-      saveStoredData();
-      populateAdmin();
-      renderPortal();
-    }
-
-    function saveLink(index) {
-      const items = portalData.categories[currentAdminCategory] || [];
-      const item = items[index];
-      if (!item) return;
-      item.name = document.querySelector(`.admin-link-name[data-index="${index}"]`)?.value.trim() || 'Untitled';
-      item.url = document.querySelector(`.admin-link-url[data-index="${index}"]`)?.value.trim() || '';
-      item.icon = document.querySelector(`.admin-link-icon[data-index="${index}"]`)?.value.trim() || 'globe';
-      saveStoredData();
-      renderPortal();
-      populateAdmin();
-    }
-
-    function deleteLink(index) {
-      const items = portalData.categories[currentAdminCategory] || [];
-      items.splice(index, 1);
-      saveStoredData();
-      renderPortal();
-      populateAdmin();
-    }
-
-    function exportJson() {
-      const blob = new Blob([JSON.stringify(portalData, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'categories.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function importJson(file) {
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const json = JSON.parse(reader.result);
-          portalData = mergePortalData(json);
-          currentAdminCategory = getAllCategories()[0] || '';
-          saveStoredData();
-          renderPortal();
-          populateAdmin();
-          alert('Import successful');
-        } catch {
-          alert('Invalid JSON file');
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    function resetLocalData() {
-      if (!confirm('Reset all local saved data?')) return;
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
-
-    function bindEvents() {
-      el('yearNow').textContent = new Date().getFullYear();
-
-      el('mobileMenuToggle').addEventListener('click', () => el('mobileNavMenu').classList.add('active'));
-      el('closeMobileNav').addEventListener('click', () => el('mobileNavMenu').classList.remove('active'));
-      el('mobileNavMenu').addEventListener('click', (e) => {
-        if (e.target === el('mobileNavMenu')) el('mobileNavMenu').classList.remove('active');
-      });
-
-      el('siteSearch').addEventListener('input', applyFilters);
-      el('categoryFilter').addEventListener('change', applyFilters);
-      el('clearSearch').addEventListener('click', () => {
-        el('siteSearch').value = '';
-        applyFilters();
-        el('siteSearch').focus();
-      });
-
-      el('expandAll').addEventListener('click', () => setAllCollapsed(false));
-      el('collapseAll').addEventListener('click', () => setAllCollapsed(true));
-      el('refreshStatusBtn').addEventListener('click', refreshAllStatuses);
-
-      document.addEventListener('click', (e) => {
-        const t = e.target;
-        if (t.classList.contains('copy-btn')) {
-          const url = t.getAttribute('data-url') || '';
-          navigator.clipboard?.writeText(url).then(() => {
-            const old = t.textContent;
-            t.textContent = 'Copied ✓';
-            setTimeout(() => t.textContent = old, 900);
-          }).catch(() => {
-            const ta = document.createElement('textarea');
-            ta.value = url;
-            document.body.appendChild(ta);
-            ta.select();
-            try { document.execCommand('copy'); } catch {}
-            document.body.removeChild(ta);
-            const old = t.textContent;
-            t.textContent = 'Copied ✓';
-            setTimeout(() => t.textContent = old, 900);
+    function flattenData(data){
+      const arr = [];
+      Object.keys(data).forEach(category => {
+        data[category].forEach(item => {
+          arr.push({
+            title: item.name || 'Untitled',
+            category,
+            url: item.url || '#',
+            type: item.type || '',
+            keywords: Array.isArray(item.keywords) ? item.keywords : []
           });
-        }
-
-        if (t.classList.contains('cat-toggle')) {
-          const gridId = t.getAttribute('data-target');
-          const grid = document.getElementById(gridId);
-          if (!grid) return;
-          const collapsed = grid.style.display === 'none';
-          grid.style.display = collapsed ? '' : 'none';
-          t.textContent = collapsed ? 'Collapse' : 'Expand';
-          const sec = t.closest('.category-section');
-          const category = sec?.getAttribute('data-category');
-          if (category) collapsedState[category] = !collapsed;
-        }
-
-        if (t.classList.contains('admin-cat-btn')) {
-          currentAdminCategory = t.getAttribute('data-category') || '';
-          populateAdmin();
-        }
-        if (t.classList.contains('delete-cat-btn')) {
-          deleteCategory(t.getAttribute('data-category') || '');
-        }
-        if (t.classList.contains('save-link-btn')) {
-          saveLink(Number(t.getAttribute('data-index')));
-        }
-        if (t.classList.contains('delete-link-btn')) {
-          deleteLink(Number(t.getAttribute('data-index')));
-        }
+        });
       });
-
-      el('openAdminDesktop').addEventListener('click', openAdminPanel);
-      el('openAdminMobile').addEventListener('click', () => {
-        el('mobileNavMenu').classList.remove('active');
-        openAdminPanel();
-      });
-      el('closeAdminModal').addEventListener('click', () => closeModal(el('adminModal')));
-      el('adminModal').addEventListener('click', (e) => {
-        if (e.target === el('adminModal')) closeModal(el('adminModal'));
-      });
-      el('adminLoginBtn').addEventListener('click', unlockAdmin);
-      el('adminPasswordCheck').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') unlockAdmin();
-      });
-      el('saveSettingsBtn').addEventListener('click', saveSettingsFromAdmin);
-      el('resetLocalBtn').addEventListener('click', resetLocalData);
-      el('addCategoryBtn').addEventListener('click', addCategory);
-      el('addLinkBtn').addEventListener('click', addLink);
-      el('exportBtn').addEventListener('click', exportJson);
-      el('importInput').addEventListener('change', (e) => importJson(e.target.files?.[0]));
-
-      window.addEventListener('storage', (e) => {
-        if (e.key === ACTIVE_TABS_KEY) updateCounters();
-        if (e.key === STORAGE_KEY) {
-          const local = getStoredData();
-          if (local) {
-            portalData = mergePortalData(local);
-            renderPortal();
-            populateAdmin();
-          }
-        }
-      });
-
-      setInterval(() => updateCounters(), 7000);
-      window.addEventListener('beforeunload', () => syncActiveTabs(false));
+      return arr;
     }
 
-    async function init() {
-      registerVisit();
-      syncActiveTabs(true);
-      await loadPortalData();
-      currentAdminCategory = getAllCategories()[0] || '';
-      syncHeaderLinks();
-      renderPortal();
-      bindEvents();
-      updateCounters();
-      refreshIcons();
+    const links = flattenData(embeddedData);
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>\"']/g, s => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[s]));
     }
 
-    init();
+    function getCategories(){
+      return ['All Categories', ...new Set(links.map(x => x.category).filter(Boolean))];
+    }
+
+    function renderCategories(){
+      const cats = getCategories();
+      els.categoryFilter.innerHTML = cats.map(cat => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`).join('');
+    }
+
+    function renderLinks(){
+      const q = els.searchInput.value.trim().toLowerCase();
+      const cat = els.categoryFilter.value;
+
+      const filtered = links.filter(item => {
+        const searchable = [
+          item.title,
+          item.category,
+          item.url,
+          item.type,
+          ...(item.keywords || [])
+        ].join(' ').toLowerCase();
+
+        const matchQ = !q || searchable.includes(q);
+        const matchC = cat === 'All Categories' || item.category === cat;
+        return matchQ && matchC;
+      });
+
+      els.totalLinks.textContent = String(links.length);
+      els.totalCats.textContent = `${Math.max(getCategories().length - 1, 0)} categories`;
+      els.resultInfo.textContent = `Showing ${filtered.length} of ${links.length} links`;
+
+      if(!filtered.length){
+        els.grid.innerHTML = `<div class="empty">No links found. Search change করুন।</div>`;
+        return;
+      }
+
+      els.grid.innerHTML = filtered.map(item => `
+        <div class="card" tabindex="0" role="button" data-nav="true" data-url="${escapeHtml(item.url)}">
+          <div>
+            <div class="card-top">
+              <div class="card-title">${escapeHtml(item.title)}</div>
+              <div class="badge">${escapeHtml(item.category)}</div>
+            </div>
+            <div class="url">${escapeHtml(item.url)}</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openLink('${encodeURIComponent(item.url)}')">Open</button>
+            <button class="btn btn-soft" onclick="copyLink('${encodeURIComponent(item.url)}')">Copy</button>
+          </div>
+        </div>
+      `).join('');
+
+      setTimeout(() => {
+        const first = document.querySelector('.card[data-nav="true"]');
+        if(first && !document.querySelector('.card:focus')) first.focus();
+      }, 0);
+    }
+
+    function setMonitor(text, ok = true){
+      els.monitorText.textContent = text;
+      els.monitorText.className = `value ${ok ? 'online' : 'offline'}`;
+    }
+
+    function updateVisitors(){
+      const today = new Date().toISOString().slice(0,10);
+      const lastDate = localStorage.getItem(VISITOR_DATE_KEY);
+      let count = Number(localStorage.getItem(VISITOR_KEY) || '0');
+
+      if(lastDate !== today){
+        count = 1;
+        localStorage.setItem(VISITOR_DATE_KEY, today);
+        localStorage.setItem(VISITOR_KEY, String(count));
+      }else if(!count){
+        count = 1;
+        localStorage.setItem(VISITOR_KEY, '1');
+      }
+
+      els.todayVisitors.textContent = String(count);
+      els.portalUsers.textContent = '1';
+    }
+
+    function getFocusableCards(){
+      return Array.from(document.querySelectorAll('.card[data-nav="true"]'))
+        .filter(el => el.offsetParent !== null);
+    }
+
+    function moveFocus(direction){
+      const items = getFocusableCards();
+      if(!items.length) return;
+
+      const active = document.activeElement;
+      let index = items.indexOf(active);
+
+      if(index === -1){
+        items[0].focus();
+        return;
+      }
+
+      const cols = window.innerWidth > 1280 ? 6 : (window.innerWidth > 760 ? 4 : 2);
+      let next = index;
+
+      if(direction === 'left') next = Math.max(0, index - 1);
+      if(direction === 'right') next = Math.min(items.length - 1, index + 1);
+      if(direction === 'up') next = Math.max(0, index - cols);
+      if(direction === 'down') next = Math.min(items.length - 1, index + cols);
+
+      items[next].focus();
+      try{
+        items[next].scrollIntoView({ block:'nearest', inline:'nearest' });
+      }catch{}
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const active = document.activeElement;
+
+      if(e.key === 'ArrowLeft'){
+        e.preventDefault();
+        moveFocus('left');
+      }else if(e.key === 'ArrowRight'){
+        e.preventDefault();
+        moveFocus('right');
+      }else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        moveFocus('up');
+      }else if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        moveFocus('down');
+      }else if((e.key === 'Enter' || e.key === ' ') && active && active.classList.contains('card')){
+        e.preventDefault();
+        const url = active.getAttribute('data-url');
+        if(url){
+          window.location.href = url;
+        }
+      }else if(e.key.toLowerCase() === 'c' && active && active.classList.contains('card')){
+        e.preventDefault();
+        const url = active.getAttribute('data-url');
+        if(url) copyLink(encodeURIComponent(url));
+      }
+    });
+
+    window.openLink = function(encodedUrl){
+      const url = decodeURIComponent(encodedUrl);
+      window.location.href = url;
+    }
+
+    window.copyLink = async function(encodedUrl){
+      const url = decodeURIComponent(encodedUrl);
+      try{
+        await navigator.clipboard.writeText(url);
+        setMonitor('Copied', true);
+      }catch{
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        setMonitor('Copied', true);
+      }
+    }
+
+    function refreshStatus(){
+      renderLinks();
+      setMonitor('Ready', true);
+    }
+
+    function initModeWarning(){
+      if(location.protocol === 'file:'){
+        els.modeWarning.style.display = 'block';
+      }
+    }
+
+    els.searchInput.addEventListener('input', renderLinks);
+    els.categoryFilter.addEventListener('change', renderLinks);
+    els.clearBtn.addEventListener('click', () => {
+      els.searchInput.value = '';
+      els.categoryFilter.value = 'All Categories';
+      renderLinks();
+    });
+    els.refreshBtn.addEventListener('click', refreshStatus);
+
+    updateVisitors();
+    initModeWarning();
+    renderCategories();
+    renderLinks();
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const first = document.querySelector('.card[data-nav="true"]');
+        if(first) first.focus();
+      }, 80);
+    });
   </script>
 </body>
 </html>
