@@ -3,147 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Xtream Communication - TV Remote Friendly Portal</title>
+    <title>Xtream Communication</title>
+    <script src="js/cdn.tailwindcss.com_3.4.16.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root{
-            --bg:#111827;
-            --card:#1f2937;
-            --card2:#0f172a;
-            --border:#334155;
-            --text:#f8fafc;
-            --muted:#94a3b8;
-            --accent:#ef4444;
-            --accent2:#22d3ee;
-            --focus:#facc15;
-            --ok:#22c55e;
+        :root {
+            --bg: #111827;
+            --card: #1f2937;
+            --card-2: #0f172a;
+            --border: #374151;
+            --text: #f9fafb;
+            --muted: #cbd5e1;
+            --accent: #ef4444;
+            --accent-2: #22d3ee;
+            --focus: #facc15;
         }
-        *{box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{
-            margin:0;
-            background:var(--bg);
-            color:var(--text);
-            font-family:Arial, Helvetica, sans-serif;
-            overflow-x:hidden;
+
+        * { box-sizing: border-box; }
+        html {
+            scroll-behavior: smooth;
         }
-        .font-bengali{font-family:Arial, Helvetica, sans-serif}
-        .tv-shell{max-width:1760px;margin:0 auto;padding:18px 22px 40px}
-        .header-card,.notice-card,.section-card,.footer-card,.menu-panel{
-            background:linear-gradient(180deg, rgba(31,41,55,.98) 0%, rgba(17,24,39,.98) 100%);
-            border:1px solid var(--border);
-            border-radius:22px;
-            box-shadow:0 12px 30px rgba(0,0,0,.24);
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        .header-card{
-            padding:16px 20px;
-            display:grid;
-            grid-template-columns:auto 1fr auto;
-            gap:18px;
-            align-items:center;
-            margin-bottom:14px;
+        .font-bengali { font-family: 'Noto Sans Bengali', sans-serif; }
+
+        .tv-shell {
+            max-width: 1760px;
+            margin: 0 auto;
+            padding: 18px 22px 40px;
         }
-        .brand-wrap{display:flex;align-items:center;gap:16px;min-width:0}
-        .brand-home{
-            display:flex;
-            align-items:center;
-            gap:14px;
-            text-decoration:none;
-            color:inherit;
-            min-width:0;
+
+        .header-card,
+        .notice-card,
+        .section-card,
+        .footer-card,
+        .menu-panel {
+            background: linear-gradient(180deg, rgba(31,41,55,0.98) 0%, rgba(17,24,39,0.98) 100%);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.24);
         }
-        .brand-logo{
-            width:94px;height:64px;flex-shrink:0;border-radius:16px;
-            display:flex;align-items:center;justify-content:center;
-            background:linear-gradient(135deg,#0ea5e9,#2563eb,#7c3aed);
-            border:2px solid rgba(255,255,255,.12);
-            box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-            font-weight:900;font-size:1.15rem;letter-spacing:.03em;
+
+        .header-card {
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 14px;
         }
-        .brand-title{font-size:clamp(1.3rem,2vw,2rem);font-weight:800;line-height:1.1;margin:0}
-        .brand-subtitle{color:var(--muted);font-size:.95rem;margin-top:4px}
-        .top-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
-        .notice-card{margin-bottom:18px;padding:12px 16px;overflow:hidden}
-        .marquee-row{white-space:nowrap;overflow:hidden}
-        .marquee-track{
-            display:inline-block;min-width:100%;padding-left:100%;
-            animation:marquee 35s linear infinite;font-weight:800;color:#cbd5e1;font-size:1rem
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
         }
-        @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-        .quick-nav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
-        .section-card{padding:18px;margin-bottom:20px}
-        .section-head{
-            display:flex;justify-content:space-between;align-items:center;gap:12px;
-            margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)
+
+        .brand-logo {
+            width: 94px;
+            height: 64px;
+            object-fit: contain;
+            border-radius: 14px;
+            background: rgba(255,255,255,.04);
+            padding: 6px;
+            flex-shrink: 0;
         }
-        .section-title{margin:0;color:var(--accent);font-size:clamp(1.15rem,1.8vw,1.7rem);font-weight:800}
-        .section-count{color:var(--muted);font-weight:700;font-size:.95rem}
-        .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-        .tv-card,.action-btn,.menu-btn{-webkit-tap-highlight-color:transparent;outline:none}
-        .tv-card{
-            position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;
-            min-height:122px;text-align:center;text-decoration:none;color:var(--text);
-            background:linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
-            border:2px solid rgba(71,85,105,.55);border-radius:20px;padding:14px 10px;
-            transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease,background .15s ease;
-            cursor:pointer;
+
+        .brand-title {
+            font-size: clamp(1.3rem, 2vw, 2rem);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.1;
+            margin: 0;
         }
-        .tv-card .icon{font-size:2rem;line-height:1;margin-bottom:10px}
-        .tv-card .name{font-size:1rem;font-weight:700;line-height:1.25;color:#e5e7eb;word-break:break-word}
-        .tv-card .badge{
-            position:absolute;top:10px;right:10px;font-size:.68rem;background:rgba(239,68,68,.18);
-            color:#fecaca;border:1px solid rgba(239,68,68,.38);padding:3px 7px;border-radius:999px
+
+        .brand-subtitle {
+            color: #94a3b8;
+            font-size: .95rem;
+            margin-top: 4px;
         }
-        .action-btn,.menu-btn{
-            display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;
-            padding:0 16px;border-radius:16px;background:#0f172a;border:2px solid #334155;
-            color:#f8fafc;text-decoration:none;font-weight:800;font-size:1rem;cursor:pointer;
-            transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease
+
+        .top-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
         }
-        .tv-card:hover,.action-btn:hover,.menu-btn:hover{border-color:var(--accent2)}
-        .tv-focus,.tv-card:focus,.tv-card:focus-visible,.action-btn:focus,.action-btn:focus-visible,.menu-btn:focus,.menu-btn:focus-visible{
-            border-color:var(--focus)!important;
-            box-shadow:0 0 0 3px rgba(250,204,21,.25),0 0 0 6px rgba(250,204,21,.12);
-            transform:scale(1.05);
-            background:linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(17,24,39,1) 100%);
-            z-index:5
+
+        .notice-card {
+            margin-bottom: 18px;
+            padding: 12px 16px;
+            overflow: hidden;
         }
-        .footer-card{margin-top:24px;padding:18px;text-align:center}
-        .footer-title{font-size:1.1rem;font-weight:800;margin-bottom:8px}
-        .helper-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
-        .helper-chip{
-            background:#0f172a;border:1px solid #334155;border-radius:16px;padding:12px;
-            text-align:center;color:#cbd5e1;font-weight:700;font-size:.92rem
+
+        .marquee-row {
+            white-space: nowrap;
+            overflow: hidden;
         }
-        .menu-panel{
-            position:fixed;inset:0;background:rgba(2,6,23,.94);z-index:60;display:none;
-            padding:28px 20px;overflow-y:auto
+
+        .marquee-track {
+            display: inline-block;
+            min-width: 100%;
+            padding-left: 100%;
+            animation: marquee 35s linear infinite;
+            font-weight: 800;
+            color: var(--muted);
+            font-size: 1rem;
         }
-        .menu-panel.active{display:block}
-        .menu-inner{max-width:900px;margin:0 auto}
-        .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
-        .toast{
-            position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(120px);
-            background:rgba(15,23,42,.97);color:#f8fafc;border:2px solid #475569;border-radius:16px;
-            padding:12px 18px;font-weight:700;z-index:80;transition:transform .25s ease;
-            max-width:min(92vw,720px);text-align:center
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
         }
-        .toast.show{transform:translateX(-50%) translateY(0)}
-        .sr-only{
-            position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
-            clip:rect(0,0,0,0);white-space:nowrap;border:0
+
+        .quick-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 0 0 18px;
         }
-        @media (max-width:900px){
-            .header-card{grid-template-columns:1fr;text-align:center}
-            .brand-wrap{justify-content:center}
-            .top-actions{justify-content:center}
-            .helper-bar{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+        .section-card {
+            padding: 18px;
+            margin-bottom: 20px;
         }
-        @media (max-width:640px){
-            .tv-shell{padding:12px 12px 30px}
-            .card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-            .tv-card{min-height:112px;border-radius:18px}
-            .helper-bar{grid-template-columns:1fr}
-            .marquee-track{animation-duration:28s}
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            margin: 0;
+            color: var(--accent);
+            font-size: clamp(1.15rem, 1.8vw, 1.7rem);
+            font-weight: 800;
+            letter-spacing: .02em;
+        }
+
+        .section-count {
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: .95rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 14px;
+        }
+
+        .tv-card,
+        .action-btn,
+        .menu-btn {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .tv-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 122px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
+            border: 2px solid rgba(71,85,105,.55);
+            border-radius: 20px;
+            padding: 14px 10px;
+            transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
+        }
+
+        .tv-card .icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .tv-card .name {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #e5e7eb;
+            word-break: break-word;
+        }
+
+        .tv-card .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: .68rem;
+            background: rgba(239,68,68,.18);
+            color: #fecaca;
+            border: 1px solid rgba(239,68,68,.38);
+            padding: 3px 7px;
+            border-radius: 999px;
+        }
+
+        .action-btn,
+        .menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 52px;
+            padding: 0 16px;
+            border-radius: 16px;
+            background: #0f172a;
+            border: 2px solid #334155;
+            color: #f8fafc;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .tv-card:hover,
+        .action-btn:hover,
+        .menu-btn:hover {
+            border-color: var(--accent-2);
+        }
+
+        .tv-focus,
+        .tv-card:focus,
+        .tv-card:focus-visible,
+        .action-btn:focus,
+        .action-btn:focus-visible,
+        .menu-btn:focus,
+        .menu-btn:focus-visible {
+            border-color: var(--focus) !important;
+            box-shadow: 0 0 0 3px rgba(250,204,21,.25), 0 0 0 6px rgba(250,204,21,.12);
+            transform: scale(1.05);
+            background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(17,24,39,1) 100%);
+            z-index: 5;
+        }
+
+        .footer-card {
+            margin-top: 24px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #f8fafc;
+        }
+
+        .helper-bar {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .helper-chip {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            color: #cbd5e1;
+            font-weight: 700;
+            font-size: .92rem;
+        }
+
+        .menu-panel {
+            position: fixed;
+            inset: 0;
+            background: rgba(2,6,23,.94);
+            z-index: 60;
+            display: none;
+            padding: 28px 20px;
+            overflow-y: auto;
+        }
+
+        .menu-panel.active { display: block; }
+
+        .menu-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 22px;
+            transform: translateX(-50%) translateY(120px);
+            background: rgba(15,23,42,.97);
+            color: #f8fafc;
+            border: 2px solid #475569;
+            border-radius: 16px;
+            padding: 12px 18px;
+            font-weight: 700;
+            z-index: 80;
+            transition: transform .25s ease;
+            max-width: min(92vw, 720px);
+            text-align: center;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 900px) {
+            .header-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .brand-wrap {
+                justify-content: center;
+            }
+            .top-actions { justify-content: center; }
+            .helper-bar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tv-shell { padding: 12px 12px 30px; }
+            .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+            .tv-card { min-height: 112px; border-radius: 18px; }
+            .helper-bar { grid-template-columns: 1fr; }
+            .marquee-track { animation-duration: 28s; }
         }
     </style>
 </head>
@@ -151,25 +367,17 @@
     <div class="tv-shell">
         <header class="header-card">
             <div class="brand-wrap">
-                <a href="https://xtreamcommunication.vercel.app/" target="_self" class="brand-home action-btn" data-nav="header" aria-label="Open Xtream Communication website">
-                    <div class="brand-logo">XT</div>
-                    <div>
-                        <h1 class="brand-title">Xtream Communication</h1>
-                        <div class="brand-subtitle font-bengali">Cloud TV • TV Box • Android TV • Smart TV Remote Friendly</div>
-                    </div>
+                <a href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="action-btn" data-nav="header">
+                    <img src="js/logo.png" alt="Xtream Communication" class="brand-logo">
+                    <span class="sr-only">Open Xtream Communication website</span>
                 </a>
-            </div>
-
-            <div class="helper-bar">
-                <div class="helper-chip">⬅️➡️ Move</div>
-                <div class="helper-chip">⬆️⬇️ Browse</div>
-                <div class="helper-chip">OK / Enter Open</div>
-                <div class="helper-chip">Menu Quick Access</div>
-            </div>
+                <div>
+                    <h1 class="brand-title">Xtream Communication</h1>
+                
 
             <div class="top-actions">
-                <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_self" class="action-btn" data-nav="header">WhatsApp</a>
-                <a href="https://xtreamcommunication.vercel.app/" target="_self" class="action-btn" data-nav="header">Website</a>
+                <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank" rel="noopener noreferrer" class="action-btn" data-nav="header">WhatsApp</a>
+                <a href="https://xtreamcommunication.vercel.app/" target="_blank" rel="noopener noreferrer" class="action-btn" data-nav="header">Website</a>
                 <button id="openMenuBtn" class="menu-btn" type="button" data-nav="header">Menu</button>
             </div>
         </header>
@@ -177,12 +385,13 @@
         <section class="notice-card">
             <div class="marquee-row">
                 <div class="marquee-track font-bengali">
-                    প্রিয় গ্রাহক, Xtream Communication-এ আপনাকে স্বাগতম • সংযোগ পেতে কল করুন 01864228999, 01534333278, 01932093506 • প্রতি মাসের ১০ তারিখের মধ্যে বিল পরিশোধ করুন • TV Remote দিয়ে চালানোর জন্য Arrow key এবং OK/Enter ব্যবহার করুন •
+                    প্রিয় গ্রাহক, Xtream Communication-এ আপনাকে স্বাগতম • সংযোগ পেতে কল করুন 01864228999, 01534333278, 01932093506 • প্রতি মাসের ১০ তারিখের মধ্যে বিল পরিশোধ করুন •
                 </div>
             </div>
         </section>
 
         <nav class="quick-nav" id="quickNav"></nav>
+
         <main id="main-content"></main>
 
         <footer class="footer-card font-bengali">
@@ -285,27 +494,26 @@
         const menuPanel = document.getElementById('menuPanel');
         const openMenuBtn = document.getElementById('openMenuBtn');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
-
         document.getElementById('year').textContent = new Date().getFullYear();
 
         let focusable = [];
         let currentFocusIndex = 0;
         let lastFocusedBeforeMenu = null;
 
-        function slugify(text){
-            return text.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        function slugify(text) {
+            return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
         }
 
-        function showToast(message){
+        function showToast(message) {
             toast.textContent = message;
             toast.classList.add('show');
             clearTimeout(showToast._timer);
             showToast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
         }
 
-        function createCard(site, index){
+        function createCard(site, index) {
             return `
-                <a href="${site.url}" target="_self" class="tv-card" tabindex="0" data-nav="grid" data-index="${index}" aria-label="${site.name}">
+                <a href="${site.url}" target="_blank" rel="noopener noreferrer" class="tv-card" tabindex="0" data-nav="grid" data-index="${index}" aria-label="${site.name}">
                     ${site.badge ? `<span class="badge">${site.badge}</span>` : ''}
                     <div class="icon" aria-hidden="true">${site.icon || '🔗'}</div>
                     <div class="name">${site.name}</div>
@@ -313,7 +521,7 @@
             `;
         }
 
-        function createSection(category, sites, sectionIndex){
+        function createSection(category, sites, sectionIndex) {
             const id = slugify(category);
             const cards = sites.map((site, idx) => createCard(site, `${sectionIndex}-${idx}`)).join('');
             return `
@@ -327,12 +535,9 @@
             `;
         }
 
-        function render(){
-            mainContent.innerHTML = '';
-            quickNav.innerHTML = '';
-            menuGrid.innerHTML = '';
+        function render() {
             let sectionIndex = 0;
-            for(const [category, sites] of Object.entries(categories)){
+            for (const [category, sites] of Object.entries(categories)) {
                 mainContent.insertAdjacentHTML('beforeend', createSection(category, sites, sectionIndex));
                 const id = slugify(category);
                 quickNav.insertAdjacentHTML('beforeend', `<a href="#${id}" class="action-btn" tabindex="0" data-nav="quick">${category}</a>`);
@@ -341,41 +546,34 @@
             }
         }
 
-        function getFocusableList(){
-            return Array.from(document.querySelectorAll('a[href], button, [tabindex="0"]')).filter(el => {
-                if (menuPanel.classList.contains('active')) {
-                    return el.closest('#menuPanel');
-                }
-                return !el.closest('#menuPanel');
-            }).filter(el => !el.disabled && el.offsetParent !== null);
-        }
-
-        function refreshFocusable(){
-            focusable = getFocusableList();
+        function refreshFocusable() {
+            focusable = Array.from(document.querySelectorAll('a[href], button, [tabindex="0"]')).filter(el => {
+                return el.offsetParent !== null && !el.disabled && !el.closest('#menuPanel:not(.active)');
+            });
             focusable.forEach(el => el.classList.remove('tv-focus'));
             if (!focusable.length) return;
             currentFocusIndex = Math.max(0, Math.min(currentFocusIndex, focusable.length - 1));
             applyFocus(currentFocusIndex, false);
         }
 
-        function applyFocus(index, scroll = true){
+        function applyFocus(index, scroll = true) {
             focusable.forEach(el => el.classList.remove('tv-focus'));
             const el = focusable[index];
             if (!el) return;
             currentFocusIndex = index;
             el.classList.add('tv-focus');
-            try { el.focus({ preventScroll: true }); } catch(e) { el.focus(); }
+            el.focus({ preventScroll: true });
             if (scroll) {
                 el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
             }
         }
 
-        function getCenter(el){
+        function getCenter(el) {
             const r = el.getBoundingClientRect();
-            return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+            return { x: r.left + r.width / 2, y: r.top + r.height / 2, rect: r };
         }
 
-        function moveFocus(direction){
+        function moveFocus(direction) {
             const current = focusable[currentFocusIndex];
             if (!current) return;
             const currentBox = getCenter(current);
@@ -392,52 +590,38 @@
                 let primary = 0;
                 let secondary = 0;
 
-                if (direction === 'left' && dx < -8){ valid = true; primary = Math.abs(dx); secondary = Math.abs(dy); }
-                if (direction === 'right' && dx > 8){ valid = true; primary = Math.abs(dx); secondary = Math.abs(dy); }
-                if (direction === 'up' && dy < -8){ valid = true; primary = Math.abs(dy); secondary = Math.abs(dx); }
-                if (direction === 'down' && dy > 8){ valid = true; primary = Math.abs(dy); secondary = Math.abs(dx); }
+                if (direction === 'left' && dx < -8) { valid = true; primary = Math.abs(dx); secondary = Math.abs(dy); }
+                if (direction === 'right' && dx > 8) { valid = true; primary = Math.abs(dx); secondary = Math.abs(dy); }
+                if (direction === 'up' && dy < -8) { valid = true; primary = Math.abs(dy); secondary = Math.abs(dx); }
+                if (direction === 'down' && dy > 8) { valid = true; primary = Math.abs(dy); secondary = Math.abs(dx); }
                 if (!valid) return;
 
                 const score = primary * 1000 + secondary;
-                if (score < bestScore){
+                if (score < bestScore) {
                     bestScore = score;
                     bestIndex = index;
                 }
             });
 
-            if (bestIndex !== currentFocusIndex) applyFocus(bestIndex);
-        }
-
-        function activateCurrent(){
-            const el = focusable[currentFocusIndex];
-            if (!el) return;
-            if (el.tagName === 'A') {
-                const href = el.getAttribute('href') || '';
-                if (href.startsWith('#')) {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        setTimeout(refreshFocusable, 250);
-                    }
-                    if (menuPanel.classList.contains('active')) closeMenu();
-                    return;
-                }
-                window.location.href = href;
-                return;
+            if (bestIndex !== currentFocusIndex) {
+                applyFocus(bestIndex);
             }
-            el.click();
         }
 
-        function openMenu(){
+        function openMenu() {
             lastFocusedBeforeMenu = focusable[currentFocusIndex] || null;
             menuPanel.classList.add('active');
             menuPanel.setAttribute('aria-hidden', 'false');
-            currentFocusIndex = 0;
             refreshFocusable();
+            const firstMenuItem = Array.from(document.querySelectorAll('#menuPanel .action-btn, #menuPanel .menu-btn'))[0];
+            if (firstMenuItem) {
+                const idx = focusable.indexOf(firstMenuItem);
+                if (idx >= 0) applyFocus(idx);
+            }
             showToast('Quick menu opened');
         }
 
-        function closeMenu(){
+        function closeMenu() {
             menuPanel.classList.remove('active');
             menuPanel.setAttribute('aria-hidden', 'true');
             refreshFocusable();
@@ -457,15 +641,21 @@
 
         document.addEventListener('keydown', (e) => {
             const key = e.key;
-            if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter',' '].includes(key)) e.preventDefault();
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter', ' '].includes(key)) {
+                e.preventDefault();
+            }
 
             if (key === 'ArrowLeft') moveFocus('left');
             else if (key === 'ArrowRight') moveFocus('right');
             else if (key === 'ArrowUp') moveFocus('up');
             else if (key === 'ArrowDown') moveFocus('down');
-            else if (key === 'Enter' || key === ' ') activateCurrent();
-            else if (key.toLowerCase() === 'm') menuPanel.classList.contains('active') ? closeMenu() : openMenu();
-            else if (key === 'Escape' || key === 'Backspace') {
+            else if (key === 'Enter' || key === ' ') {
+                const el = focusable[currentFocusIndex];
+                if (el) el.click();
+            } else if (key.toLowerCase() === 'm') {
+                if (menuPanel.classList.contains('active')) closeMenu();
+                else openMenu();
+            } else if (key === 'Escape' || key === 'Backspace') {
                 if (menuPanel.classList.contains('active')) {
                     e.preventDefault();
                     closeMenu();
@@ -474,25 +664,29 @@
         });
 
         document.addEventListener('click', (e) => {
-            const anchor = e.target.closest('a[href]');
-            if (anchor) {
-                const href = anchor.getAttribute('href') || '';
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        setTimeout(refreshFocusable, 250);
-                    }
-                    if (menuPanel.classList.contains('active')) closeMenu();
+            const link = e.target.closest('a[href^="#"]');
+            if (link) {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => refreshFocusable(), 250);
                 }
+                if (menuPanel.classList.contains('active')) closeMenu();
             }
         });
 
         openMenuBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
-        menuPanel.addEventListener('click', (e) => { if (e.target === menuPanel) closeMenu(); });
-        window.addEventListener('load', () => { refreshFocusable(); showToast('TV remote friendly mode ready'); });
+        menuPanel.addEventListener('click', (e) => {
+            if (e.target === menuPanel) closeMenu();
+        });
+
+        window.addEventListener('load', () => {
+            refreshFocusable();
+            showToast('TV remote friendly mode ready');
+        });
+
         window.addEventListener('resize', refreshFocusable);
     </script>
 </body>
