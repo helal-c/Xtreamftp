@@ -5,7 +5,7 @@
     <meta name="theme-color" content="#e63030">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Xtreme'x Communication - Smart TV Portal and Broadband Services">
+    <meta name="description" content="Xtreme'x Communication">
     <meta name="keywords" content="Xtream Communication, Internet Provider, FTP Servers, Live TV">    
     <meta name="author" content="Xtreme'x Communication">
     <meta name="application-name" content="Xtreme'x Communication">
@@ -21,7 +21,7 @@
     <link rel="manifest" href="manifest.php">
     <link rel="apple-touch-icon" href="js/logo.png">
     
-    <title>Xtreme'x Communication</title>
+    <title>Xtreme'x Communication - Smart TV Portal & FTP</title>
     
     <script src="assets/js/cdn.tailwindcss.com_3.4.16.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -50,7 +50,7 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="mobile-drawer" id="mobileDrawer">
     <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
-    <a href="test/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
+    <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
     <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
     <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Customer Portal</a>
     <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
@@ -126,14 +126,8 @@
 <!-- Theme Switcher Floating Menu (Active on 1) -->
 <div style="position: fixed; bottom: 30px; left: 20px; z-index: 99999; background: rgba(15, 23, 42, 0.85); padding: 8px 12px; border-radius: 30px; display: flex; gap: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.5); align-items: center;">
     <span style="color: #cbd5e1; font-size: 0.85rem; margin-right: 4px; font-weight: 700; font-family: sans-serif;">Theme:</span>
-    
-    <!-- Active Theme: 1 (KSB Design) -->
     <a href="index.html" style="background: #ef4444; color: white; text-decoration: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.9rem; transition: 0.2s; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); border: 2px solid white; transform: scale(1.1);">1</a>
-    
-    <!-- Inactive Theme: 2 (Cloud Server) -->
     <a href="design2.html" style="background: #38bdf8; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(56, 189, 248, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">2</a>
-    
-    <!-- Inactive Theme: 3 (Smart TV) -->
     <a href="design3.html" style="background: #10b981; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">3</a>
 </div>
 
@@ -232,6 +226,7 @@ window.KSB_CATEGORIES = [
         "icon": "download",
         "is_new": false,
         "links": [
+            {"id": 400, "name": "Xtreme'x App", "url": "https://play.google.com/store/apps/details?id=com.softifybd.xtremex", "direct_url": "https://play.google.com/store/apps/details?id=com.softifybd.xtremex", "icon": "smartphone", "badge": "Play Store", "is_new": true},
             {"id": 401, "name": "Xtream APK", "url": "apks/XtreamFtp.apk", "direct_url": "apks/XtreamFtp.apk", "icon": "smartphone", "badge": "Official", "is_new": false},
             {"id": 402, "name": "Speed test", "url": "test/index.html", "direct_url": "test/index.html", "icon": "activity", "badge": "", "is_new": false},
             {"id": 403, "name": "Falcon Cast TV", "url": "https://raw.githubusercontent.com/falconcasthoster/letestrelease/refs/heads/main/Falcon_(V4.2).apk", "direct_url": "https://raw.githubusercontent.com/falconcasthoster/letestrelease/refs/heads/main/Falcon_(V4.2).apk", "icon": "download", "badge": "", "is_new": false},
@@ -259,6 +254,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 5900);
 });
+</script>
+
+<!-- App Install Notice / PWA Banner Fixer Script -->
+<script>
+(function() {
+    function fixAppBanner() {
+        // 1. Update any Play Store links injected by JS
+        var links = document.querySelectorAll('a[href*="play.google.com/store/apps"]');
+        links.forEach(function(link) {
+            if(link.href !== 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex') {
+                link.href = 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex';
+            }
+        });
+
+        // 2. Replace hardcoded "KSB" text injected by JS app install banners
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+            acceptNode: function(node) {
+                if (node.parentNode && ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(node.parentNode.nodeName)) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+                return node.nodeValue.includes('KSB') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            }
+        }, false);
+
+        var node;
+        while(node = walker.nextNode()) {
+            node.nodeValue = node.nodeValue.replace(/KSB NET/g, "Xtreme'x").replace(/KSB/g, "Xtreme'x");
+        }
+    }
+
+    // Run immediately
+    fixAppBanner();
+
+    // Run periodically to catch dynamically added banners on Mobile
+    setInterval(fixAppBanner, 500);
+})();
 </script>
 
 </body>
