@@ -6,14 +6,14 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Xtreme'x Communication - Smart TV Portal and Broadband Services">
-    <meta name="keywords" content="Xtream Communication, Internet Provider, FTP Servers, Live TV">    
+    <meta name="keywords" content="Xtream Communication, Internet Provider, FTP Servers, Live TV, Online Shop, Router">    
     <meta name="author" content="Xtreme'x Communication">
     <meta name="application-name" content="Xtreme'x Communication">
     <link rel="canonical" href="index.html">
     <link rel="icon" href="js/logo.png" type="image/png">    
     <meta property="og:site_name" content="Xtreme'x Communication">
     <meta property="og:title" content="Xtreme'x Communication | Smart TV Portal">
-    <meta property="og:description" content="Welcome to Xtreme'x Communication. Access Live TV, FTP Servers, and more.">
+    <meta property="og:description" content="Welcome to Xtreme'x Communication. Access Live TV, FTP Servers, and our Online Shop.">
     <meta property="og:image" content="js/logo.png">
     <meta property="og:url" content="index.html">
     <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
     <link rel="manifest" href="manifest.php">
     <link rel="apple-touch-icon" href="js/logo.png">
     
-    <title>Xtreme'x Communication</title>
+    <title>Xtreme'x Communication - Smart TV Portal & FTP</title>
     
     <script src="assets/js/cdn.tailwindcss.com_3.4.16.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -29,20 +29,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style06c8.css?v=2.3.2">
+
+    <!-- 100% Working Light Mode (Purple) CSS -->
+    <style>
+        /* Light Theme Styles */
+        body.light-theme {
+            background-color: #f3e8ff !important;
+            color: #3b0764 !important;
+        }
+
+        body.light-theme .site-header,
+        body.light-theme .site-footer,
+        body.light-theme .mobile-drawer,
+        body.light-theme .glass-panel,
+        body.light-theme .section-card {
+            background-color: #eaddff !important;
+            border-color: #d8b4fe !important;
+        }
+
+        body.light-theme .search-input {
+            background-color: #ffffff !important;
+            border-color: #d8b4fe !important;
+            color: #3b0764 !important;
+        }
+
+        body.light-theme .header-nav a,
+        body.light-theme .mobile-drawer a {
+            color: #4c1d95 !important;
+        }
+
+        body.light-theme .tv-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f3e8ff 100%) !important;
+            border-color: #d8b4fe !important;
+            color: #3b0764 !important;
+        }
+
+        body.light-theme .tv-card .name {
+            color: #3b0764 !important;
+        }
+
+        body.light-theme .section-title,
+        body.light-theme .footer-title {
+            color: #4c1d95 !important;
+        }
+
+        body.light-theme .marquee-track {
+            color: #4c1d95 !important;
+        }
+
+        body.light-theme .notice-card {
+            background: linear-gradient(90deg, #f3e8ff 0%, #eaddff 50%, #f3e8ff 100%) !important;
+            border-left: 4px solid #8b5cf6 !important;
+        }
+        
+        body.light-theme .action-btn {
+            background: #ffffff !important;
+            border-color: #d8b4fe !important;
+            color: #4c1d95 !important;
+        }
+        
+        body.light-theme .modal-box {
+            background: #f3e8ff !important;
+            border: 1px solid #d8b4fe !important;
+            color: #3b0764 !important;
+        }
+        
+        body.light-theme .section-count {
+            background: #ffffff !important;
+            border-color: #d8b4fe !important;
+            color: #8b5cf6 !important;
+        }
+    </style>
 </head>
-<body>
+<body class="dark-theme"> <!-- Default dark -->
 <header class="site-header">
     <a href="https://xtreamcommunication.vercel.app/" target="_blank" class="header-logo">
         <h2 style="color: var(--accent); font-weight: 800; font-size: 1.5rem; margin: 0; font-family: 'Syne', sans-serif;">Xtreme'x</h2>
     </a>
     <nav class="header-nav desktop-nav">
-        <a href="test/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
+        <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
+        <a href="https://xtremexbd.com" target="_blank" style="color:#8b5cf6; font-weight:bold;"><i class="fas fa-shopping-cart"></i> Shop</a>
         <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Portal</a>
         <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
     </nav>
     <div style="display:flex;align-items:center;gap:0.5rem;">
-        <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <button class="theme-toggle" id="customThemeToggle" title="Toggle theme"><i class="fas fa-moon" id="customThemeIcon"></i></button>
         <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
 </header>
@@ -50,7 +122,8 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="mobile-drawer" id="mobileDrawer">
     <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
-    <a href="test/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
+    <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
+    <a href="https://xtremexbd.com" target="_blank" style="color:#8b5cf6; font-weight:bold;"><i class="fas fa-shopping-cart"></i> Online Shop</a>
     <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
     <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Customer Portal</a>
     <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
@@ -105,19 +178,36 @@
 <button id="scrollToTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 <div class="toast" id="toast"></div>
 
-<!-- Modal Popup -->
+<!-- Custom Auto Sizing Modal Popup -->
 <div class="modal-overlay dynamic-popup" id="autoCloseModal" data-popup-id="4" data-frequency="session" data-delay="900">
-    <div class="modal-box" style="max-width:560px;">
-        <button class="modal-close js-popup-close"><i class="fas fa-times"></i></button>        
-        <img src="uploads/popup/20260523060622_3f2f93af70d4f013.png" alt="Notice" style="max-width:100%;border-radius:12px;margin-bottom:1rem;display:none;">                                    
-        <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">Xtreme'x Communication</h2>
-        <p>নতুন সংযোগ বা বিল পরিশোধের জন্য যোগাযোগ করুন।</p>
-        <div class="popup-actions" style="margin-top:1rem;">
-            <a href="https://xtreamcommunication.vercel.app/" target="_blank" class="contact-btn web-btn">
-                <i class="fas fa-globe"></i> Website
+    <!-- Popup Auto Resize CSS Inline applied (95% width, max-width 800px) -->
+    <div class="modal-box" style="width: 95%; max-width: 800px; padding: 24px; border-radius: 16px; position: relative; max-height: 90vh; overflow-y: auto;">
+        
+        <!-- Manual Close Button (Top Right Corner) -->
+        <button class="js-popup-close" style="position: absolute; top: 12px; right: 12px; background: #ef4444; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fas fa-times"></i>
+        </button>        
+        
+      
+        
+        
+        <!-- Uploaded Image (Auto-scaled) -->
+        <a href="https://xtremexbd.com" target="_blank" style="display: block; text-align: center;">
+            <img src="uploads/pop1.png" alt="Xtreme'x Solution Shop" style="width: 100%; max-height: 60vh; object-fit: contain; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+   
+                
+            
+            <!-- Facebook Button -->
+            <a href="https://www.facebook.com/xtremexbd/?rdid=gLbw30qR6sJ1GFGL" target="_blank" class="contact-btn" style="background: #1877F2; color: white; border: none; flex: 1; min-width: calc(33.333% - 10px); padding: 10px; font-weight: bold; border-radius: 8px;">
+                <i class="fab fa-facebook-f"></i> Facebook
             </a>
-            <a href="tel:01864228999" target="_self" class="contact-btn call-btn">
-                <i class="fas fa-phone"></i> 01864228999                    
+            
+            <a href="https://xtreamcommunication.vercel.app/" target="_blank" class="contact-btn web-btn" style="flex: 1; min-width: calc(33.333% - 10px); padding: 10px; border-radius: 8px;">
+                <i class="fas fa-globe"></i> Order Now
+            </a>
+            
+            <a href="tel:01864228999" target="_self" class="contact-btn call-btn" style="flex: 1; min-width: calc(33.333% - 10px); padding: 10px; border-radius: 8px;">
+                <i class="fas fa-phone"></i> Call Now                    
             </a>
         </div>
     </div>
@@ -126,14 +216,8 @@
 <!-- Theme Switcher Floating Menu (Active on 1) -->
 <div style="position: fixed; bottom: 30px; left: 20px; z-index: 99999; background: rgba(15, 23, 42, 0.85); padding: 8px 12px; border-radius: 30px; display: flex; gap: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.5); align-items: center;">
     <span style="color: #cbd5e1; font-size: 0.85rem; margin-right: 4px; font-weight: 700; font-family: sans-serif;">Theme:</span>
-    
-    <!-- Active Theme: 1 (KSB Design) -->
     <a href="index.html" style="background: #ef4444; color: white; text-decoration: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.9rem; transition: 0.2s; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); border: 2px solid white; transform: scale(1.1);">1</a>
-    
-    <!-- Inactive Theme: 2 (Cloud Server) -->
     <a href="design2.html" style="background: #38bdf8; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(56, 189, 248, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">2</a>
-    
-    <!-- Inactive Theme: 3 (Smart TV) -->
     <a href="design3.html" style="background: #10b981; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">3</a>
 </div>
 
@@ -232,8 +316,9 @@ window.KSB_CATEGORIES = [
         "icon": "download",
         "is_new": false,
         "links": [
+            {"id": 400, "name": "Xtreme'x App", "url": "https://play.google.com/store/apps/details?id=com.softifybd.xtremex", "direct_url": "https://play.google.com/store/apps/details?id=com.softifybd.xtremex", "icon": "smartphone", "badge": "Play Store", "is_new": true},
             {"id": 401, "name": "Xtream APK", "url": "apks/XtreamFtp.apk", "direct_url": "apks/XtreamFtp.apk", "icon": "smartphone", "badge": "Official", "is_new": false},
-            {"id": 402, "name": "Speed test", "url": "test/index.html", "direct_url": "test/index.html", "icon": "activity", "badge": "", "is_new": false},
+            {"id": 402, "name": "Speed test", "url": "http://172.19.178.178/speedtest/index.html", "direct_url": "http://172.19.178.178/speedtest/index.html", "icon": "activity", "badge": "", "is_new": false},
             {"id": 403, "name": "Falcon Cast TV", "url": "https://raw.githubusercontent.com/falconcasthoster/letestrelease/refs/heads/main/Falcon_(V4.2).apk", "direct_url": "https://raw.githubusercontent.com/falconcasthoster/letestrelease/refs/heads/main/Falcon_(V4.2).apk", "icon": "download", "badge": "", "is_new": false},
             {"id": 404, "name": "QuickTV APK", "url": "http://172.19.17.2:8070/app/", "direct_url": "http://172.19.17.2:8070/app/", "icon": "download", "badge": "", "is_new": false},
             {"id": 405, "name": "LIVE TV App", "url": "http://10.99.99.10/LiveTV.apk", "direct_url": "http://10.99.99.10/LiveTV.apk", "icon": "download", "badge": "", "is_new": false},
@@ -244,7 +329,45 @@ window.KSB_CATEGORIES = [
 </script>
 <script src="assets/js/app06c8.js?v=2.3.2"></script>
 
-<!-- Auto Close Popup Script (5 Seconds) -->
+<!-- Custom Light/Dark Theme Switcher Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const themeBtn = document.getElementById('customThemeToggle');
+    const themeIcon = document.getElementById('customThemeIcon');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('xtreme_theme') || 'dark';
+    
+    if(savedTheme === 'light') {
+        body.classList.add('light-theme');
+        body.classList.remove('dark-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+        body.classList.add('dark-theme', 'dark');
+        body.classList.remove('light-theme');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    themeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if(body.classList.contains('light-theme')) {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme', 'dark');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('xtreme_theme', 'dark');
+        } else {
+            body.classList.remove('dark-theme', 'dark');
+            body.classList.add('light-theme');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('xtreme_theme', 'light');
+        }
+    });
+});
+</script>
+
+<!-- Auto Close Popup Script (1 Minute = 60,000 ms) -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
@@ -257,8 +380,39 @@ document.addEventListener("DOMContentLoaded", function() {
             modal.style.display = 'none';
             modal.classList.remove('active', 'show');
         }
-    }, 5900);
+    }, 60000); 
 });
+</script>
+
+<!-- App Install Notice Fixer Script -->
+<script>
+(function() {
+    function fixAppBanner() {
+        var links = document.querySelectorAll('a[href*="play.google.com/store/apps"]');
+        links.forEach(function(link) {
+            if(link.href !== 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex') {
+                link.href = 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex';
+            }
+        });
+
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+            acceptNode: function(node) {
+                if (node.parentNode && ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(node.parentNode.nodeName)) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+                return node.nodeValue.includes('KSB') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            }
+        }, false);
+
+        var node;
+        while(node = walker.nextNode()) {
+            node.nodeValue = node.nodeValue.replace(/KSB NET/g, "Xtreme'x").replace(/KSB/g, "Xtreme'x");
+        }
+    }
+
+    fixAppBanner();
+    setInterval(fixAppBanner, 500);
+})();
 </script>
 
 </body>
