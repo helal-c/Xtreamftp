@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Xtreme'x Communication - Smart TV Portal and Broadband Services">
     <meta name="keywords" content="Xtream Communication, Internet Provider, FTP Servers, Live TV, Online Shop, Router">    
+
     <meta name="author" content="Xtreme'x Communication">
     <meta name="application-name" content="Xtreme'x Communication">
     <link rel="canonical" href="index.html">
@@ -124,6 +125,7 @@
     <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
     <a href="https://xtremexbd.com" target="_blank" style="color:#8b5cf6; font-weight:bold;"><i class="fas fa-shopping-cart"></i> Online Shop</a>
+
     <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
     <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Customer Portal</a>
     <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
@@ -186,7 +188,7 @@
         <!-- Manual Close Button (Top Right Corner) -->
         <button class="js-popup-close" style="position: absolute; top: 12px; right: 12px; background: #ef4444; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
             <i class="fas fa-times"></i>
-        </button>        
+       
         
       
         
@@ -384,16 +386,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- App Install Notice Fixer Script -->
+<!-- App Install Notice / PWA Banner Fixer Script -->
 <script>
 (function() {
     function fixAppBanner() {
+        // 1. Update any Play Store links injected by JS
+
         var links = document.querySelectorAll('a[href*="play.google.com/store/apps"]');
         links.forEach(function(link) {
             if(link.href !== 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex') {
                 link.href = 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex';
             }
         });
+
+        // 2. Replace hardcoded "KSB" text injected by JS app install banners
 
         var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
             acceptNode: function(node) {
@@ -410,7 +416,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Run immediately
     fixAppBanner();
+
+    // Run periodically to catch dynamically added banners on Mobile
+
     setInterval(fixAppBanner, 500);
 })();
 </script>
