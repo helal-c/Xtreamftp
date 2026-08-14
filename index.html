@@ -18,6 +18,7 @@
     <meta property="og:url" content="index.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="bn_BD">
+    <!-- এখানে আপনার manifest.php লিংক করা আছে -->
     <link rel="manifest" href="manifest.php">
     <link rel="apple-touch-icon" href="js/logo.png">
     
@@ -233,6 +234,11 @@
     <a href="design3.html" style="background: #10b981; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">3</a>
 </div>
 
+<!-- PWA Install App Button -->
+<button id="installAppBtn" style="display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 99999; background: linear-gradient(135deg, #e63030, #b91c1c); color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-family: 'Noto Sans Bengali', sans-serif; font-size: 1rem; box-shadow: 0 4px 15px rgba(230, 48, 48, 0.5); cursor: pointer; align-items: center; gap: 8px; transition: transform 0.2s, background 0.3s;">
+    <i class="fas fa-download"></i> অ্যাপ ইনস্টল করুন
+</button>
+
 <!-- Scripts -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
@@ -380,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- Auto Close Popup Script (1 Minute = 60,000 ms) -->
+<!-- Auto Close Popup Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
@@ -426,6 +432,40 @@ document.addEventListener("DOMContentLoaded", function() {
     fixAppBanner();
     setInterval(fixAppBanner, 500);
 })();
+</script>
+
+<!-- PWA Install Logic -->
+<script>
+    let deferredPrompt;
+    const installAppBtn = document.getElementById('installAppBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installAppBtn.style.display = 'flex';
+    });
+
+    installAppBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            
+            deferredPrompt = null;
+            installAppBtn.style.display = 'none';
+        }
+    });
+
+    window.addEventListener('appinstalled', () => {
+        installAppBtn.style.display = 'none';
+        deferredPrompt = null;
+        console.log('PWA was installed successfully');
+    });
 </script>
 
 </body>
