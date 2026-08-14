@@ -6,7 +6,7 @@
     "display": "standalone",
     "background_color": "#0b0f19",
     "theme_color": "#e63030",
-    "description": "Xtreme'x Communication - Smart TV Portal and Broadband Services.",
+    "description": "Xtreme'x Communication and Broadband Services.",
     "icons": [
         {
             "src": "https://xtremexftp.vercel.app/js/logo.png",
