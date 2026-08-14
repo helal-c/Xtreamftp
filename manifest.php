@@ -1,21 +1,21 @@
 {
-    "name": "KSB NET MEDIA",
-    "short_name": "KSB Media",
-    "start_url": "https://media.ksbnet.net",
-    "scope": "https://media.ksbnet.net",
+    "name": "Xtreme'x Communication",
+    "short_name": "Xtreme'x",
+    "start_url": "https://xtremexftp.vercel.app/",
+    "scope": "https://xtremexftp.vercel.app/",
     "display": "standalone",
     "background_color": "#0b0f19",
     "theme_color": "#e63030",
-    "description": "KSB NET is the best internet service provider in Kamrangirchar.",
+    "description": "Xtreme'x Communication - Smart TV Portal and Broadband Services.",
     "icons": [
         {
-            "src": "https://media.ksbnet.net/assets/images/mediaksbnet-logo.png",
+            "src": "https://xtremexftp.vercel.app/js/logo.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "https://media.ksbnet.net/assets/images/mediaksbnet-logo.png",
+            "src": "https://xtremexftp.vercel.app/js/logo.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
