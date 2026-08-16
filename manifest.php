@@ -1,21 +1,21 @@
 {
-    "name": "KSB NET MEDIA",
-    "short_name": "KSB Media",
-    "start_url": "https://media.ksbnet.net",
-    "scope": "https://media.ksbnet.net",
+    "name": "xtreamx Solution",
+    "short_name": "xtreamx",
+    "start_url": "https://xtremexbd.com",
+    "scope": "https://xtremexbd.com",
     "display": "standalone",
     "background_color": "#0b0f19",
     "theme_color": "#e63030",
-    "description": "KSB NET is the best internet service provider in Kamrangirchar.",
+    "description": "xtreamx Solution is the best networking equipment and service provider in Turag, Dhaka.",
     "icons": [
         {
-            "src": "https://media.ksbnet.net/assets/images/mediaksbnet-logo.png",
+            "src": "https://xtremexbd.com/assets/images/xtreamx-logo.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "https://media.ksbnet.net/assets/images/mediaksbnet-logo.png",
+            "src": "https://xtremexbd.com/assets/images/xtreamx-logo.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
