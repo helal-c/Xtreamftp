@@ -1,372 +1,89 @@
 <!DOCTYPE html>
-<html lang="bn" data-pwa="enabled">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#e63030">
-    <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Xtreme'x Communication - Smart TV Portal and Broadband Services">
-    <meta name="keywords" content="Xtream Communication, Internet Provider, FTP Servers, Live TV, Online Shop, Router">    
-    <meta name="author" content="Xtreme'x Communication">
-    <meta name="application-name" content="Xtreme'x Communication">
-    <link rel="canonical" href="index.html">
-    <link rel="icon" href="js/logo.png" type="image/png">    
-    <meta property="og:site_name" content="Xtreme'x Communication">
-    <meta property="og:title" content="Xtreme'x Communication | Smart TV Portal">
-    <meta property="og:description" content="Welcome to Xtreme'x Communication. Access Live TV, FTP Servers, and our Online Shop.">
-    <meta property="og:image" content="js/logo.png">
-    <meta property="og:url" content="index.html">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="bn_BD">
-    <link rel="manifest" href="manifest.php">
-    <link rel="apple-touch-icon" href="js/logo.png">
-    
-    <title>Xtreme'x Communication - Smart TV Portal & FTP</title>
-    
-    <script src="assets/js/cdn.tailwindcss.com_3.4.16.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style06c8.css?v=2.3.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Xtream Smart TV Portal</title>
 
-    <!-- 100% Working Light Mode (Purple) CSS -->
+    <!-- ================= PWA Meta Tags ================= -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#facc15">
+    <link rel="apple-touch-icon" href="./js/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="application-name" content="Xtream TV">
+    
+    <!-- আপনার আলাদা কোনো CSS ফাইল থাকলে এখানে লিংক করুন -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
     <style>
-        body.light-theme {
-            background-color: #f3e8ff !important;
-            color: #3b0764 !important;
+        /* বেসিক স্টাইল (আপনার আসল ডিজাইন দিয়ে এটি পরিবর্তন করে নিতে পারবেন) */
+        body {
+            background-color: #070a12;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
-
-        body.light-theme .site-header,
-        body.light-theme .site-footer,
-        body.light-theme .mobile-drawer,
-        body.light-theme .glass-panel,
-        body.light-theme .section-card {
-            background-color: #eaddff !important;
-            border-color: #d8b4fe !important;
+        .container {
+            text-align: center;
+            padding: 20px;
         }
-
-        body.light-theme .search-input {
-            background-color: #ffffff !important;
-            border-color: #d8b4fe !important;
-            color: #3b0764 !important;
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.2);
+            object-fit: cover;
         }
-
-        body.light-theme .header-nav a,
-        body.light-theme .mobile-drawer a {
-            color: #4c1d95 !important;
+        h1 {
+            color: #facc15;
+            font-size: 28px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
-
-        body.light-theme .tv-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f3e8ff 100%) !important;
-            border-color: #d8b4fe !important;
-            color: #3b0764 !important;
-        }
-
-        body.light-theme .tv-card .name {
-            color: #3b0764 !important;
-        }
-
-        body.light-theme .section-title,
-        body.light-theme .footer-title {
-            color: #4c1d95 !important;
-        }
-
-        body.light-theme .marquee-track {
-            color: #4c1d95 !important;
-        }
-
-        body.light-theme .notice-card {
-            background: linear-gradient(90deg, #f3e8ff 0%, #eaddff 50%, #f3e8ff 100%) !important;
-            border-left: 4px solid #8b5cf6 !important;
-        }
-        
-        body.light-theme .action-btn {
-            background: #ffffff !important;
-            border-color: #d8b4fe !important;
-            color: #4c1d95 !important;
-        }
-        
-        body.light-theme .modal-box.light-popup {
-            background: #ffffff !important;
-            border: 1px solid #d8b4fe !important;
-        }
-        
-        body.light-theme .section-count {
-            background: #ffffff !important;
-            border-color: #d8b4fe !important;
-            color: #8b5cf6 !important;
-        }
-
-        /* Install Button Animation */
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(139, 92, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        p {
+            color: #a1a1aa;
+            font-size: 16px;
         }
     </style>
 </head>
-<body class="dark-theme"> <!-- Default dark -->
-<header class="site-header">
-    <a href="https://xtreamcommunication.vercel.app/" target="_blank" class="header-logo">
-        <h2 style="color: var(--accent); font-weight: 800; font-size: 1.5rem; margin: 0; font-family: 'Syne', sans-serif;">Xtreme'x</h2>
-    </a>
-    <nav class="header-nav desktop-nav">
-        <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
-        <a href="https://xtremexbd.com" target="_blank" style="color:#8b5cf6; font-weight:bold;"><i class="fas fa-shopping-cart"></i> Shop</a>
-        <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Portal</a>
-        <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
-    </nav>
-    <div style="display:flex;align-items:center;gap:0.5rem;">
-        <!-- Install PWA Button (Hidden by default) -->
-        <button id="installAppBtn" style="display: none; background: #8b5cf6; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.3s; animation: pulseGlow 2s infinite;">
-            <i class="fas fa-download"></i> Install
-        </button>
+<body>
 
-        <button class="theme-toggle" id="customThemeToggle" title="Toggle theme"><i class="fas fa-moon" id="customThemeIcon"></i></button>
-        <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
-    </div>
-</header>
-
-<div class="drawer-overlay" id="drawerOverlay"></div>
-<div class="mobile-drawer" id="mobileDrawer">
-    <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
-    <a href="http://172.19.178.178/speedtest/index.html" target="_blank"><i class="fas fa-gauge-high"></i> Speed Test</a>
-    <a href="https://xtremexbd.com" target="_blank" style="color:#8b5cf6; font-weight:bold;"><i class="fas fa-shopping-cart"></i> Online Shop</a>
-    <a href="https://chat.whatsapp.com/IiZSq5by2rbARt3zdAwaES" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
-    <a href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank"><i class="fas fa-user"></i> Customer Portal</a>
-    <a href="https://xtreamcommunication.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Website</a>
-</div>
-
-<div class="main-wrapper">
-    <section class="marquee-section">
-        <div class="marquee-wrap">
-            <span class="marquee-track font-bengali">
-                <strong>প্রিয় গ্রাহক,</strong> Xtreme'x Communication-এ আপনাকে স্বাগতম • নতুন সংযোগ বা রিচার্জের জন্য কল করুন: 01864228999, 01534333278, 01932093506 &nbsp;&bull;&nbsp;
-                <strong>বিঃ দ্রঃ:</strong> নির্ধারিত সময়ের মধ্যে বিল পরিশোধের অনুরোধ করা যাচ্ছে। পেমেন্ট করার জন্য ক্লিক করুনঃ- <a class="marquee-action" href="https://xtremexcom.ispdigital.pro/Account/Login" target="_blank" rel="noopener">Customer Portal</a> &nbsp;&bull;&nbsp;
-            </span>
-        </div>
-    </section>
-    
-    <section class="search-section">
-        <div class="search-wrap">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search links, channels, movies...">
-            <button class="search-clear" id="searchClear"><i class="fas fa-times"></i></button>
-        </div>
-    </section>
-    
-    <main id="main-content"></main>
-    
-    <div class="no-results font-bengali" id="noResults">
-        <i class="fas fa-search" style="font-size:2rem;margin-bottom:0.75rem;display:block;opacity:0.4;"></i> কোনো ফলাফল পাওয়া যায়নি।
-    </div>
-</div>
-
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-accent"></div>
-        <div class="footer-address font-bengali">
-            <p><strong>Xtreme'x Communication</strong></p>
-            <p>House: 50, Chandalvoug, Uttara, Turag, Dhaka-1230.</p>
-            <p style="margin-top:0.4rem;">
-                <a href="tel:+8801864228999"><i class="fas fa-phone" style="margin-right:0.4rem;color:var(--accent);"></i> 01864228999</a> , 
-                <a href="tel:+8801534333278"> 01534333278</a> ,
-                <a href="tel:+8801932093506"> 01932093506</a>
-            </p>
-        </div>
-        <p class="footer-copy font-mono">&copy; <span id="footerYear"></span> Xtreme'x Communication — All Rights Reserved.</p>
-    </div>
-</footer>
-
-<div id="fabOptions">
-    <a href="tel:+8801864228999"><i class="fas fa-phone" style="margin-right:0.4rem;color:var(--accent);"></i> 01864228999</a>
-    <a href="tel:+8801534333278"><i class="fas fa-phone" style="margin-right:0.4rem;color:var(--accent);"></i> 01534333278</a>
-</div>
-<button id="fabToggle" aria-label="Call us"><i class="fas fa-phone"></i></button>
-<button id="scrollToTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
-<div class="toast" id="toast"></div>
-
-<!-- Beautiful & Compact Card Style Modal Popup -->
-<div class="modal-overlay dynamic-popup" id="autoCloseModal" data-popup-id="4" data-frequency="session" data-delay="900">
-    <div class="modal-box light-popup" style="width: 95%; max-width: 420px; padding: 0; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto; background: #ffffff; box-shadow: 0 20px 40px rgba(0,0,0,0.5); overflow: hidden;">
+    <!-- ================= আপনার ওয়েবসাইটের মূল ডিজাইন ================= -->
+    <div class="container">
+        <!-- লোগোটি js ফোল্ডারের ভেতরে logo.png নামে থাকতে হবে -->
+        <img src="js/logo.png" alt="Xtream TV Logo" class="logo" onerror="this.src='https://via.placeholder.com/150x150?text=Logo'">
         
-        <button class="js-popup-close" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.5); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); z-index: 100; transition: background 0.3s;" onmouseover="this.style.background='#ef4444'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">
-            <i class="fas fa-times"></i>
-        </button>        
+        <h1>Xtream Smart TV Portal</h1>
+        <p>Movies, Series, and Live Channels</p>
         
-        <a href="https://xtremexbd.com" target="_blank" style="display: block; text-align: center; background: #070a12;">
-            <img src="uploads/pop1.png" alt="Xtreme'x Solution Shop" style="width: 100%; max-height: 240px; object-fit: cover; border-bottom: 4px solid #8b5cf6;">
-        </a>
-        
-        <div style="padding: 20px; text-align: center; font-family: 'Noto Sans Bengali', sans-serif;">
-            <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; color: #4c1d95; line-height: 1.4;">
-                🎉 সবচেয়ে কম দামে সেরা Wi-Fi রাউটার এবং ONU! 🚀
-            </h2>
-            
-            <p style="font-size: 0.95rem; margin-bottom: 18px; color: #475569; line-height: 1.5; font-weight: 500;">
-                নিরবচ্ছিন্ন গতির জন্য খুঁজছেন নির্ভরযোগ্য ডিভাইস? <strong>Xtreme'x Online Shop</strong>-এ পাচ্ছেন সাশ্রয়ী মূল্যে রাউটার, অনু, সুইচ এবং ক্যাবল!
-            </p>
-            
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://xtremexbd.com" target="_blank" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; border: none; padding: 12px; font-size: 1.05rem; border-radius: 12px; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <i class="fas fa-shopping-cart"></i> এখনই অর্ডার করুন
-                </a>
-                
-                <div style="display: flex; gap: 10px;">
-                    <a href="https://www.facebook.com/xtremexbd/?rdid=gLbw30qR6sJ1GFGL" target="_blank" style="background: #1877F2; color: white; border: none; flex: 1; padding: 10px; font-weight: bold; border-radius: 10px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    
-                    <a href="tel:01864228999" target="_self" style="background: #10b981; color: white; border: none; flex: 1; padding: 10px; border-radius: 10px; font-weight: bold; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                        <i class="fas fa-phone-alt"></i> কল করুন
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!-- আপনার টিভির চ্যানেল লিস্ট বা ভিডিও প্লেয়ারের কোড এখানে বসাতে পারেন -->
     </div>
-</div>
+    <!-- ========================================================== -->
 
-<div style="position: fixed; bottom: 30px; left: 20px; z-index: 99999; background: rgba(15, 23, 42, 0.85); padding: 8px 12px; border-radius: 30px; display: flex; gap: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.5); align-items: center;">
-    <span style="color: #cbd5e1; font-size: 0.85rem; margin-right: 4px; font-weight: 700; font-family: sans-serif;">Theme:</span>
-    <a href="index.html" style="background: #ef4444; color: white; text-decoration: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.9rem; transition: 0.2s; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); border: 2px solid white; transform: scale(1.1);">1</a>
-    <a href="design2.html" style="background: #38bdf8; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(56, 189, 248, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">2</a>
-    <a href="design3.html" style="background: #10b981; color: white; text-decoration: none; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-family: sans-serif; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4); opacity: 0.6;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.1)'" onmouseout="this.style.opacity='0.6'; this.style.transform='scale(1)'">3</a>
-</div>
 
-<!-- Scripts -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-window.KSB_CATEGORIES = [
-    // Array of links omitted for brevity - Keep your existing KSB_CATEGORIES here as it was!
-];
-</script>
-<script src="assets/js/app06c8.js?v=2.3.2"></script>
+    <!-- আপনার আলাদা কোনো JS ফাইল থাকলে এখানে লিংক করুন -->
+    <!-- <script src="js/main.js"></script> -->
 
-<!-- Custom Light/Dark Theme Switcher Script -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const themeBtn = document.getElementById('customThemeToggle');
-    const themeIcon = document.getElementById('customThemeIcon');
-    const body = document.body;
-
-    const savedTheme = localStorage.getItem('xtreme_theme') || 'dark';
-    
-    if(savedTheme === 'light') {
-        body.classList.add('light-theme');
-        body.classList.remove('dark-theme', 'dark');
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
-    } else {
-        body.classList.add('dark-theme', 'dark');
-        body.classList.remove('light-theme');
-        themeIcon.classList.replace('fa-sun', 'fa-moon');
-    }
-
-    themeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if(body.classList.contains('light-theme')) {
-            body.classList.remove('light-theme');
-            body.classList.add('dark-theme', 'dark');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-            localStorage.setItem('xtreme_theme', 'dark');
-        } else {
-            body.classList.remove('dark-theme', 'dark');
-            body.classList.add('light-theme');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('xtreme_theme', 'light');
+    <!-- ================= PWA Service Worker Script (Install App এর জন্য) ================= -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js').then(function(registration) {
+                    console.log('ServiceWorker registered successfully!');
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
         }
-    });
-});
-</script>
-
-<!-- Auto Close Popup Script -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        var closeButton = document.querySelector('#autoCloseModal .js-popup-close');
-        if (closeButton) {
-            closeButton.click(); 
-        }
-        var modal = document.getElementById('autoCloseModal');
-        if (modal) {
-            modal.style.display = 'none';
-            modal.classList.remove('active', 'show');
-        }
-    }, 60000); 
-});
-</script>
-
-<!-- App Install Notice Fixer Script -->
-<script>
-(function() {
-    function fixAppBanner() {
-        var links = document.querySelectorAll('a[href*="play.google.com/store/apps"]');
-        links.forEach(function(link) {
-            if(link.href !== 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex') {
-                link.href = 'https://play.google.com/store/apps/details?id=com.softifybd.xtremex';
-            }
-        });
-
-        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-            acceptNode: function(node) {
-                if (node.parentNode && ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(node.parentNode.nodeName)) {
-                    return NodeFilter.FILTER_REJECT;
-                }
-                return node.nodeValue.includes('KSB') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-            }
-        }, false);
-
-        var node;
-        while(node = walker.nextNode()) {
-            node.nodeValue = node.nodeValue.replace(/KSB NET/g, "Xtreme'x").replace(/KSB/g, "Xtreme'x");
-        }
-    }
-
-    fixAppBanner();
-    setInterval(fixAppBanner, 500);
-})();
-</script>
-
-<!-- 🔥 PWA APP INSTALL SCRIPT (NEW) 🔥 -->
-<script>
-    let deferredPrompt;
-    const installBtn = document.getElementById('installAppBtn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the default mini-infobar from appearing on mobile
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
-        // Update UI notify the user they can install the PWA
-        installBtn.style.display = 'block';
-    });
-
-    installBtn.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            // Show the install prompt
-            deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            // We've used the prompt, and can't use it again, throw it away
-            deferredPrompt = null;
-            installBtn.style.display = 'none';
-        }
-    });
-
-    window.addEventListener('appinstalled', (evt) => {
-        // Log install success
-        console.log('App was successfully installed');
-        installBtn.style.display = 'none';
-    });
-</script>
+    </script>
 
 </body>
 </html>
