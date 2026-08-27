@@ -992,3 +992,10 @@
         padding-bottom: 1rem !important;
     }
 }
+
+/* v3 accessibility and Smart TV remote support */
+[hidden]{display:none!important}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+a:focus-visible,button:focus-visible,input:focus-visible,.site-card:focus-visible{outline:3px solid #fbbf24!important;outline-offset:3px!important}
+.site-card:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(251,191,36,.25),0 12px 30px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}

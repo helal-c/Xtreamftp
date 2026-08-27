@@ -1,4 +1,4 @@
-// KSB Media frontend script. Dynamic data is loaded from window.KSB_CATEGORIES.
+// Xtreme'x portal frontend. Catalog data is loaded from assets/js/catalog.js.
 // Rewritten in plain ES5 (no let/const, arrow functions, template literals,
 // nullish coalescing, NodeList.forEach, Array.from, etc.) so it keeps working
 // on old / Smart TV browsers with outdated JS engines. Functionality is
@@ -35,22 +35,34 @@
     function safeStorage(storage) {
         return {
             get: function (key) {
-                try { return storage.getItem(key); } catch (e) { return null; }
+                try { return storage && storage.getItem ? storage.getItem(key) : null; } catch (e) { return null; }
             },
             set: function (key, value) {
-                try { storage.setItem(key, value); } catch (e) { /* ignore */ }
+                try { if (storage && storage.setItem) { storage.setItem(key, value); } } catch (e) { /* ignore */ }
             }
         };
     }
-    var localSafe = safeStorage(window.localStorage || {});
-    var sessionSafe = safeStorage(window.sessionStorage || {});
+    function browserStorage(name) {
+        try { return window[name]; } catch (e) { return null; }
+    }
+    var localSafe = safeStorage(browserStorage('localStorage'));
+    var sessionSafe = safeStorage(browserStorage('sessionStorage'));
+
+    function safeUrl(value) {
+        var url = String(value || '').replace(/^\s+|\s+$/g, '');
+        if (/^https?:\/\//i.test(url)) { return url; }
+        if (/^(?:\.\/)?[a-z0-9][a-z0-9._/() -]*$/i.test(url) && url.indexOf('..') === -1) { return url; }
+        return '#';
+    }
 
     function buildCards(sites) {
         var html = '';
         for (var i = 0; i < sites.length; i++) {
             var site = sites[i];
-            var url = escapeHtml(site.url);
-            var directUrl = escapeHtml(site.direct_url || site.url);
+            var cleanUrl = safeUrl(site.url);
+            var cleanDirectUrl = safeUrl(site.direct_url || site.url);
+            var url = escapeHtml(cleanUrl);
+            var directUrl = escapeHtml(cleanDirectUrl);
             var name = escapeHtml(site.name);
             var icon = escapeHtml(site.icon || 'globe');
             var badgeText = String(site.badge || '').trim();
@@ -66,7 +78,7 @@
             // script. Using a data attribute avoids that risk entirely.
             html +=
                 '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="site-card" data-name="' + name.toLowerCase() + '" data-url="' + directUrl + '">' +
-                    '<button type="button" class="card-copy" title="Copy URL" data-copy-url="' + directUrl + '"><i class="fas fa-copy"></i></button>' +
+                    '<button type="button" class="card-copy" title="Copy URL" aria-label="Copy ' + name + ' URL" data-copy-url="' + directUrl + '"><i class="fas fa-copy"></i></button>' +
                     '<div class="card-icon"><i data-lucide="' + icon + '" style="width:20px;height:20px;"></i></div>' +
                     '<span class="card-name">' + name + badge + '</span>' +
                 '</a>';
@@ -198,14 +210,18 @@
         }
     }
 
-    var themeToggle = document.getElementById('themeToggle');
-    var themeIcon = document.getElementById('themeIcon');
-    var currentTheme = localSafe.get('ksb_theme') || 'dark';
+    var themeToggle = document.getElementById('customThemeToggle');
+    var themeIcon = document.getElementById('customThemeIcon');
+    var currentTheme = localSafe.get('xtreme_theme') || 'dark';
 
     function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
+        var isLight = theme === 'light';
+        document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        toggleClass(document.body, 'light-theme', isLight);
+        toggleClass(document.body, 'dark-theme', !isLight);
+        toggleClass(document.body, 'dark', !isLight);
         if (themeIcon) { themeIcon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon'; }
-        localSafe.set('ksb_theme', theme);
+        localSafe.set('xtreme_theme', theme);
         currentTheme = theme;
     }
     applyTheme(currentTheme);
@@ -223,11 +239,16 @@
     function openDrawer() {
         if (mobileDrawer) { mobileDrawer.classList.add('open'); }
         if (drawerOverlay) { drawerOverlay.classList.add('open'); }
+        if (mobileDrawer) { mobileDrawer.setAttribute('aria-hidden', 'false'); }
+        if (hamburger) { hamburger.setAttribute('aria-expanded', 'true'); }
         document.body.style.overflow = 'hidden';
+        if (drawerClose) { drawerClose.focus(); }
     }
     function closeDrawer() {
         if (mobileDrawer) { mobileDrawer.classList.remove('open'); }
         if (drawerOverlay) { drawerOverlay.classList.remove('open'); }
+        if (mobileDrawer) { mobileDrawer.setAttribute('aria-hidden', 'true'); }
+        if (hamburger) { hamburger.setAttribute('aria-expanded', 'false'); }
         document.body.style.overflow = '';
     }
     if (hamburger) { hamburger.addEventListener('click', openDrawer); }
@@ -269,8 +290,18 @@
         });
     }
 
-    function showModal(m) { m.classList.add('show'); }
-    function hideModal(m) { m.classList.remove('show'); }
+    function showModal(m) {
+        m._previousFocus = document.activeElement;
+        m.classList.add('show');
+        m.setAttribute('aria-hidden', 'false');
+        var closeButton = m.querySelector('.js-popup-close');
+        if (closeButton) { closeButton.focus(); }
+    }
+    function hideModal(m) {
+        m.classList.remove('show');
+        m.setAttribute('aria-hidden', 'true');
+        if (m._previousFocus && m._previousFocus.focus) { m._previousFocus.focus(); }
+    }
 
     function popupStorageKey(popup) {
         var today = new Date().toISOString().split('T')[0];
@@ -327,12 +358,40 @@
         popup.addEventListener('click', function (e) {
             if (e.target === popup) { close(); }
         });
+        popup.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' || e.keyCode === 27) { close(); }
+        });
+    });
+
+    var installBtn = document.getElementById('installAppBtn');
+    var deferredInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', function (event) {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        if (installBtn) { installBtn.hidden = false; }
+    });
+    if (installBtn) {
+        installBtn.addEventListener('click', function () {
+            if (!deferredInstallPrompt) { return; }
+            deferredInstallPrompt.prompt();
+            deferredInstallPrompt.userChoice.then(function () {
+                deferredInstallPrompt = null;
+                installBtn.hidden = true;
+            });
+        });
+    }
+    window.addEventListener('appinstalled', function () {
+        deferredInstallPrompt = null;
+        if (installBtn) { installBtn.hidden = true; }
+        showToast('App installed successfully');
     });
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
             if (document.documentElement.getAttribute('data-pwa') === 'enabled') {
-                navigator.serviceWorker.register('service-worker.js')['catch'](function () {});
+                navigator.serviceWorker.register('./sw.js')['catch'](function () {
+                    showToast('Offline mode could not be enabled');
+                });
             } else {
                 navigator.serviceWorker.getRegistrations().then(function (registrations) {
                     for (var i = 0; i < registrations.length; i++) { registrations[i].unregister(); }
